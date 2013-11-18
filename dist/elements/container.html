@@ -1,0 +1,171 @@
+<link rel="import" href="http://www.polymer-project.org/polymer-all/polymer-ui-elements/elements.html">
+
+<link rel="import" href="welcome.html">
+<link rel="import" href="research.html">
+<link rel="import" href="team.html">
+
+<polymer-element name="container-element"  attributes="">
+  <template>
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <style>
+      @host { :scope {display: block;} }
+      [main] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border: 3px solid lightgrey;
+      }
+      [navigation] {
+        width: 256px;
+        height: 100%;
+      }
+      #main {
+        overflow-y:auto;
+      }
+polymer-ui-submenu-item #menu{
+margin-left: 5px;
+}
+      span.icon, polymer-ui-submenu-item.icon::before{
+        font-weight: normal;
+        font-family: "FontAwesome";
+      }
+
+
+      .contact{
+        color: #08C
+      }
+      polymer-ui-submenu-item.contact::before{
+        content:"\f02D";
+      }
+      .home{
+        color: #BA55D3;
+      }
+      polymer-ui-submenu-item.home::before{
+        content:"\f015";
+      }
+      .team{
+        color: #08B8B8;
+      }
+      polymer-ui-submenu-item.team::before{
+        content:"\f0c0";
+      }
+      .research{
+        color: #0DA861
+      }
+      polymer-ui-submenu-item.research::before{
+        content:"\f0c3";
+      }
+     
+      polymer-ui-menu-item{display:inline-block !important;min-width:60%}
+      polymer-ui-menu-item:hover{background-color:#eee}
+
+    </style>
+
+<polymer-ui-scaffold3 theme="polymer-ui-light-theme" style="height:100%;display: block; position: relative;">
+
+      <div tool flex>Fetal-Neonatal Neuroscience Development and Science Center</div>
+      
+      <div id="main" main>
+      </div>
+
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="0" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
+        <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="0">
+          <polymer-ui-menu-item title="Home" label="Welcome"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Home" label="News"></polymer-ui-menu-item>
+        </polymer-ui-submenu-item>
+        <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
+          <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Research" label="Near-Infrared Spectorscopy"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Research" label="Magnetoencephalography"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Research" label="Software Development"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Research" label="High-Performance Computing"></polymer-ui-menu-item>
+        </polymer-ui-submenu-item>
+        <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team">
+          <polymer-ui-menu-item title="Meet Our Team" label="Faculty"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Meet Our Team" label="Staff"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Meet Our Team" label="Collaborators"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Meet Our Team" label="Alumni"></polymer-ui-menu-item>
+        </polymer-ui-submenu-item>
+        <polymer-ui-submenu-item class="contact icon" title="Contact Us" label="Contact Us">
+          <polymer-ui-menu-item title="Contact Us" label="Boston - Main Hospital"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Contact Us" label="Boston - 1 Autumn St"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Contact Us" label="Waltham - MEG Group"></polymer-ui-menu-item>
+        </polymer-ui-submenu-item>
+     </polymer-ui-sidebar-menu>
+
+      <!-- Load Welcome content -->
+      
+
+    </polymer-ui-scaffold3>
+
+  </template>
+  <script>
+    Polymer('container-element', {
+      ready: function() {
+        this.welcome = null;
+        this.research = null;
+        this.team = null;
+        this.contact = null;
+
+        // open menu
+        
+      },
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+      created: function() { },
+      selectAction: function(e, detail){
+        if(detail.isSelected){
+          // if not loaded, load
+          if(detail.item.title === "Welcome"){
+          if(this.welcome == null){
+            this.welcome = document.createElement('welcome-element');
+          }
+          this.$.main.textContent = ''; // if you need to remove old ones
+          this.$.main .appendChild(this.welcome);
+
+          }
+          else if(detail.item.title === "Meet Our Team"){
+         
+            if(detail.item.label === "Meet Our Team"){
+              if(this.team == null){
+                this.team = document.createElement('team-element');
+                this.team.cancelUnbindAll();
+              }
+              this.$.main.textContent = ''; // if you need to remove old ones
+              this.$.main .appendChild(this.team);
+            }
+            else{
+              // scroll to right location
+              var divID = detail.item.label.toLowerCase();
+              var myDiv = document.getElementById(divID);
+              myDiv.scrollIntoView();
+            }
+          }
+          else if(detail.item.title === "Research"){
+         
+            if(detail.item.label === "Research"){ 
+              var research = document.createElement('research-element');
+              this.$.main.textContent = ''; // if you need to remove old ones
+              this.$.main .appendChild(research);
+            }
+            else{
+              // scroll to right location
+              var divID = detail.item.label.toLowerCase();
+              var myDiv = document.getElementById(divID);
+              myDiv.scrollIntoView();
+            }
+          }
+          else{
+            // update content
+          this.$.main.textContent = 'YOYOYO'; // if you need to remove old ones
+          }
+        }
+      },
+      enteredView: function() { },
+      leftView: function() { },
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });
+  </script>
+</polymer-element>
