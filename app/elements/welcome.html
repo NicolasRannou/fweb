@@ -1,0 +1,33 @@
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="welcome-element"  attributes="">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+    </style>
+
+   <ul>
+
+  <template repeat="{{post in posts.feed.entry}}">
+    <h1>{{post.gsx$title.$t}}</h1>
+    <p>{{post.gsx$content.$t}}</p>
+
+  </template>
+
+</ul>
+ 
+<polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
+
+  </template>
+  <script>
+    Polymer('welcome-element', {
+      preventDispose: true,
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+      created: function() { },
+      enteredView: function() { },
+      leftView: function() { },
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });
+  </script>
+</polymer-element>
