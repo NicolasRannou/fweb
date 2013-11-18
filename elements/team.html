@@ -1,0 +1,119 @@
+<link rel="import" href="people.html">
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="team-element"  attributes="">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+      .sticky {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width:100%;
+        background: #08c;
+        color: #FFF;
+        padding: 25px;
+        text-transform: uppercase;
+      }
+      .fixed{
+        position: fixed;
+        top: 0;
+      }
+
+      .wrapper {
+       display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;  
+  
+  -webkit-flex-flow: row wrap;
+   background-color:#353535;
+      }
+
+    /* Responsive small screen*/
+    @media all and (max-width: 1200px){
+      people-element{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+    }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 1201px){
+      people-element{
+        -webkit-flex: 0 1 20% !important;
+        flex: 0 1 20% !important;
+      }
+    }
+
+
+    </style>
+
+  <div class="wrapper" id="faculty">
+  <div class="sticky">
+  FACULTY
+  </div>
+  <template repeat="{{people in team.feed.entry}}">
+    <template if="{{people.gsx$group.$t === 'faculty'}}">
+      <people-element people="{{people}}"></people-element>
+    </template>
+  </template>
+  </div>
+  
+  <div class="wrapper" id="staff">
+  <div class="sticky">
+  STAFF
+  </div>
+  <template repeat="{{people in team.feed.entry}}">
+    <template if="{{people.gsx$group.$t === 'staff'}}">
+      <people-element people="{{people}}"></people-element>
+    </template>
+  </template>
+  </div>
+  
+  <div class="wrapper" id="collaborators">
+  <div class="sticky">
+  COLLABORATORS
+  </div>
+  <template repeat="{{people in team.feed.entry}}">
+    <template if="{{people.gsx$group.$t === 'collaborators'}}">
+      <people-element people="{{people}}"></people-element>
+    </template>
+  </template>
+  </div>
+  
+  <div class="wrapper" id="alumni">
+  <div class="sticky">
+  ALUMNI
+  </div>
+  <template repeat="{{people in team.feed.entry}}">
+    <template if="{{people.gsx$group.$t === 'alumni'}}">
+      <people-element people="{{people}}"></people-element>
+    </template>
+  </template>
+  </div>
+  
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdExWYWNTdU9IX1pSc0h3ZF9DNVdHYlE/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>
+
+  </template>
+  <script>
+    Polymer('team-element', {
+      preventDispose: true,
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+      ready: function() {
+      this.cancelUnbindAll();
+//    var sticky = this.shadowRoot.querySelector('.sticky');
+//      window.console.log('sticky', sticky);
+//    var origOffsetY = sticky.offsetTop;
+      },
+      enteredView: function() { },
+      leftView: function() {
+      this.cancelUnbindAll();
+},
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });
+
+  </script>
+</polymer-element>

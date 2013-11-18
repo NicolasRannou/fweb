@@ -1,0 +1,139 @@
+<link rel="import" href="../bower_components/polymer-ui-elements/polymer-ui-collapsible/polymer-ui-collapsible.html">
+
+<polymer-element name="people-element"  attributes="people">
+  <template>
+    <style>
+      @host { :scope {display: block;
+       padding: 5px;
+       box-sizing: border-box;
+} }
+
+     .icon{
+        font-weight: normal;
+        font-family: "FontAwesome";
+        color: #08C;
+     }
+
+     .phone::before{
+        content:"\f095";
+     }
+     .fax::before{
+        content:"\f02f";
+     }
+     .email::before{
+        content:"\f003";
+     }
+     .location::before{
+        content:"\f08d";
+        vertical-align:top; 
+     }
+     .biography{
+      }
+
+      .biography::before{
+        content:"\f18c";
+      }
+
+polymer-ui-collapsible {
+        border: 1px solid #ddd;
+      }
+      
+      .polymer-ui-collapsible-header {
+        padding: 10px;
+        border-bottom: 1px solid #bcbcbc;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .content {
+        padding: 10px;
+      }
+
+      .wrapper {
+      border:1px solid #353535;
+       display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;  
+  
+  -webkit-flex-flow: row wrap;
+ 
+      background-color:#FFF !important; 
+      }
+ 
+     #picture{
+      order: 0;
+      }
+      #info{
+      order: 1;
+      }
+      #bio {
+        order: 2;
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 500px){
+      #picture{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+      .aside{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+    }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 800px){
+      #picture{
+        -webkit-flex: 0 1 30% !important;
+        flex: 0 1 30% !important;
+      }
+      .aside{
+        -webkit-flex: 0 1 70% !important;
+        flex: 0 1 70% !important;
+      }
+    }
+
+    </style>
+    <div class="wrapper">
+      <div id="picture">
+        <img src="http://meanion.files.wordpress.com/2012/09/minion-clipboard.jpg" style="width:100%;">
+      </div>
+      <div id="info" class="aside">
+        <h1>{{people.gsx$name.$t}}</h1>
+        <h3>{{people.gsx$hospitaltitle.$t}}</br>
+        {{people.gsx$academictitle.$t}}</br>
+        {{people.gsx$department.$t}}
+        </h3>
+        <div class="icon phone"><span style="padding-left:5px;">{{people.gsx$phone.$t}}</span></div>
+        <div class="icon fax"><span style="padding-left:5px;">{{people.gsx$fax.$t}}</span></div>
+        <div class="icon email"><span style="padding-left:5px;">{{people.gsx$email.$t}}</span></div>
+        <div class="icon location"><div id="location" style="padding-left:5px;display:inline-block"></div></div>
+      </div>
+    <div id="bio">
+      <polymer-ui-collapsible id="biocontent" preventDispose="true">
+        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">Short Biography</span></div>
+        <div id="content"></div>
+      </polymer-ui-collapsible>
+    </div>
+    </div>
+  </template>
+  <script>
+    Polymer('people-element', {
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+      peopleChanged: function() {
+        this.$.content.innerHTML = this.people.gsx$bio.$t;
+        this.$.location.innerHTML = this.people.gsx$location.$t;
+      },
+      created: function() { },
+      enteredView: function() { },
+      leftView: function() { },
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });
+  </script>
+</polymer-element>
