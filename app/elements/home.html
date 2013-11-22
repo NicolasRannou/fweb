@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element" attributes="currentSection">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -216,6 +216,7 @@ cursor: pointer;
   <script>
     Polymer('home-element', {
       currentSection: '',
+      currentSectionIdex: 0,
       preventDispose: true,
       //applyAuthorStyles: true,
       //resetStyleInheritance: true,
@@ -224,18 +225,23 @@ cursor: pointer;
        switch(this.currentSection){
         case "welcome":
           this.currentSection = "about";
+          this.currentSectionIndex = 1;
           break;
         case "about":
           this.currentSection = "research";
+          this.currentSectionIndex = 2;
           break;
         case "research":
           this.currentSection = "software";
+          this.currentSectionIndex = 3;
           break;
         case "software":
           this.currentSection = "welcome";
+          this.currentSectionIndex = 0;
           break;
         default:
            this.currentSection = "about";
+           this.currentSectionIndex = 1;
            break;
          }
       },
@@ -250,11 +256,14 @@ cursor: pointer;
         // but animation is not critical yet....
         // window.console.log('#' + this.next);
         // $( '#wrapper').scrollTop(  $('#'+this.next).offset().top );
-        var divID = this.currentSection.toLowerCase();
-        var myDiv = document.getElementById(divID);
-        myDiv.scrollIntoView();
+        if(this.currentSection){
+          var divID = this.currentSection.toLowerCase();
+          var myDiv = document.getElementById(divID);
+          myDiv.scrollIntoView();
 
-        this.setAttribute('currentSection', this.currentSection);
+          this.setAttribute('currentSection', this.currentSection);
+          this.setAttribute('currentSectionIndex', this.currentSectionIndex);
+        }
       },
       postsChanged: function() {
         if(this.posts){

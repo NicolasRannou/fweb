@@ -82,37 +82,39 @@ padding-right: 100px;
            
       <div test flex >
         <polymer-ui-toolbar responsive>
-          <polymer-ui-menu-button label="Welcome" selected="0">
-            <polymer-ui-menu-item label="Settings"></polymer-ui-menu-item>
-            <polymer-ui-menu-item label="Dialog"></polymer-ui-menu-item>
-            <polymer-ui-menu-item label="Search"></polymer-ui-menu-item>
+          <polymer-ui-menu-button label="Welcome" selected="{{currentSectionIndex}}">
+            <polymer-ui-menu-item label="About"></polymer-ui-menu-item>
+            <polymer-ui-menu-item label="Research"></polymer-ui-menu-item>
+            <polymer-ui-menu-item label="Software"></polymer-ui-menu-item>
           </polymer-ui-menu-button>
         </polymer-ui-toolbar>
       </div>
 
       <div on-scroll="{{goscroll}}" id="main" main>
-        <home-element currentSection="{{currentSection}}"></home-element>
+        <home-element id="{{currentPage}}" currentSection="{{currentSection}}" currentSectionIndex="{{currentSectionIndex}}"></home-element>
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="0" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
-        <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="0">
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
+        <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="{{currentSectionIndex}}">
           <polymer-ui-menu-item title="Home" label="Welcome"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Home" label="About"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Home" label="Research"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Home" label="Software"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
+        <polymer-ui-submenu-item class="research icon" title="Research" label="Research" selected="{{currentSectionIndex}}">
           <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Near-Infrared Spectorscopy"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Magnetoencephalography"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Software Development"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="High-Performance Computing"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team">
+        <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team" selected="{{currentSectionIndex}}">
           <polymer-ui-menu-item title="Meet Our Team" label="Faculty"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Staff"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Collaborators"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Alumni"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="contact icon" title="Contact Us" label="Contact Us">
+        <polymer-ui-submenu-item class="contact icon" title="Contact Us" label="Contact Us" selected="{{currentSectionIndex}}">
           <polymer-ui-menu-item title="Contact Us" label="Boston - Main Hospital"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Contact Us" label="Boston - 1 Autumn St"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Contact Us" label="Waltham - MEG Group"></polymer-ui-menu-item>
@@ -122,11 +124,6 @@ padding-right: 100px;
 
   </template>
   <script>
-
-    document.addEventListener('WebComponentsReady', function() {
-  window.console.log("READYYY!");
-});
-
     Polymer('container-element', {
       ready: function() {
         this.welcome = null;
@@ -134,72 +131,29 @@ padding-right: 100px;
         this.team = null;
         this.contact = null;
 
-        this.currentSection = null;
+        this.item = null;
+
+        // initialize home page
+        this.currentPage =  'home';
+        this.currentPageIndex =  0;
+        this.currentSection = 'welcome';
+        this.currentSectionIndex =  0;
       },
       created: function() { },
       goscroll: function() {
         window.console.log('scrolling....');
-        // check current section location!
       },
       currentSectionChanged: function(){
-        window.console.log("in container: " + this.currentSection);
+        window.console.log("in container section: " + this.currentSection);
+        window.console.log(this.currentSectionIndex);
+      },
+      currentPageChanged: function(){
+        window.console.log("in container page: " + this.currentPage);
       },
       selectAction: function(e, detail){
         if(detail.isSelected){
-          // show/hide
-          // if not loaded, load
-          if(detail.item.title === "Home"){
-            // if(detail.item.label === "Home"){
-            //   if(this.welcome == null){
-            //     this.welcome = document.createElement('home-element');
-
-            //     this.currentSection = "welcome";
-            //     this.welcome.currentSection = this.currentSection;
-            //   }
-            // this.$.main.textContent = ''; // if you need to remove old ones
-            // this.$.main .appendChild(this.welcome);
-            // }
-            // else{
-            //                 // scroll to right location
-            //   var divID = detail.item.label.toLowerCase();
-            //   var myDiv = document.getElementById(divID);
-            //   myDiv.scrollIntoView();
-            // }
-          }
-          else if(detail.item.title === "Meet Our Team"){
-         
-            if(detail.item.label === "Meet Our Team"){
-              if(this.team == null){
-                this.team = document.createElement('team-element');
-              }
-              this.$.main.textContent = ''; // if you need to remove old ones
-              this.$.main .appendChild(this.team);
-            }
-            else{
-              // scroll to right location
-              var divID = detail.item.label.toLowerCase();
-              var myDiv = document.getElementById(divID);
-              myDiv.scrollIntoView();
-            }
-          }
-          else if(detail.item.title === "Research"){
-         
-            if(detail.item.label === "Research"){ 
-              var research = document.createElement('research-element');
-              this.$.main.textContent = ''; // if you need to remove old ones
-              this.$.main .appendChild(research);
-            }
-            else{
-              // scroll to right location
-              var divID = detail.item.label.toLowerCase();
-              var myDiv = document.getElementById(divID);
-              myDiv.scrollIntoView();
-            }
-          }
-          else{
-            // update content
-          //this.$.main.textContent = 'NOTHING LOADED'; // if you need to remove old ones
-          }
+          this.currentPage = detail.item.title.toLowerCase();
+          this.currentSection = detail.item.label.toLowerCase();
         }
       },
       enteredView: function() { },
