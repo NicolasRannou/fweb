@@ -1,6 +1,6 @@
-<link rel="import" href="../bower_components/polymer-ui-elements/polymer-ui-scaffold/polymer-ui-scaffold.html">
+<link rel="import" href="../bower_components/polymer-ui-elements/elements.html">
 
-<link rel="import" href="welcome.html">
+<link rel="import" href="home.html">
 <link rel="import" href="research.html">
 <link rel="import" href="team.html">
 
@@ -15,7 +15,6 @@
         right: 0;
         bottom: 0;
         left: 0;
-        border: 3px solid lightgrey;
       }
       [navigation] {
         width: 256px;
@@ -24,8 +23,14 @@
       #main {
         overflow-y:auto;
       }
+      polymer-ui-submenu-item{
+        margin-top: -1px;
+        border-top: 1px black solid;
+border-bottom: 1px black solid;
+      }
 polymer-ui-submenu-item #menu{
 margin-left: 5px;
+
 }
       span.icon, polymer-ui-submenu-item.icon::before{
         font-weight: normal;
@@ -59,22 +64,35 @@ margin-left: 5px;
       }
      
       polymer-ui-menu-item{display:inline-block !important;min-width:60%}
-      polymer-ui-menu-item:hover{background-color:#eee}
+      polymer-ui-menu-item:hover{background-color:#888}
+
+      div polymer-ui-toolbar span {
+        padding-top: 20px;
+height: 100%;
+padding-left: 100px;
+padding-right: 100px;
+/*border-right: 1px solid black;*/
+border-left: 1px solid black;
+      }
 
     </style>
-HELLO
+  <polymer-ui-scaffold3 theme="polymer-ui-dark-theme" style="height:100%;display: block; position: relative;">
 
-  <polymer-ui-scaffold3 theme="polymer-ui-light-theme" style="height:100%;display: block; position: relative;">
+      <div tool flex>FNNDSC</div>
+           
+      <div test >
+        <polymer-ui-toolbar responsive><span>WELCOME
+    </span>
+  </polymer-ui-toolbar>
+      </div>
 
-      <div tool flex>Fetal-Neonatal Neuroscience Development and Science Center</div>
-      
       <div id="main" main>
       </div>
 
       <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="0" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
         <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="0">
           <polymer-ui-menu-item title="Home" label="Welcome"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Home" label="News"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Home" label="About"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
         <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
           <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
@@ -115,13 +133,20 @@ HELLO
       selectAction: function(e, detail){
         if(detail.isSelected){
           // if not loaded, load
-          if(detail.item.title === "Welcome"){
-          if(this.welcome == null){
-            this.welcome = document.createElement('welcome-element');
-          }
-          this.$.main.textContent = ''; // if you need to remove old ones
-          this.$.main .appendChild(this.welcome);
-
+          if(detail.item.title === "Home"){
+            if(detail.item.label === "Home"){
+              if(this.welcome == null){
+                this.welcome = document.createElement('home-element');
+              }
+            this.$.main.textContent = ''; // if you need to remove old ones
+            this.$.main .appendChild(this.welcome);
+            }
+            else{
+                            // scroll to right location
+              var divID = detail.item.label.toLowerCase();
+              var myDiv = document.getElementById(divID);
+              myDiv.scrollIntoView();
+            }
           }
           else if(detail.item.title === "Meet Our Team"){
          
@@ -156,7 +181,7 @@ HELLO
           }
           else{
             // update content
-          this.$.main.textContent = 'YOYOYO'; // if you need to remove old ones
+          this.$.main.textContent = 'NOTHING LOADED'; // if you need to remove old ones
           }
         }
       },

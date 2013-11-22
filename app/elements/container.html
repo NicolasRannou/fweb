@@ -63,7 +63,7 @@ margin-left: 5px;
         content:"\f0c3";
       }
      
-      polymer-ui-menu-item{display:inline-block !important;min-width:60%}
+      polymer-ui-submenu-item  polymer-ui-menu-item{display:inline-block !important;min-width:60%}
       polymer-ui-menu-item:hover{background-color:#888}
 
       div polymer-ui-toolbar span {
@@ -71,22 +71,27 @@ margin-left: 5px;
 height: 100%;
 padding-left: 100px;
 padding-right: 100px;
-border-right: 1px solid black;
-border-left: 1px solid black;
+/*border-right: 1px solid black;*/
+/*border-left: 1px solid black;*/
       }
 
     </style>
   <polymer-ui-scaffold3 theme="polymer-ui-dark-theme" style="height:100%;display: block; position: relative;">
 
-      <div tool flex>Fetal-Neonatal Neuroscience Development and Science Center</div>
+      <div tool flex>FNNDSC</div>
            
-      <div test flex>
-        <polymer-ui-toolbar responsive><span>WELCOME
-    </span>
-  </polymer-ui-toolbar>
+      <div test flex >
+        <polymer-ui-toolbar responsive>
+          <polymer-ui-menu-button label="Welcome" selected="0">
+            <polymer-ui-menu-item label="Settings"></polymer-ui-menu-item>
+            <polymer-ui-menu-item label="Dialog"></polymer-ui-menu-item>
+            <polymer-ui-menu-item label="Search"></polymer-ui-menu-item>
+          </polymer-ui-menu-button>
+        </polymer-ui-toolbar>
       </div>
 
-      <div id="main" main>
+      <div on-scroll="{{goscroll}}" id="main" main>
+        <home-element currentSection="{{currentSection}}"></home-element>
       </div>
 
       <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="0" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
@@ -117,6 +122,11 @@ border-left: 1px solid black;
 
   </template>
   <script>
+
+    document.addEventListener('WebComponentsReady', function() {
+  window.console.log("READYYY!");
+});
+
     Polymer('container-element', {
       ready: function() {
         this.welcome = null;
@@ -124,36 +134,43 @@ border-left: 1px solid black;
         this.team = null;
         this.contact = null;
 
-        // open menu
-        
+        this.currentSection = null;
       },
-      //applyAuthorStyles: true,
-      //resetStyleInheritance: true,
       created: function() { },
+      goscroll: function() {
+        window.console.log('scrolling....');
+        // check current section location!
+      },
+      currentSectionChanged: function(){
+        window.console.log("in container: " + this.currentSection);
+      },
       selectAction: function(e, detail){
         if(detail.isSelected){
+          // show/hide
           // if not loaded, load
           if(detail.item.title === "Home"){
-            if(detail.item.label === "Home"){
-              if(this.welcome == null){
-                this.welcome = document.createElement('home-element');
-              }
-            this.$.main.textContent = ''; // if you need to remove old ones
-            this.$.main .appendChild(this.welcome);
-            }
-            else{
-                            // scroll to right location
-              var divID = detail.item.label.toLowerCase();
-              var myDiv = document.getElementById(divID);
-              myDiv.scrollIntoView();
-            }
+            // if(detail.item.label === "Home"){
+            //   if(this.welcome == null){
+            //     this.welcome = document.createElement('home-element');
+
+            //     this.currentSection = "welcome";
+            //     this.welcome.currentSection = this.currentSection;
+            //   }
+            // this.$.main.textContent = ''; // if you need to remove old ones
+            // this.$.main .appendChild(this.welcome);
+            // }
+            // else{
+            //                 // scroll to right location
+            //   var divID = detail.item.label.toLowerCase();
+            //   var myDiv = document.getElementById(divID);
+            //   myDiv.scrollIntoView();
+            // }
           }
           else if(detail.item.title === "Meet Our Team"){
          
             if(detail.item.label === "Meet Our Team"){
               if(this.team == null){
                 this.team = document.createElement('team-element');
-                this.team.cancelUnbindAll();
               }
               this.$.main.textContent = ''; // if you need to remove old ones
               this.$.main .appendChild(this.team);
@@ -181,7 +198,7 @@ border-left: 1px solid black;
           }
           else{
             // update content
-          this.$.main.textContent = 'NOTHING LOADED'; // if you need to remove old ones
+          //this.$.main.textContent = 'NOTHING LOADED'; // if you need to remove old ones
           }
         }
       },
