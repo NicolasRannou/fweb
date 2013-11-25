@@ -63,7 +63,7 @@ margin-left: 5px;
         content:"\f0c3";
       }
      
-      polymer-ui-menu-item{display:inline-block !important;min-width:60%}
+      polymer-ui-submenu-item  polymer-ui-menu-item{display:inline-block !important;min-width:60%}
       polymer-ui-menu-item:hover{background-color:#888}
 
       div polymer-ui-toolbar span {
@@ -72,7 +72,7 @@ height: 100%;
 padding-left: 100px;
 padding-right: 100px;
 /*border-right: 1px solid black;*/
-border-left: 1px solid black;
+/*border-left: 1px solid black;*/
       }
 
     </style>
@@ -80,19 +80,27 @@ border-left: 1px solid black;
 
       <div tool flex>FNNDSC</div>
            
-      <div test >
-        <polymer-ui-toolbar responsive><span>WELCOME
-    </span>
-  </polymer-ui-toolbar>
+      <div test flex >
+        <polymer-ui-toolbar responsive>
+<!--         SPECIAL INDEX PER PAGE, i.e. welcomeIndex -->
+          <polymer-ui-menu-button label="Welcome" selected="{{currentSectionIndex}}">
+            <polymer-ui-menu-item label="About"></polymer-ui-menu-item>
+            <polymer-ui-menu-item label="Research"></polymer-ui-menu-item>
+            <polymer-ui-menu-item label="Software"></polymer-ui-menu-item>
+          </polymer-ui-menu-button>
+        </polymer-ui-toolbar>
       </div>
 
-      <div id="main" main>
+      <div on-scroll="{{goscroll}}" id="main" main>
+        <home-element id="{{currentPage}}" currentSection="{{currentSection}}" currentSectionIndex="{{currentSectionIndex}}"></home-element>
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="0" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
-        <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="0">
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
+        <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="{{currentSectionIndex}}">
           <polymer-ui-menu-item title="Home" label="Welcome"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Home" label="About"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Home" label="Research"></polymer-ui-menu-item>
+          <polymer-ui-menu-item title="Home" label="Software"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
         <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
           <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
@@ -124,65 +132,29 @@ border-left: 1px solid black;
         this.team = null;
         this.contact = null;
 
-        // open menu
-        
+        this.item = null;
+
+        // initialize home page
+        this.currentPage =  'home';
+        this.currentPageIndex =  0;
+        this.currentSection = 'welcome';
+        this.currentSectionIndex =  0;
       },
-      //applyAuthorStyles: true,
-      //resetStyleInheritance: true,
       created: function() { },
+      goscroll: function() {
+        window.console.log('scrolling....');
+      },
+      currentSectionChanged: function(){
+        window.console.log("in container section: " + this.currentSection);
+        window.console.log(this.currentSectionIndex);
+      },
+      currentPageChanged: function(){
+        window.console.log("in container page: " + this.currentPage);
+      },
       selectAction: function(e, detail){
         if(detail.isSelected){
-          // if not loaded, load
-          if(detail.item.title === "Home"){
-            if(detail.item.label === "Home"){
-              if(this.welcome == null){
-                this.welcome = document.createElement('home-element');
-              }
-            this.$.main.textContent = ''; // if you need to remove old ones
-            this.$.main .appendChild(this.welcome);
-            }
-            else{
-                            // scroll to right location
-              var divID = detail.item.label.toLowerCase();
-              var myDiv = document.getElementById(divID);
-              myDiv.scrollIntoView();
-            }
-          }
-          else if(detail.item.title === "Meet Our Team"){
-         
-            if(detail.item.label === "Meet Our Team"){
-              if(this.team == null){
-                this.team = document.createElement('team-element');
-                this.team.cancelUnbindAll();
-              }
-              this.$.main.textContent = ''; // if you need to remove old ones
-              this.$.main .appendChild(this.team);
-            }
-            else{
-              // scroll to right location
-              var divID = detail.item.label.toLowerCase();
-              var myDiv = document.getElementById(divID);
-              myDiv.scrollIntoView();
-            }
-          }
-          else if(detail.item.title === "Research"){
-         
-            if(detail.item.label === "Research"){ 
-              var research = document.createElement('research-element');
-              this.$.main.textContent = ''; // if you need to remove old ones
-              this.$.main .appendChild(research);
-            }
-            else{
-              // scroll to right location
-              var divID = detail.item.label.toLowerCase();
-              var myDiv = document.getElementById(divID);
-              myDiv.scrollIntoView();
-            }
-          }
-          else{
-            // update content
-          this.$.main.textContent = 'NOTHING LOADED'; // if you need to remove old ones
-          }
+          this.currentPage = detail.item.title.toLowerCase();
+          this.currentSection = detail.item.label.toLowerCase();
         }
       },
       enteredView: function() { },

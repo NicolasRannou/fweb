@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element"  attributes="">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -157,41 +157,114 @@ cursor: pointer;
   -moz-text-shadow: 0 0 0 #000;
   -webkit-text-shadow: 0 0 0 #000;
       }
+
+      #test:before{
+        content:"\f13a";
+      }
+
+            .wrapper {
+       display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;  
+  
+  -webkit-flex-flow: row wrap;
+ 
+      }
+
+
+    /* Responsive small screen*/
+    @media all and (min-width: 500px){
+      .element{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+    }
     </style>
 
-<section id="welcome" class="masthead">
+  <div id="wrapper">
+    <section id="welcome" class="masthead element">
       <div class="container">
-<div id="image"></div>
-<h2>
-        <span class="small">Welcome to the</span>
-        <span class="large">FNNDSC</span>
-      </h2>
+        <div id="image"></div>
+        <h2>
+          <span class="small">Welcome to the</span>
+          <span class="large">FNNDSC</span>
+        </h2>
       </div>
-
     </section>
 
-    <section id="about">
+    <section id="about" class="element">
       <div id="generalContent" class="container"></div>
     </section>
 
-    <section id="research">
+    <section id="research" class="element">
       <div id="researchContent" class="container"></div>
     </section>
 
-    <section id="software">
+    <section id="software" class="element">
       <div id="softwareContent" class="container"></div>
     </section>
 
-<div id="next">&#xf13a</next>
+    <div on-tap="{{gotonext}}" id="next"><div id="test"></div></next>
+</div>
+  </div>
  
 <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
 
   </template>
   <script>
     Polymer('home-element', {
+      currentSection: '',
+      currentSectionIdex: 0,
       preventDispose: true,
       //applyAuthorStyles: true,
       //resetStyleInheritance: true,
+      gotonext: function(){
+       //update next
+       switch(this.currentSection){
+        case "welcome":
+          this.currentSection = "about";
+          this.currentSectionIndex = 1;
+          break;
+        case "about":
+          this.currentSection = "research";
+          this.currentSectionIndex = 2;
+          break;
+        case "research":
+          this.currentSection = "software";
+          this.currentSectionIndex = 3;
+          break;
+        case "software":
+          this.currentSection = "welcome";
+          this.currentSectionIndex = 0;
+          break;
+        default:
+           this.currentSection = "about";
+           this.currentSectionIndex = 1;
+           break;
+         }
+      },
+      // reflect attribute to property
+      attributeChanged: function(name, value) {
+        if (this[name]) {
+          this[name] = this.getAttribute(name);
+        }
+      },
+      currentSectionChanged: function(){
+        // not working... :/
+        // but animation is not critical yet....
+        // window.console.log('#' + this.next);
+        // $( '#wrapper').scrollTop(  $('#'+this.next).offset().top );
+        if(this.currentSection){
+          var divID = this.currentSection.toLowerCase();
+          var myDiv = document.getElementById(divID);
+          myDiv.scrollIntoView();
+
+          this.setAttribute('currentSection', this.currentSection);
+          this.setAttribute('currentSectionIndex', this.currentSectionIndex);
+        }
+      },
       postsChanged: function() {
         if(this.posts){
           this.$.generalContent.innerHTML = this.posts.feed.entry[0].gsx$general.$t;

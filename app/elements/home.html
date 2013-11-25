@@ -245,12 +245,6 @@ cursor: pointer;
            break;
          }
       },
-      // reflect attribute to property
-      attributeChanged: function(name, value) {
-        if (this[name]) {
-          this[name] = this.getAttribute(name);
-        }
-      },
       currentSectionChanged: function(){
         // not working... :/
         // but animation is not critical yet....
@@ -258,8 +252,23 @@ cursor: pointer;
         // $( '#wrapper').scrollTop(  $('#'+this.next).offset().top );
         if(this.currentSection){
           var divID = this.currentSection.toLowerCase();
-          var myDiv = document.getElementById(divID);
-          myDiv.scrollIntoView();
+          // var myDiv = document.getElementById(divID);
+          // myDiv.scrollIntoView();
+
+          $(this.parentNode).closest('#main').animate({
+            scrollTop: this.$[divID].offsetTop,
+            scrollLeft: 0
+          });
+
+
+           // $(this.$[divID]).stop().animate({
+           //     'scrollTop': $(this.$[divID]).offset().top
+           // }, 900, 'swing', function() { });
+
+          // $('html, body').stop().animate({
+          //     'scrollTop': $(divID).offset().top
+          // }, 900, 'swing');
+
 
           this.setAttribute('currentSection', this.currentSection);
           this.setAttribute('currentSectionIndex', this.currentSectionIndex);

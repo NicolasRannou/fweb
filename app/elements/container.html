@@ -82,7 +82,9 @@ padding-right: 100px;
            
       <div test flex >
         <polymer-ui-toolbar responsive>
+<!--         SPECIAL INDEX PER PAGE, i.e. welcomeIndex -->
           <polymer-ui-menu-button label="Welcome" selected="{{currentSectionIndex}}">
+            <polymer-ui-menu-item label="Welcome"></polymer-ui-menu-item>
             <polymer-ui-menu-item label="About"></polymer-ui-menu-item>
             <polymer-ui-menu-item label="Research"></polymer-ui-menu-item>
             <polymer-ui-menu-item label="Software"></polymer-ui-menu-item>
@@ -101,20 +103,20 @@ padding-right: 100px;
           <polymer-ui-menu-item title="Home" label="Research"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Home" label="Software"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="research icon" title="Research" label="Research" selected="{{currentSectionIndex}}">
+        <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
           <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Near-Infrared Spectorscopy"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Magnetoencephalography"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Software Development"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="High-Performance Computing"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team" selected="{{currentSectionIndex}}">
+        <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team">
           <polymer-ui-menu-item title="Meet Our Team" label="Faculty"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Staff"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Collaborators"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Alumni"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="contact icon" title="Contact Us" label="Contact Us" selected="{{currentSectionIndex}}">
+        <polymer-ui-submenu-item class="contact icon" title="Contact Us" label="Contact Us">
           <polymer-ui-menu-item title="Contact Us" label="Boston - Main Hospital"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Contact Us" label="Boston - 1 Autumn St"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Contact Us" label="Waltham - MEG Group"></polymer-ui-menu-item>
