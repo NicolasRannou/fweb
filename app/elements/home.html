@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element" attributes="currentSection currentSectionIndex scrolling">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection jumpToSection">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -206,7 +206,7 @@ cursor: pointer;
       <div id="softwareContent" class="container"></div>
     </section>
 
-    <div on-tap="{{gotonext}}" id="next"><div id="test"></div></next>
+    <div on-tap="{{nextSection}}" id="next"><div id="test"></div></next>
 </div>
   </div>
  
@@ -218,19 +218,16 @@ cursor: pointer;
       currentSection: '',
       currentSectionIdex: 0,
       preventDispose: true,
-      scrolling: 1,
-      autoscroll: 0,
+      jumpToSection: 1,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
       },
       //applyAuthorStyles: true,
       //resetStyleInheritance: true,
-      gotonext: function(){
+      nextSection: function(){
        //update next
-
-       // auto scroll is true
-       this.autoscroll = 1;
+       this.jumpToSection = 1;
 
        switch(this.currentSection){
         case "welcome":
@@ -254,9 +251,13 @@ cursor: pointer;
            this.currentSectionIndex = 1;
            break;
          }
+
+        this.setAttribute('currentSection', this.currentSection);
+        this.setAttribute('currentSectionIndex', this.currentSectionIndex);
       },
-      scrollingChanged: function(){
-        window.console.log('#scrolling!');
+      jumpToSectionChanged: function(){
+  if(this.jumpToSection == 0){
+
         var lastIndex = this.currentSectionIndex;
 
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
@@ -276,69 +277,27 @@ cursor: pointer;
        currentIndex = i;
       }
 
-        window.console.log(this.sections[i]);
-            window.console.log(diff2);
-                        window.console.log(offset);
-                                                window.console.log("-----------------------------------");
 
 }
+if(lastIndex != currentIndex){
 
-window.console.log("-----------------------------------");
-window.console.log("-----------------------------------");
-window.console.log("-----------------------------------");
-        window.console.log(current);
-            window.console.log(currentIndex);
-
-
- if(currentIndex != lastIndex){
-        this.currentSection = current;
-        this.currentSectionIndex = currentIndex;
-
-
-//          window.console.log(this.currentSection);
-//          window.console.log(this.currentSectionIndex);
-
-             this.setAttribute('currentSection', this.currentSection);
-             this.setAttribute('currentSectionIndex', this.currentSectionIndex);
-          };
-    //Do something
-
+         this.currentSection = current;
+         this.currentSectionIndex = currentIndex;
+            };
+           };
 
       },
-      currentSectionChanged: function(){
-        // not working... :/
-        // but animation is not critical yet....
-        // window.console.log('#' + this.next);
-        // $( '#wrapper').scrollTop(  $('#'+this.next).offset().top );
-        if(this.currentSection && this.autoscroll == 1){
-          var divID = this.currentSection.toLowerCase();
-          // var myDiv = document.getElementById(divID);
-          // myDiv.scrollIntoView();
+      currentSectionIndexChanged: function(){
+        if(this.currentSectionIndex != null && this.jumpToSection == 1){
+          var divID = this.sections[this.currentSectionIndex];
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
-window.console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-window.console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-window.console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            window.console.log(_this);
-            _this.autoscroll = 0;
-
+          _this.jumpToSection = 0;
+          _this.currentSection = divID;
           });
-
-
-           // $(this.$[divID]).stop().animate({
-           //     'scrollTop': $(this.$[divID]).offset().top
-           // }, 900, 'swing', function() { });
-
-          // $('html, body').stop().animate({
-          //     'scrollTop': $(divID).offset().top
-          // }, 900, 'swing');
-
-
-          this.setAttribute('currentSection', this.currentSection);
-          this.setAttribute('currentSectionIndex', this.currentSectionIndex);
         }
       },
       postsChanged: function() {
