@@ -219,6 +219,7 @@ cursor: pointer;
       currentSectionIdex: 0,
       preventDispose: true,
       jumpToSection: 1,
+      jumpSkip: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
@@ -256,6 +257,10 @@ cursor: pointer;
         this.setAttribute('currentSectionIndex', this.currentSectionIndex);
       },
       jumpToSectionChanged: function(){
+        if(this.jumpSkip == 1){
+          this.jumpSkip = 0;
+          return;
+        }
   if(this.jumpToSection == 0){
 
         var lastIndex = this.currentSectionIndex;
@@ -296,6 +301,7 @@ if(lastIndex != currentIndex){
             scrollLeft: 0
           },500, function(){
           _this.jumpToSection = 0;
+          _this.jumpSkip = 1;
           _this.currentSection = divID;
           });
         }

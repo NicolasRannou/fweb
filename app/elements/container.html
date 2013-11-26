@@ -84,10 +84,10 @@ padding-right: 100px;
         <polymer-ui-toolbar responsive>
 <!--         SPECIAL INDEX PER PAGE, i.e. welcomeIndex -->
           <polymer-ui-menu-button label="{{currentSection}}" selected="{{currentSectionIndex}}">
-            <polymer-ui-menu-item on-tap="{{test}}" label="Welcome"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{test}}" label="About"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{test}}" label="Research"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{test}}" label="Software"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" label="Welcome"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" label="About"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" label="Research"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" label="Software"></polymer-ui-menu-item>
           </polymer-ui-menu-button>
         </polymer-ui-toolbar>
       </div>
@@ -96,12 +96,12 @@ padding-right: 100px;
         <home-element id="{{currentPage}}" jumpToSection="{{jumpToSection}}" scrolling="{{jumpToSection}}" currentSection="{{currentSection}}" currentSectionIndex="{{currentSectionIndex}}"></home-element>
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{loadPage}}">
         <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="{{currentSectionIndex}}">
-          <polymer-ui-menu-item on-tap="{{test}}" title="Home" label="Welcome"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{test}}" title="Home" label="About"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{test}}" title="Home" label="Research"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{test}}" title="Home" label="Software"></polymer-ui-menu-item>
+          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Welcome"></polymer-ui-menu-item>
+          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="About"></polymer-ui-menu-item>
+          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Research"></polymer-ui-menu-item>
+          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Software"></polymer-ui-menu-item>
         </polymer-ui-submenu-item>
         <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
           <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
@@ -128,24 +128,32 @@ padding-right: 100px;
   <script>
     Polymer('container-element', {
       ready: function() {
+        // pages
+        // describe navigation, etc, to use templates
         this.welcome = null;
         this.research = null;
         this.team = null;
         this.contact = null;
 
+        // navigation
         this.jumpToSection = 0;
         this.currentPage =  'home';
         this.currentPageIndex =  0;
         this.currentSection = 'welcome';
         this.currentSectionIndex =  0;
       },
-      test: function(){
+      jump: function(){
           this.jumpToSection = 1;
-          window.console.log(this.currentSection);
-          window.console.log(this.currentSectionIndex);
       },
       scroll: function() {
         this.jumpToSection *= -1;
+      },
+      loadPage: function(e, detail){
+        if(detail.isSelected){
+          // show/hide page
+          //this.currentPage = detail.item.title.toLowerCase();
+          //this.currentSection = detail.item.label.toLowerCase();
+        }
       }
     });
   </script>
