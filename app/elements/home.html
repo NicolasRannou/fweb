@@ -72,7 +72,9 @@ letter-spacing: -3px;
       }
 
       #about{
-        min-height: 408px;
+        background: url(../images/background/blue_eyes_cute_baby.jpg) 50% 0 repeat fixed;
+        min-height: 500px;
+        position: relative;
         background-color: #ddd;
         padding: 80px 0;
         font-size: 30px;
@@ -80,52 +82,59 @@ letter-spacing: -3px;
       }
 
             #about .container{
+              position: absolute;
         width: 100%;
 max-width: 1000px;
 margin: 0 auto;
-height: 100%;
-position: relative;
-        background-color: #ddd;
+/*height: 100%;*/
+
+/*        background-color: #ddd;*/
       }
                   #about .container p{
         padding: 10px 0;
       }
 
             #research{
-        min-height: 408px;
+                                  background: url(../images/background/baby1.jpg) 50% 0 repeat fixed;
+                                  min-height: 1000px;
         background-color: #999;
         padding: 80px 0;
         font-size: 30px;
                 line-height: normal;
+                position: relative;
       }
 
             #research .container{
+              position: absolute;
         width: 100%;
 max-width: 1000px;
 margin: 0 auto;
-height: 100%;
-position: relative;
-        background-color: #999;
+/*height: 100%;*/
+/*        background-color: #999;*/
       }
                   #research .container p{
         padding: 10px 0;
       }
 
                   #software{
-        min-height: 408px;
+                                  background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
+                                  min-height: 1000px;
         background-color: #ddd;
         padding: 80px 0;
         font-size: 30px;
                         line-height: normal;
+                        position: relative;
       }
 
             #software .container{
+              position: absolute;
         width: 100%;
 max-width: 1000px;
 margin: 0 auto;
-height: 100%;
-position: relative;
-        background-color: #ddd;
+color: #fff;
+background-color: rgba(0, 0, 0, .7);
+/*height: 100%;*/
+/*        background-color: #ddd;*/
       }
                   #software .container p{
         padding: 10px 0;
@@ -184,7 +193,7 @@ cursor: pointer;
     </style>
 
   <div id="wrapper">
-    <section id="welcome" class="masthead element">
+   <section id="welcome" class="masthead element" data-type="background" data-speed="10">
       <div class="container">
         <div id="image"></div>
         <h2>
@@ -194,15 +203,15 @@ cursor: pointer;
       </div>
     </section>
 
-    <section id="about" class="element">
+    <section id="about" class="element" data-type="background" data-speed="10">
       <div id="generalContent" class="container"></div>
     </section>
 
-    <section id="research" class="element">
+    <section id="research" class="element" data-type="background" data-speed="10">
       <div id="researchContent" class="container"></div>
     </section>
 
-    <section id="software" class="element">
+    <section id="software" class="element" data-type="background" data-speed="10">
       <div id="softwareContent" class="container"></div>
     </section>
 
@@ -261,7 +270,9 @@ cursor: pointer;
           this.jumpSkip = 0;
           return;
         }
-  if(this.jumpToSection == 0){
+
+
+
 
         var lastIndex = this.currentSectionIndex;
 
@@ -283,7 +294,17 @@ cursor: pointer;
       }
 
 
+// parallax
+// get jquery element
+var elt = $(this.$.wrapper).find('#'+this.sections[i])
+var yPos = -(fromTop / elt.data('speed'));
+// Put together our final background position
+var coords = '50% '+ yPos + 'px';
+// Move the background
+elt.css({ backgroundPosition: coords });
+
 }
+  if(this.jumpToSection == 0){
 if(lastIndex != currentIndex){
 
          this.currentSection = current;
