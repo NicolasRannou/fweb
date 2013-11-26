@@ -92,8 +92,8 @@ padding-right: 100px;
         </polymer-ui-toolbar>
       </div>
 
-      <div on-scroll="{{goscroll}}" id="main" main>
-        <home-element id="{{currentPage}}" currentSection="{{currentSection}}" currentSectionIndex="{{currentSectionIndex}}"></home-element>
+      <div on-scroll="{{scroll}}" id="main" main>
+        <home-element id="{{currentPage}}" scrolling="{{scrolling}}" currentSection="{{currentSection}}" currentSectionIndex="{{currentSectionIndex}}"></home-element>
       </div>
 
       <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{selectAction}}">
@@ -135,6 +135,9 @@ padding-right: 100px;
 
         this.item = null;
 
+        this.scrollingT = 1;
+        
+
         // initialize home page
         this.currentPage =  'home';
         this.currentPageIndex =  0;
@@ -142,8 +145,9 @@ padding-right: 100px;
         this.currentSectionIndex =  0;
       },
       created: function() { },
-      goscroll: function() {
-        window.console.log('scrolling....');
+      scroll: function() {
+        window.console.log("in container section: " + this.currentSection);
+        this.scrolling *= -1;
       },
       currentSectionChanged: function(){
         window.console.log("in container section: " + this.currentSection);
