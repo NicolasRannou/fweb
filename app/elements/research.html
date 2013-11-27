@@ -218,8 +218,7 @@
   <script>
     Polymer('research-element', {
       currentSection: '',
-      currentSectionIdex: 0,
-      preventDispose: true,
+      currentSectionIdex: null,
       jumpToSection: 1,
       jumpSkip: 0,
       ready: function(){
@@ -275,8 +274,13 @@
         };
       },
       currentSectionIndexChanged: function(){
-        if(this.currentSectionIndex != null && this.jumpToSection == 1){
-          var divID = this.sections[this.currentSectionIndex];
+        window.console.log('in ' + this.currentSectionIndex);
+        if(this.jumpToSection == 1){
+                    var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+          var divID = this.sections[index];
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
