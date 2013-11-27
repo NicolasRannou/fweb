@@ -82,13 +82,14 @@ padding-right: 100px;
            
       <div test flex >
         <polymer-ui-toolbar responsive>
-<!--         SPECIAL INDEX PER PAGE, i.e. welcomeIndex -->
+
+        <!--         home section -->
           <polymer-ui-menu-button label="{{currentSection}}" selected="{{currentSectionIndex}}">
-            <polymer-ui-menu-item on-tap="{{jump}}" label="Welcome"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{jump}}" label="About"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{jump}}" label="Research"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{jump}}" label="Software"></polymer-ui-menu-item>
+            <template repeat="{{ home }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" label="{{section}}"></polymer-ui-menu-item>
+            </template>
           </polymer-ui-menu-button>
+
         </polymer-ui-toolbar>
       </div>
 
@@ -97,12 +98,14 @@ padding-right: 100px;
       </div>
 
       <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{loadPage}}">
+
+<!--       home section -->
         <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="{{currentSectionIndex}}">
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Welcome"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="About"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Research"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Software"></polymer-ui-menu-item>
+          <template repeat="{{ home }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
+          </template>
         </polymer-ui-submenu-item>
+        
         <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
           <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Research" label="Near-Infrared Spectorscopy"></polymer-ui-menu-item>
@@ -130,10 +133,16 @@ padding-right: 100px;
       ready: function() {
         // pages
         // describe navigation, etc, to use templates
-        this.welcome = null;
+
         this.research = null;
         this.team = null;
         this.contact = null;
+
+        // page
+        this.home = [{section:'welcome', index:0},
+                        {section:'about', index:1},
+                        {section:'research', index:2},
+                        {section:'software', index:3}];
 
         // navigation
         this.jumpToSection = 0;

@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element" attributes="currentSection currentSectionIndex scrolling">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection jumpToSection">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -72,7 +72,9 @@ letter-spacing: -3px;
       }
 
       #about{
-        min-height: 408px;
+        background: url(../images/background/baby_happy.jpg) 50% 0 repeat fixed;
+        min-height: 500px;
+        position: relative;
         background-color: #ddd;
         padding: 80px 0;
         font-size: 30px;
@@ -80,52 +82,60 @@ letter-spacing: -3px;
       }
 
             #about .container{
+              position: absolute;
         width: 100%;
 max-width: 1000px;
 margin: 0 auto;
-height: 100%;
-position: relative;
-        background-color: #ddd;
+/*height: 100%;*/
+
+/*        background-color: #ddd;*/
       }
                   #about .container p{
         padding: 10px 0;
       }
 
             #research{
-        min-height: 408px;
+                                  background: url(../images/background/baby_sleep.jpg) 50% 0 repeat fixed;
+                                  min-height: 500px;
         background-color: #999;
         padding: 80px 0;
         font-size: 30px;
                 line-height: normal;
+                position: relative;
       }
 
             #research .container{
+              position: absolute;
         width: 100%;
 max-width: 1000px;
 margin: 0 auto;
-height: 100%;
-position: relative;
-        background-color: #999;
+color: #ddd;
+/*height: 100%;*/
+/*        background-color: #999;*/
       }
                   #research .container p{
         padding: 10px 0;
       }
 
                   #software{
-        min-height: 408px;
+                                  background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
+                                  min-height: 500px;
         background-color: #ddd;
         padding: 80px 0;
         font-size: 30px;
                         line-height: normal;
+                        position: relative;
       }
 
             #software .container{
+              position: absolute;
         width: 100%;
 max-width: 1000px;
 margin: 0 auto;
-height: 100%;
-position: relative;
-        background-color: #ddd;
+color: #fff;
+background-color: rgba(0, 0, 0, .7);
+/*height: 100%;*/
+/*        background-color: #ddd;*/
       }
                   #software .container p{
         padding: 10px 0;
@@ -184,7 +194,7 @@ cursor: pointer;
     </style>
 
   <div id="wrapper">
-    <section id="welcome" class="masthead element">
+   <section id="welcome" class="masthead element" data-type="background" data-speed="10">
       <div class="container">
         <div id="image"></div>
         <h2>
@@ -194,19 +204,19 @@ cursor: pointer;
       </div>
     </section>
 
-    <section id="about" class="element">
+    <section id="about" class="element" data-type="background" data-speed="1.5">
       <div id="generalContent" class="container"></div>
     </section>
 
-    <section id="research" class="element">
+    <section id="research" class="element" data-type="background" data-speed="10">
       <div id="researchContent" class="container"></div>
     </section>
 
-    <section id="software" class="element">
+    <section id="software" class="element" data-type="background" data-speed="2">
       <div id="softwareContent" class="container"></div>
     </section>
 
-    <div on-tap="{{gotonext}}" id="next"><div id="test"></div></next>
+    <div on-tap="{{nextSection}}" id="next"><div id="test"></div></next>
 </div>
   </div>
  
@@ -218,19 +228,17 @@ cursor: pointer;
       currentSection: '',
       currentSectionIdex: 0,
       preventDispose: true,
-      scrolling: 1,
-      autoscroll: 0,
+      jumpToSection: 1,
+      jumpSkip: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
       },
       //applyAuthorStyles: true,
       //resetStyleInheritance: true,
-      gotonext: function(){
+      nextSection: function(){
        //update next
-
-       // auto scroll is true
-       this.autoscroll = 1;
+       this.jumpToSection = 1;
 
        switch(this.currentSection){
         case "welcome":
@@ -254,9 +262,19 @@ cursor: pointer;
            this.currentSectionIndex = 1;
            break;
          }
+
+        this.setAttribute('currentSection', this.currentSection);
+        this.setAttribute('currentSectionIndex', this.currentSectionIndex);
       },
-      scrollingChanged: function(){
-        window.console.log('#scrolling!');
+      jumpToSectionChanged: function(){
+        if(this.jumpSkip == 1){
+          this.jumpSkip = 0;
+          return;
+        }
+
+
+
+
         var lastIndex = this.currentSectionIndex;
 
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
@@ -276,69 +294,38 @@ cursor: pointer;
        currentIndex = i;
       }
 
-        window.console.log(this.sections[i]);
-            window.console.log(diff2);
-                        window.console.log(offset);
-                                                window.console.log("-----------------------------------");
+
+// parallax
+// get jquery element
+var elt = $(this.$.wrapper).find('#'+this.sections[i])
+var yPos = -(fromTop / elt.data('speed'));
+// Put together our final background position
+var coords = '50% '+ yPos + 'px';
+// Move the background
+elt.css({ backgroundPosition: coords });
 
 }
+  if(this.jumpToSection == 0){
+if(lastIndex != currentIndex){
 
-window.console.log("-----------------------------------");
-window.console.log("-----------------------------------");
-window.console.log("-----------------------------------");
-        window.console.log(current);
-            window.console.log(currentIndex);
-
-
- if(currentIndex != lastIndex){
-        this.currentSection = current;
-        this.currentSectionIndex = currentIndex;
-
-
-//          window.console.log(this.currentSection);
-//          window.console.log(this.currentSectionIndex);
-
-             this.setAttribute('currentSection', this.currentSection);
-             this.setAttribute('currentSectionIndex', this.currentSectionIndex);
-          };
-    //Do something
-
+         this.currentSection = current;
+         this.currentSectionIndex = currentIndex;
+            };
+           };
 
       },
-      currentSectionChanged: function(){
-        // not working... :/
-        // but animation is not critical yet....
-        // window.console.log('#' + this.next);
-        // $( '#wrapper').scrollTop(  $('#'+this.next).offset().top );
-        if(this.currentSection && this.autoscroll == 1){
-          var divID = this.currentSection.toLowerCase();
-          // var myDiv = document.getElementById(divID);
-          // myDiv.scrollIntoView();
+      currentSectionIndexChanged: function(){
+        if(this.currentSectionIndex != null && this.jumpToSection == 1){
+          var divID = this.sections[this.currentSectionIndex];
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
-window.console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-window.console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-window.console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-            window.console.log(_this);
-            _this.autoscroll = 0;
-
+          _this.jumpToSection = 0;
+          _this.jumpSkip = 1;
+          _this.currentSection = divID;
           });
-
-
-           // $(this.$[divID]).stop().animate({
-           //     'scrollTop': $(this.$[divID]).offset().top
-           // }, 900, 'swing', function() { });
-
-          // $('html, body').stop().animate({
-          //     'scrollTop': $(divID).offset().top
-          // }, 900, 'swing');
-
-
-          this.setAttribute('currentSection', this.currentSection);
-          this.setAttribute('currentSectionIndex', this.currentSectionIndex);
         }
       },
       postsChanged: function() {
