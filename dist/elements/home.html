@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection jumpToSection">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -12,63 +12,64 @@
       .masthead .container{
         background: radial-gradient(ellipse farthest-side at bottom,#403c53 0,#1A1B2B 100%);
         width: 100%;
-max-width: 1000px;
-margin: 0 auto;
-height: 100%;
-position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        height: 100%;
+        position: relative;
       }
 
       #image{
         position: absolute;
-right: 10px;
-top: 20px;
-
-width: 400px;
-height: 400px;
-background: url(../images/moco3_grey_0.svg) center top no-repeat; 
+        right: 10px;
+        top: 20px;
+        width: 400px;
+        height: 400px;
+        background: url(../images/moco3_grey_0.svg) center top no-repeat; 
       }
       h2{
-font-family: 'Open Sans';
-margin: 0;
-padding: 0;
-color: #FFF;
-text-shadow: 0 2px 2px rgba(0,0,0,0.4);
-
+        font-family: 'Open Sans';
+        margin: 0;
+        padding: 0;
+        color: #FFF;
+        text-shadow: 0 2px 2px rgba(0,0,0,0.4);
       }
+
       div{
         display: block;
       }
-span{
-  display: block;
-position: absolute;
-z-index: 1;
-font-family: sans-serif;
-}
+
+      span{
+        display: block;
+        position: absolute;
+        z-index: 1;
+        font-family: sans-serif;
+      }
+
       span.small{
         font-style: italic;
-font-weight: 100;
-left: 5%;
-top: 44px;
-font-size: 12px;
-color: #5dc9fa;
+        font-weight: 100;
+        left: 5%;
+        top: 44px;
+        font-size: 12px;
+        color: #5dc9fa;
         font-size: 31px;
-top: 100px;
-left: 5%;
+        top: 100px;
+        left: 5%;
       }
 
       span.large{
-font-weight: 700;
-text-transform: uppercase;
-width: 65%;
-left: 5.5%;
-top: 56px;
-font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+        width: 65%;
+        left: 5.5%;
+        top: 56px;
+        font-size: 32px;
         font-size: 102px;
-top: 128px;
-left: 13.5%;
-width: 64%;
-line-height: 1.05;
-letter-spacing: -3px;
+        top: 128px;
+        left: 13.5%;
+        width: 64%;
+        line-height: 1.05;
+        letter-spacing: -3px;
       }
 
       #about{
@@ -81,108 +82,95 @@ letter-spacing: -3px;
         line-height: normal;
       }
 
-            #about .container{
-              position: absolute;
+      #about .container{
+        position: absolute;
         width: 100%;
-max-width: 1000px;
-margin: 0 auto;
-/*height: 100%;*/
-
-/*        background-color: #ddd;*/
+        max-width: 1000px;
+        margin: 0 auto;
       }
-                  #about .container p{
+      #about .container p{
         padding: 10px 0;
       }
 
-            #research{
-                                  background: url(../images/background/baby_sleep.jpg) 50% 0 repeat fixed;
-                                  min-height: 500px;
+      #research{
+        background: url(../images/background/baby_sleep.jpg) 50% 0 repeat fixed;
+        min-height: 500px;
         background-color: #999;
         padding: 80px 0;
         font-size: 30px;
-                line-height: normal;
-                position: relative;
+        line-height: normal;
+        position: relative;
       }
 
-            #research .container{
-              position: absolute;
+      #research .container{
+        position: absolute;
         width: 100%;
-max-width: 1000px;
-margin: 0 auto;
-color: #ddd;
-/*height: 100%;*/
-/*        background-color: #999;*/
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #ddd;
       }
-                  #research .container p{
+      #research .container p{
         padding: 10px 0;
       }
 
-                  #software{
-                                  background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
-                                  min-height: 500px;
+      #software{
+        background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
+        min-height: 500px;
         background-color: #ddd;
         padding: 80px 0;
         font-size: 30px;
-                        line-height: normal;
-                        position: relative;
+        line-height: normal;
+        position: relative;
       }
 
-            #software .container{
-              position: absolute;
+      #software .container{
+        position: absolute;
         width: 100%;
-max-width: 1000px;
-margin: 0 auto;
-color: #fff;
-background-color: rgba(0, 0, 0, .7);
-/*height: 100%;*/
-/*        background-color: #ddd;*/
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .7);
       }
-                  #software .container p{
+      #software .container p{
         padding: 10px 0;
       }
 
       #next{
         display: block;
-position: fixed;
-left: auto;
-right: 35px;
-bottom: 35px;
-margin-left: -26px;
-z-index: 9999;
-cursor: pointer;
-
+        position: fixed;
+        left: auto;
+        right: 35px;
+        bottom: 35px;
+        margin-left: -26px;
+        z-index: 9999;
+        cursor: pointer;
         font-size:72px;
-            font-weight: normal;
+        font-weight: normal;
         font-family: "FontAwesome";
-
         color:rgba(0, 0, 0, 0);
-
         text-shadow: 0 0 5px #000; /* horizontal-offset vertical-offset 'blur' colour */
-  -moz-text-shadow: 0 0 5px #000;
-  -webkit-text-shadow: 0 0 5px #000;
+        -moz-text-shadow: 0 0 5px #000;
+        -webkit-text-shadow: 0 0 5px #000;
       }
 
-            #next:hover{
+      #next:hover{
         text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
-  -moz-text-shadow: 0 0 0 #000;
-  -webkit-text-shadow: 0 0 0 #000;
+        -moz-text-shadow: 0 0 0 #000;
+        -webkit-text-shadow: 0 0 0 #000;
       }
 
       #test:before{
         content:"\f13a";
       }
 
-            .wrapper {
-       display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;  
-  
-  -webkit-flex-flow: row wrap;
- 
+      .wrapper {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;  
+        -webkit-flex-flow: row wrap;
       }
-
 
     /* Responsive small screen*/
     @media all and (min-width: 500px){
@@ -226,45 +214,18 @@ cursor: pointer;
   <script>
     Polymer('home-element', {
       currentSection: '',
-      currentSectionIdex: 0,
-      preventDispose: true,
+      currentSectionIdex: null,
       jumpToSection: 1,
       jumpSkip: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
       },
-      //applyAuthorStyles: true,
-      //resetStyleInheritance: true,
       nextSection: function(){
-       //update next
-       this.jumpToSection = 1;
-
-       switch(this.currentSection){
-        case "welcome":
-          this.currentSection = "about";
-          this.currentSectionIndex = 1;
-          break;
-        case "about":
-          this.currentSection = "research";
-          this.currentSectionIndex = 2;
-          break;
-        case "research":
-          this.currentSection = "software";
-          this.currentSectionIndex = 3;
-          break;
-        case "software":
-          this.currentSection = "welcome";
-          this.currentSectionIndex = 0;
-          break;
-        default:
-           this.currentSection = "about";
-           this.currentSectionIndex = 1;
-           break;
-         }
-
-        this.setAttribute('currentSection', this.currentSection);
-        this.setAttribute('currentSectionIndex', this.currentSectionIndex);
+        //update next
+        this.jumpToSection = 1;
+        // increase and range 0-3
+        this.currentSectionIndex = (this.currentSectionIndex+1)%4;
       },
       jumpToSectionChanged: function(){
         if(this.jumpSkip == 1){
@@ -272,51 +233,51 @@ cursor: pointer;
           return;
         }
 
-
-
-
         var lastIndex = this.currentSectionIndex;
-
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
 
-   // Get id of current scroll item
-   var current= this.currentSection;
-   var currentIndex = this.currentSectionIndex;
+        // Get id of current scroll item
+        var current= this.currentSection;
+        var currentIndex = this.currentSectionIndex;
 
-   for (var i = 0; i < this.sections.length; i++) {
+        for (var i = 0; i < this.sections.length; i++) {
 
-    var diff2 = this.$[this.sections[i]].offsetTop;
-    var offset = diff2 - fromTop; 
+          var diff2 = this.$[this.sections[i]].offsetTop;
+          var offset = diff2 - fromTop; 
 
-      if(offset <= 0){
-
+          if(offset <= 0){
             current = this.sections[i];
-       currentIndex = i;
-      }
+            currentIndex = i;
+          }
 
+          // parallax
+          // get jquery element
+          var elt = $(this.$.wrapper).find('#'+this.sections[i])
+          var yPos = -(fromTop / elt.data('speed'));
+          // Put together our final background position
+          var coords = '50% '+ yPos + 'px';
+          // Move the background
+          elt.css({ backgroundPosition: coords });
 
-// parallax
-// get jquery element
-var elt = $(this.$.wrapper).find('#'+this.sections[i])
-var yPos = -(fromTop / elt.data('speed'));
-// Put together our final background position
-var coords = '50% '+ yPos + 'px';
-// Move the background
-elt.css({ backgroundPosition: coords });
+        }
 
-}
-  if(this.jumpToSection == 0){
-if(lastIndex != currentIndex){
-
-         this.currentSection = current;
-         this.currentSectionIndex = currentIndex;
-            };
-           };
-
+        if(this.jumpToSection == 0){
+          if(lastIndex != currentIndex){
+            this.currentSection = current;
+            this.currentSectionIndex = currentIndex;
+          };
+        };
       },
       currentSectionIndexChanged: function(){
-        if(this.currentSectionIndex != null && this.jumpToSection == 1){
-          var divID = this.sections[this.currentSectionIndex];
+        if(this.jumpToSection == 1){
+
+          // maybe not necessary
+          var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+
+          var divID = this.sections[index];
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,

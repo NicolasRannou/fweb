@@ -82,34 +82,52 @@ padding-right: 100px;
            
       <div test flex >
         <polymer-ui-toolbar responsive>
-<!--         SPECIAL INDEX PER PAGE, i.e. welcomeIndex -->
-          <polymer-ui-menu-button label="{{currentSection}}" selected="{{currentSectionIndex}}">
-            <polymer-ui-menu-item on-tap="{{jump}}" label="Welcome"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{jump}}" label="About"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{jump}}" label="Research"></polymer-ui-menu-item>
-            <polymer-ui-menu-item on-tap="{{jump}}" label="Software"></polymer-ui-menu-item>
+
+          <!-- home section -->
+          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndex}}" on-polymer-select="{{loadPage}}">
+            <template repeat="{{ home }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
+            </template>
           </polymer-ui-menu-button>
+
+          <!-- research section -->
+          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndex}}" style="display:none;" on-polymer-select="{{loadPage}}">
+            <template repeat="{{ research }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
         </polymer-ui-toolbar>
       </div>
 
       <div on-scroll="{{scroll}}" id="main" main>
-        <home-element id="{{currentPage}}" jumpToSection="{{jumpToSection}}" scrolling="{{jumpToSection}}" currentSection="{{currentSection}}" currentSectionIndex="{{currentSectionIndex}}"></home-element>
+
+        <!-- home element -->
+        <home-element id="home" jumpToSection="{{homeJump}}" currentSection="{{homeSection}}" currentSectionIndex="{{homeIndex}}"></home-element>
+
+        <!-- research element -->
+        <research-element id="research" jumpToSection="{{researchJump}}" currentSection="{{researchSection}}" currentSectionIndex="{{researchIndex}}" style="display:none;"></research-element>
+
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selected="{{currentPageIndex}}" selectedItem="{{item}}" on-polymer-select="{{loadPage}}">
-        <polymer-ui-submenu-item class="home icon" title="Home" label="Home" selected="{{currentSectionIndex}}">
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Welcome"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="About"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Research"></polymer-ui-menu-item>
-          <polymer-ui-menu-item on-tap="{{jump}}" title="Home" label="Software"></polymer-ui-menu-item>
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{loadPage}}" selected=0>
+
+        <!-- home section -->
+        <!-- selected="{{homeIndex}}" -->
+        <polymer-ui-submenu-item class="home icon" title="home" label="Home" selected="{{homeIndexTest}}">
+          <template repeat="{{ home }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
+          </template>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="research icon" title="Research" label="Research">
-          <polymer-ui-menu-item title="Research" label="Magnetic Resonance Imaging"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Research" label="Near-Infrared Spectorscopy"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Research" label="Magnetoencephalography"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Research" label="Software Development"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Research" label="High-Performance Computing"></polymer-ui-menu-item>
+
+        <!-- research section -->
+        <!-- selected="{{researchIndex}}" -->
+        <polymer-ui-submenu-item class="research icon" title="research" label="Research" selected="{{researchIndexTest}}">
+          <template repeat="{{ research }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
+          </template>
         </polymer-ui-submenu-item>
+
         <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team">
           <polymer-ui-menu-item title="Meet Our Team" label="Faculty"></polymer-ui-menu-item>
           <polymer-ui-menu-item title="Meet Our Team" label="Staff"></polymer-ui-menu-item>
@@ -128,31 +146,97 @@ padding-right: 100px;
   <script>
     Polymer('container-element', {
       ready: function() {
-        // pages
-        // describe navigation, etc, to use templates
-        this.welcome = null;
-        this.research = null;
+        // selected item
+        this.item = null;
+        //
+        this.firstLoad = 1;
+
         this.team = null;
         this.contact = null;
 
+        // page
+        this.home = [{section:'welcome', index:0},
+                     {section:'about', index:1},
+                     {section:'research', index:2},
+                     {section:'software', index:3}];
+        this.homeSection = 'welcome';
+        this.homeIndex =  null;
+        this.homeJump = 1;
+        this.homeIndexTest = null;
+
+        this.research = [{section:'magnetic resonance imaging', index:0},
+                         {section:'near-infrared spectroscopy', index:1},
+                         {section:'magnetoencephalography', index:2},
+                         {section:'software development', index:3},
+                         {section:'high-performace computing', index:4}];
+        this.researchSection = 'magnetic resonance imaging';
+        this.researchIndex =  null;
+        this.researchJump = 1;
+        this.researchIndexTest = null;
+
         // navigation
-        this.jumpToSection = 0;
-        this.currentPage =  'home';
-        this.currentPageIndex =  0;
-        this.currentSection = 'welcome';
-        this.currentSectionIndex =  0;
+        this.previousPage =  'home';
       },
       jump: function(){
-          this.jumpToSection = 1;
+        this[this.previousPage+'Jump'] = 1;
       },
       scroll: function() {
-        this.jumpToSection *= -1;
+        this[this.previousPage+'Jump'] *= -1;
+      },
+      homeIndexChanged: function(){
+
+        window.console.log('---');
+        window.console.log('home index changed');
+        window.console.log(this.homeIndex);
+
+      },
+      researchIndexChanged: function(){
+
+        window.console.log('---');
+        window.console.log('research index changed');
+        window.console.log(this.researchIndex);
+
       },
       loadPage: function(e, detail){
         if(detail.isSelected){
-          // show/hide page
-          //this.currentPage = detail.item.title.toLowerCase();
-          //this.currentSection = detail.item.label.toLowerCase();
+          var selectedPage = detail.item.title;
+                  this.researchIndexTest = null;
+                          this.homeIndexTest = null;
+
+          window.console.log("=======");
+          window.console.log(detail.item);
+          window.console.log(this.previousPage);
+          window.console.log(selectedPage);
+
+          if(selectedPage != this.previousPage){
+            // hide previous page
+            this.$[this.previousPage].style.display = 'none';
+            this.$[this.previousPage+'-topnav'].style.display = 'none';
+            this[this.previousPage+'Index'] = null;
+            this.$.main.scrollTop = 0;//(0, 0);
+
+            // show current page
+            this.$[selectedPage].style.display = 'block';
+            this.$[selectedPage+'-topnav'].style.display = 'block';
+            this[selectedPage+'Jump'] = 1;
+            this[selectedPage+'Index'] = null;
+
+            // show current toolbar
+            // show/hide page
+            this.previousPage = selectedPage;
+          }
+          else{
+            // find index
+            var len = this[selectedPage].length;
+            while (len--) {
+              if(this[selectedPage][len].section == detail.item.label){
+                this[this.previousPage+'IndexTest'] = len;
+                this[this.previousPage+'Index'] = len;
+                break;
+              }
+            }
+            
+          }
         }
       }
     });

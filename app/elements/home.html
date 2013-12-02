@@ -154,13 +154,32 @@
       }
 
       #next:hover{
-        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
+        text-shadow: 0 0 0 #000;  horizontal-offset vertical-offset 'blur' colour 
         -moz-text-shadow: 0 0 0 #000;
         -webkit-text-shadow: 0 0 0 #000;
       }
 
       #test:before{
         content:"\f13a";
+        color: #353535;
+      }
+
+      #testB:before{
+        color: #FFF;
+        opacity: 0.1;
+        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
+        -moz-text-shadow: 0 0 0 #000;
+        -webkit-text-shadow: 0 0 0 #000;
+        content:"\f111";
+      }
+
+      #next:hover #testB:before{
+        color: #FFF;
+        opacity: .4;
+        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
+        -moz-text-shadow: 0 0 0 #000;
+        -webkit-text-shadow: 0 0 0 #000;
+        content:"\f111";
       }
 
       .wrapper {
@@ -204,7 +223,7 @@
       <div id="softwareContent" class="container"></div>
     </section>
 
-    <div on-tap="{{nextSection}}" id="next"><div id="test"></div></next>
+    <div on-tap="{{nextSection}}" id="next"><div id="testB" style="float:left;"></div><div id="test" style="float:left;position:absolute;"></div></next>
 </div>
   </div>
  

@@ -21,7 +21,8 @@
         height: 100%;
       }
       #main {
-        overflow-y:auto;
+        overflow-y:scroll;
+        margin-right: -20px;
       }
       polymer-ui-submenu-item{
         margin-top: -1px;
@@ -213,12 +214,15 @@ padding-right: 100px;
             this.$[this.previousPage].style.display = 'none';
             this.$[this.previousPage+'-topnav'].style.display = 'none';
             this[this.previousPage+'Index'] = null;
+            this[this.previousPage+'IndexTest'] = null;
+            this.$.main.scrollTop = 0;//(0, 0);
 
             // show current page
             this.$[selectedPage].style.display = 'block';
             this.$[selectedPage+'-topnav'].style.display = 'block';
             this[selectedPage+'Jump'] = 1;
             this[selectedPage+'Index'] = null;
+            this[selectedPage+'IndexTest'] = null;
 
             // show current toolbar
             // show/hide page
