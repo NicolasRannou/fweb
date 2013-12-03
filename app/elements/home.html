@@ -140,7 +140,7 @@
         position: fixed;
         left: auto;
         right: 35px;
-        bottom: 35px;
+        bottom: 90px;
         margin-left: -26px;
         z-index: 9999;
         cursor: pointer;
@@ -154,19 +154,19 @@
       }
 
       #next:hover{
-        text-shadow: 0 0 0 #000;  horizontal-offset vertical-offset 'blur' colour 
-        -moz-text-shadow: 0 0 0 #000;
-        -webkit-text-shadow: 0 0 0 #000;
+        text-shadow: 0 0 1px #000;  horizontal-offset vertical-offset 'blur' colour 
+        -moz-text-shadow: 0 0 1px #000;
+        -webkit-text-shadow: 0 0 1px #000;
       }
 
       #test:before{
         content:"\f13a";
-        color: #353535;
+        color: #000;
       }
 
       #testB:before{
         color: #FFF;
-        opacity: 0.1;
+        opacity: 0.3;
         text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
         -moz-text-shadow: 0 0 0 #000;
         -webkit-text-shadow: 0 0 0 #000;
@@ -175,7 +175,7 @@
 
       #next:hover #testB:before{
         color: #FFF;
-        opacity: .4;
+        opacity: .6;
         text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
         -moz-text-shadow: 0 0 0 #000;
         -webkit-text-shadow: 0 0 0 #000;
@@ -192,10 +192,14 @@
       }
 
     /* Responsive small screen*/
-    @media all and (min-width: 500px){
+    @media all and (min-width: 800px){
       .element{
         -webkit-flex: 0 1 100% !important;
         flex: 0 1 100% !important;
+      }
+
+      #next{
+        bottom: 35px;
       }
     }
     </style>
@@ -247,6 +251,8 @@
         this.currentSectionIndex = (this.currentSectionIndex+1)%4;
       },
       jumpToSectionChanged: function(){
+        window.console.log('SCROLLING EVENT');
+        window.console.log(this);
         if(this.jumpSkip == 1){
           this.jumpSkip = 0;
           return;
@@ -280,6 +286,10 @@
 
         }
 
+        window.console.log('UPDATE SECTION?');
+        window.console.log(this.jumpToSection);
+                window.console.log(lastIndex);
+                        window.console.log(currentIndex);
         if(this.jumpToSection == 0){
           if(lastIndex != currentIndex){
             this.currentSection = current;
