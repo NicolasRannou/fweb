@@ -140,7 +140,7 @@
         position: fixed;
         left: auto;
         right: 35px;
-        bottom: 35px;
+        bottom: 90px;
         margin-left: -26px;
         z-index: 9999;
         cursor: pointer;
@@ -173,10 +173,14 @@
       }
 
     /* Responsive small screen*/
-    @media all and (min-width: 500px){
+    @media all and (min-width: 800px){
       .element{
         -webkit-flex: 0 1 100% !important;
         flex: 0 1 100% !important;
+      }
+
+            #next{
+        bottom: 35px;
       }
     }
     </style>
@@ -276,10 +280,13 @@
       currentSectionIndexChanged: function(){
         window.console.log('in ' + this.currentSectionIndex);
         if(this.jumpToSection == 1){
+
+          // maybe not necessary
                     var index = 0;
           if(this.currentSectionIndex != null){
             index = this.currentSectionIndex;
           }
+
           var divID = this.sections[index];
           var _this = this;
           $(this.parentNode).closest('#main').animate({

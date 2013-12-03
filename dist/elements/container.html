@@ -21,7 +21,8 @@
         height: 100%;
       }
       #main {
-        overflow-y:auto;
+        overflow-y:scroll;
+        margin-right: -20px;
       }
       polymer-ui-submenu-item{
         margin-top: -1px;
@@ -53,8 +54,8 @@ margin-left: 5px;
       .team{
         color: #08B8B8;
       }
-      polymer-ui-submenu-item.team::before{
-        content:"\f0c0";
+      polymer-ui-submenu-item.team::before
+{        content:"\f0c0";
       }
       .research{
         color: #0DA861
@@ -67,38 +68,66 @@ margin-left: 5px;
       polymer-ui-menu-item:hover{background-color:#888}
 
       div polymer-ui-toolbar span {
-        padding-top: 20px;
-height: 100%;
+/*        padding-top: 35px;*/
+/*height: 100%;*/
 padding-left: 100px;
 padding-right: 100px;
 /*border-right: 1px solid black;*/
 /*border-left: 1px solid black;*/
       }
 
+      polymer-ui-menu {
+        font-weight:normal;
+        padding:0;
+      }
+
+      polymer-ui-menu-item {
+        padding:0;
+      }
+
+      #enveloppe{
+        padding:10px;
+        border: 1px solid #FFF;
+/*                border-right: 1px solid #FFF;*/
+      }
+
     </style>
   <polymer-ui-scaffold3 theme="polymer-ui-dark-theme" style="height:100%;display: block; position: relative;">
 
-      <div tool flex>FNNDSC</div>
-           
-      <div test flex >
+      <div tool flex>
+HELLO
         <polymer-ui-toolbar responsive>
 
+                  <!-- home section -->
+          <span id="enveloppe">
+          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndex}}" on-polymer-select="{{loadPage2}}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="home"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="research"></polymer-ui-menu-item>
+
+          </polymer-ui-menu-button>
+          </span>
+
           <!-- home section -->
-          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndex}}" on-polymer-select="{{loadPage}}">
+          <span id="enveloppe">
+          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndex}}" on-polymer-select="{{loadPage3}}">
             <template repeat="{{ home }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- research section -->
-          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndex}}" style="display:none;" on-polymer-select="{{loadPage}}">
+          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndex}}" style="display:none;" on-polymer-select="{{loadPage3}}">
             <template repeat="{{ research }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
+                  </span>
 
-        </polymer-ui-toolbar>
-      </div>
+        </polymer-ui-toolbar></div>
+           
+<!--       <div test flex >
+
+      </div> -->
 
       <div on-scroll="{{scroll}}" id="main" main>
 
@@ -110,7 +139,7 @@ padding-right: 100px;
 
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{loadPage}}" selected=0>
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{loadPage}}" selected="{{pageIndexTest}}">
 
         <!-- home section -->
         <!-- selected="{{homeIndex}}" -->
@@ -154,6 +183,9 @@ padding-right: 100px;
         this.team = null;
         this.contact = null;
 
+        this.pageIndex = null;
+        this.pageIndexTest = 0;
+
         // page
         this.home = [{section:'welcome', index:0},
                      {section:'about', index:1},
@@ -161,7 +193,7 @@ padding-right: 100px;
                      {section:'software', index:3}];
         this.homeSection = 'welcome';
         this.homeIndex =  null;
-        this.homeJump = 1;
+        this.homeJump =0;
         this.homeIndexTest = null;
 
         this.research = [{section:'magnetic resonance imaging', index:0},
@@ -197,35 +229,86 @@ padding-right: 100px;
         window.console.log(this.researchIndex);
 
       },
+      // trigger change page on left navbar
+      loadPage2: function(e, detail){
+        if(detail.isSelected){
+          var selectedPage = detail.item.title;
+
+          if(selectedPage != this.previousPage){
+            if( selectedPage == 'home'){
+this.pageIndexTest = 0;
+            }
+            else{
+              this.pageIndexTest = 1;
+            }
+          }
+        }
+      },
+      // trigger change section on left navbar
+      loadPage3: function(e, detail){
+        if(detail.isSelected){
+          var selectedPage = detail.item.title;
+
+            // find index
+            var len = this[selectedPage].length;
+            while (len--) {
+              if(this[selectedPage][len].section == detail.item.label){
+                this[this.previousPage+'IndexTest'] = len;
+                break;
+              }
+            }
+        }
+      },
       loadPage: function(e, detail){
         if(detail.isSelected){
           var selectedPage = detail.item.title;
                   this.researchIndexTest = null;
                           this.homeIndexTest = null;
 
-          window.console.log("=======");
-          window.console.log(detail.item);
-          window.console.log(this.previousPage);
-          window.console.log(selectedPage);
-
           if(selectedPage != this.previousPage){
+
+
+          window.console.log("=======");
+          window.console.log("NEW PAGE");
+
+          //           window.console.log(detail.item);
+          // window.console.log(this.previousPage);
+          // window.console.log(selectedPage);
+
             // hide previous page
             this.$[this.previousPage].style.display = 'none';
             this.$[this.previousPage+'-topnav'].style.display = 'none';
             this[this.previousPage+'Index'] = null;
-            this.$.main.scrollTop = 0;//(0, 0);
+            this[this.previousPage+'IndexTest'] = null;
+            this[this.previousPage+'Jump'] = 1;
+
+            this.$.main.scrollTop = 0;
 
             // show current page
             this.$[selectedPage].style.display = 'block';
             this.$[selectedPage+'-topnav'].style.display = 'block';
-            this[selectedPage+'Jump'] = 1;
             this[selectedPage+'Index'] = null;
+            this[selectedPage+'IndexTest'] = null;
+            this[selectedPage+'Jump'] = 1;
+            // this[selectedPage+'Jump'] = 0;
 
             // show current toolbar
             // show/hide page
+            // selected page index
             this.previousPage = selectedPage;
+                        if( selectedPage == 'home'){
+this.pageIndex = 0;
+            }
+            else{
+              this.pageIndex = 1;
+            }
           }
           else{
+
+
+          window.console.log("=======");
+          window.console.log("NEW SECTION");
+
             // find index
             var len = this[selectedPage].length;
             while (len--) {
