@@ -101,7 +101,7 @@ padding-right: 100px;
 
                   <!-- home section -->
           <span id="enveloppe">
-          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndex}}" on-polymer-select="{{loadPage}}">
+          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndex}}" on-polymer-select="{{loadPage2}}">
             <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="home"></polymer-ui-menu-item>
             <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="research"></polymer-ui-menu-item>
 
@@ -110,14 +110,14 @@ padding-right: 100px;
 
           <!-- home section -->
           <span id="enveloppe">
-          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndex}}" on-polymer-select="{{loadPage}}">
+          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndex}}" on-polymer-select="{{loadPage3}}">
             <template repeat="{{ home }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- research section -->
-          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndex}}" style="display:none;" on-polymer-select="{{loadPage}}">
+          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndex}}" style="display:none;" on-polymer-select="{{loadPage3}}">
             <template repeat="{{ research }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
             </template>
@@ -137,7 +137,7 @@ padding-right: 100px;
 
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{loadPage}}" selected=0>
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{loadPage}}" selected="{{pageIndexTest}}">
 
         <!-- home section -->
         <!-- selected="{{homeIndex}}" -->
@@ -180,6 +180,9 @@ padding-right: 100px;
 
         this.team = null;
         this.contact = null;
+
+        this.pageIndex = null;
+        this.pageIndexTest = 0;
 
         // page
         this.home = [{section:'welcome', index:0},
@@ -224,6 +227,36 @@ padding-right: 100px;
         window.console.log(this.researchIndex);
 
       },
+      // trigger change page on left navbar
+      loadPage2: function(e, detail){
+        if(detail.isSelected){
+          var selectedPage = detail.item.title;
+
+          if(selectedPage != this.previousPage){
+            if( selectedPage == 'home'){
+this.pageIndexTest = 0;
+            }
+            else{
+              this.pageIndexTest = 1;
+            }
+          }
+        }
+      },
+      // trigger change section on left navbar
+      loadPage3: function(e, detail){
+        if(detail.isSelected){
+          var selectedPage = detail.item.title;
+
+            // find index
+            var len = this[selectedPage].length;
+            while (len--) {
+              if(this[selectedPage][len].section == detail.item.label){
+                this[this.previousPage+'IndexTest'] = len;
+                break;
+              }
+            }
+        }
+      },
       loadPage: function(e, detail){
         if(detail.isSelected){
           var selectedPage = detail.item.title;
@@ -261,6 +294,12 @@ padding-right: 100px;
             // show/hide page
             // selected page index
             this.previousPage = selectedPage;
+                        if( selectedPage == 'home'){
+this.pageIndex = 0;
+            }
+            else{
+              this.pageIndex = 1;
+            }
           }
           else{
 
