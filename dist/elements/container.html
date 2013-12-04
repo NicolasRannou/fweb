@@ -86,17 +86,41 @@ padding-right: 100px;
       }
 
       #enveloppe{
-        padding:10px;
-        border: 1px solid #FFF;
+        height:100%;
+        padding: 0 10px;
+        border-right: 1px solid #FFF;
+        -webkit-box-align: center;
+-ms-flex-align: center;
+-moz-align-items: center;
+-webkit-align-items: center;
+align-items: center;display: flex !important; border-right:1px solid; padding:0 10px;
 /*                border-right: 1px solid #FFF;*/
       }
 
     </style>
   <polymer-ui-scaffold3 theme="polymer-ui-dark-theme" style="height:100%;display: block; position: relative;">
 
-      <div tool flex>
-HELLO
-        <polymer-ui-toolbar responsive>
+      <div tool flex style="display: -webkit-flex;
+      -webkit-flex-direction: row;
+
+      display: flex;
+      flex-direction: row;height:100% !important;">
+        <div style="-webkit-box-align: center;
+-ms-flex-align: center;
+-moz-align-items: center;
+-webkit-align-items: center;
+align-items: center;display: flex !important; border-right:1px solid;border-left:1px solid; padding:0 10px;">Boston Childrens Hospital</div>
+        <div style="-webkit-box-align: center;
+-ms-flex-align: center;
+-moz-align-items: center;
+-webkit-align-items: center;
+align-items: center;display: flex !important; border-right:1px solid; padding:0 10px;">FNNDSC</div>
+
+        <polymer-ui-toolbar responsive style="display: -webkit-flex;
+      -webkit-flex-direction: row;
+
+      display: flex;
+      flex-direction: row;">
 
                   <!-- home section -->
           <span id="enveloppe">
@@ -253,7 +277,7 @@ this.pageIndexTest = 0;
             var len = this[selectedPage].length;
             while (len--) {
               if(this[selectedPage][len].section == detail.item.label){
-                this[this.previousPage+'IndexTest'] = len;
+                this[this.previousPage+'Index'] = len;
                 break;
               }
             }

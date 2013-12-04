@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -113,7 +113,7 @@
         padding: 10px 0;
       }
 
-      #software{
+      #software{Team
         background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
         min-height: 500px;
         background-color: #ddd;
@@ -240,6 +240,7 @@
       currentSectionIdex: null,
       jumpToSection: 1,
       jumpSkip: 0,
+      reloaded: 1,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
@@ -252,11 +253,14 @@
       },
       jumpToSectionChanged: function(){
         window.console.log('SCROLLING EVENT');
-        window.console.log(this);
         if(this.jumpSkip == 1){
+                  window.console.log('==SKIP==');
+        window.console.log(this);
           this.jumpSkip = 0;
           return;
         }
+
+                window.console.log(this);
 
         var lastIndex = this.currentSectionIndex;
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
@@ -290,7 +294,12 @@
         window.console.log(this.jumpToSection);
                 window.console.log(lastIndex);
                         window.console.log(currentIndex);
-        if(this.jumpToSection == 0){
+                                                window.console.log(this.reloaded);
+
+        if(this.jumpToSection == 0 || this.reloaded == 1){
+
+          this.reloaded = 0;
+
           if(lastIndex != currentIndex){
             this.currentSection = current;
             this.currentSectionIndex = currentIndex;

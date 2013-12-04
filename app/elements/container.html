@@ -156,7 +156,7 @@ align-items: center;display: flex !important; border-right:1px solid; padding:0 
       <div on-scroll="{{scroll}}" id="main" main>
 
         <!-- home element -->
-        <home-element id="home" jumpToSection="{{homeJump}}" currentSection="{{homeSection}}" currentSectionIndex="{{homeIndex}}"></home-element>
+        <home-element id="home" reloaded="{{homeReloaded}}" jumpToSection="{{homeJump}}" currentSection="{{homeSection}}" currentSectionIndex="{{homeIndex}}"></home-element>
 
         <!-- research element -->
         <research-element id="research" jumpToSection="{{researchJump}}" currentSection="{{researchSection}}" currentSectionIndex="{{researchIndex}}" style="display:none;"></research-element>
@@ -219,6 +219,7 @@ align-items: center;display: flex !important; border-right:1px solid; padding:0 
         this.homeIndex =  null;
         this.homeJump =0;
         this.homeIndexTest = null;
+        this.homeReloaded = 1;
 
         this.research = [{section:'magnetic resonance imaging', index:0},
                          {section:'near-infrared spectroscopy', index:1},
@@ -229,6 +230,7 @@ align-items: center;display: flex !important; border-right:1px solid; padding:0 
         this.researchIndex =  null;
         this.researchJump = 1;
         this.researchIndexTest = null;
+        this.researchReloaded = 0;
 
         // navigation
         this.previousPage =  'home';
@@ -278,6 +280,7 @@ this.pageIndexTest = 0;
             while (len--) {
               if(this[selectedPage][len].section == detail.item.label){
                 this[this.previousPage+'IndexTest'] = len;
+                this[this.previousPage+'Index'] = len;
                 break;
               }
             }
@@ -305,6 +308,7 @@ this.pageIndexTest = 0;
             this[this.previousPage+'Index'] = null;
             this[this.previousPage+'IndexTest'] = null;
             this[this.previousPage+'Jump'] = 1;
+            this[this.previousPage+'Reloaded'] = 0;
 
             this.$.main.scrollTop = 0;
 
@@ -314,6 +318,9 @@ this.pageIndexTest = 0;
             this[selectedPage+'Index'] = null;
             this[selectedPage+'IndexTest'] = null;
             this[selectedPage+'Jump'] = 1;
+            this[selectedPage+'Reloaded'] = 1;
+
+            window.console
             // this[selectedPage+'Jump'] = 0;
 
             // show current toolbar
