@@ -255,23 +255,6 @@ display: -webkit-flex;
       scroll: function() {
         this[this.previousPage+'Scroll'] *= -1;
       },
-      // trigger change page on left navbar
-      topnavPage: function(e, detail){
-        window.console.log("--TOP-- PAGE");
-        // if(detail.isSelected){
-        //   var selectedPage = detail.item.title;
-
-        //   // todo: generalize
-        //   if(selectedPage != this.previousPage){
-        //     if( selectedPage == 'home'){
-        //       this.pageIndexTest = 0;
-        //     }
-        //     else{
-        //       this.pageIndexTest = 1;
-        //     }
-        //   }
-        // }
-      },
       pageIndexChanged: function(){
       window.console.log("--TOP-- PAGE CHANGED");
       window.console.log(this.pageIndex);
@@ -307,30 +290,9 @@ display: -webkit-flex;
       this.researchIndexTest = this.researchIndex;
     }
       },
-      // trigger change section on left navbar
-      topnavSection: function(e, target){
-        // window.console.log("--TOP-- SECTION");
-        // window.console.log(e);
-        // window.console.log(e.target);
-        // window.console.log(this[this.previousPage+'Index']);
-        // if(detail.isSelected){
-        //   var selectedPage = detail.item.title;
-        //     // find index
-        //     var len = this[selectedPage].length;
-        //     while (len--) {
-        //       if(this[selectedPage][len].section == detail.item.label){
-        //         // this[this.previousPage+'IndexTest'] = len;
-        //         // this[this.previousPage+'Index'] = len;
-        //         break;
-        //       }
-        //     }
-        // }
-      },
       sidenav: function(e, detail){
         if(detail.isSelected){
           var selectedPage = detail.item.title;
-
-          window.console.log("YOOO");
 
           if(selectedPage != this.previousPage){
             window.console.log("--SIDE-- PAGE");
@@ -343,17 +305,9 @@ display: -webkit-flex;
             this[this.previousPage+'IndexTest'] = null;
             this[this.previousPage+'Index'] = null;
 
-            // this[this.previousPage+'Index'] = null;
-            // this[this.previousPage+'IndexTest'] = null;
-            // // this[this.previousPage+'Jump'] = 0;
-            // this[this.previousPage+'Reloaded'] = 0;
-
             // show current page
             this.$[selectedPage].style.display = 'block';
             this.$[selectedPage+'-topnav'].style.display = 'block';
-            // this[selectedPage+'Index'] = null;
-            // this[selectedPage+'IndexTest'] = null;
-            // // this[selectedPage+'Jump'] = 1;
 
             // ignore the scroll event
             this[selectedPage+'Reloaded'] = 1;
@@ -380,16 +334,10 @@ display: -webkit-flex;
                 this[this.previousPage+'Index'] = len;
                 this[this.previousPage+'Section'] = detail.item.label;
                 // start jumping
-                // this[this.previousPage+'Index'] = len;
-                // // // start jumping!
                  if(this.jumpReady  == 1){
                     this.jumpReady = 0;
                     this[this.previousPage+'Jump'] = 1;
                  }
-                // go to section scrolling
-                // this[this.previousPage+'Index'] = len;
-                // this[this.previousPage+'Jump'] = 1;
-
                 break;
               }
             }
