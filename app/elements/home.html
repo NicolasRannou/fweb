@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection reloaded">
+<polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -74,7 +74,7 @@
 
       #about{
         background: url(../images/background/baby_happy.jpg) 50% 0 repeat fixed;
-        min-height: 500px;
+        min-height: 800px;
         position: relative;
         background-color: #ddd;
         padding: 80px 0;
@@ -93,8 +93,12 @@
       }
 
       #research{
-        background: url(../images/background/baby_sleep.jpg) 50% 0 repeat fixed;
-        min-height: 500px;
+        background: url(../images/background/Beaumont_Wide_Open_MRI.JPG) 50% 0 repeat fixed;
+          -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+        min-height: 800px;
         background-color: #999;
         padding: 80px 0;
         font-size: 30px;
@@ -107,16 +111,23 @@
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-        color: #ddd;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .7);
       }
       #research .container p{
         padding: 10px 0;
       }
 
-      #software{Team
-        background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
-        min-height: 500px;
-        background-color: #ddd;
+      #software{
+        background: url(../images/background/chris.png) 50% 0 repeat fixed;
+        min-height: 800px;
+/*        background-color: lightcyan;*/
+        background-repeat: repeat-y;
+/                 -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+/*        background-color: #ddd;*/
         padding: 80px 0;
         font-size: 30px;
         line-height: normal;
@@ -223,7 +234,7 @@
       <div id="researchContent" class="container"></div>
     </section>
 
-    <section id="software" class="element" data-type="background" data-speed="2">
+    <section id="software" class="element" data-type="background" data-speed="15">
       <div id="softwareContent" class="container"></div>
     </section>
 
@@ -238,9 +249,10 @@
     Polymer('home-element', {
       currentSection: '',
       currentSectionIdex: null,
-      jumpToSection: 1,
+      scrollToSection: 0,
+      jumpToSection: 0,
       jumpSkip: 0,
-      reloaded: 1,
+      reloaded: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
@@ -251,16 +263,13 @@
         // increase and range 0-3
         this.currentSectionIndex = (this.currentSectionIndex+1)%4;
       },
-      jumpToSectionChanged: function(){
-        window.console.log('SCROLLING EVENT');
-        if(this.jumpSkip == 1){
-                  window.console.log('==SKIP==');
-        window.console.log(this);
-          this.jumpSkip = 0;
+      scrollToSectionChanged: function(){
+        window.console.log('-HOME- SCROLL');
+        if(this.reloaded == 1){
+          window.console.log('skip...');
+          this.reloaded = 0;
           return;
         }
-
-                window.console.log(this);
 
         var lastIndex = this.currentSectionIndex;
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
@@ -277,55 +286,76 @@
           if(offset <= 0){
             current = this.sections[i];
             currentIndex = i;
-          }
+           }
 
-          // parallax
-          // get jquery element
-          var elt = $(this.$.wrapper).find('#'+this.sections[i])
-          var yPos = -(fromTop / elt.data('speed'));
-          // Put together our final background position
-          var coords = '50% '+ yPos + 'px';
-          // Move the background
-          elt.css({ backgroundPosition: coords });
+        //   // parallax
+        //   // get jquery element
+        //   // from previous section instead!
+        //   var elt = $(this.$.wrapper).find('#'+this.sections[i])
+        //   var yPos = -(fromTop / elt.data('speed'));
+        //   // Put together our final background position
+        //   var coords = '50% '+ yPos + 'px';
+        //   // Move the background
+        //   elt.css({ backgroundPosition: coords });
 
         }
 
-        window.console.log('UPDATE SECTION?');
-        window.console.log(this.jumpToSection);
-                window.console.log(lastIndex);
-                        window.console.log(currentIndex);
-                                                window.console.log(this.reloaded);
+        if(this.jumpToSection == 0){
+        // window.console.log('update...');
+        //   this.reloaded = 0;
 
-        if(this.jumpToSection == 0 || this.reloaded == 1){
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
 
-          this.reloaded = 0;
-
-          if(lastIndex != currentIndex){
-            this.currentSection = current;
-            this.currentSectionIndex = currentIndex;
-          };
-        };
+        }
       },
-      currentSectionIndexChanged: function(){
-        if(this.jumpToSection == 1){
-
+      jumpToSectionChanged: function(){
+        window.console.log("-HOME- JUMP");
+         if(this.jumpToSection == 0){
+           window.console.log('skip...');
+           return;
+         };
           // maybe not necessary
           var index = 0;
           if(this.currentSectionIndex != null){
             index = this.currentSectionIndex;
           }
 
+          window.console.log(index);
           var divID = this.sections[index];
+                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
           _this.jumpToSection = 0;
-          _this.jumpSkip = 1;
-          _this.currentSection = divID;
-          });
-        }
+          _this.reloaded = 1;
+          // _this.currentSection = divID;
+          }); 
+      },
+      currentSectionIndexChanged: function(){
+        // if(this.jumpToSection == 1){
+        //   window.console.log("-HOME- jump");
+        //   // maybe not necessary
+        //   var index = 0;
+        //   if(this.currentSectionIndex != null){
+        //     index = this.currentSectionIndex;
+        //   }
+
+        //   var divID = this.sections[index];
+        //   var _this = this;
+        //   $(this.parentNode).closest('#main').animate({
+        //     scrollTop: this.$[divID].offsetTop,
+        //     scrollLeft: 0
+        //   },500, function(){
+        //   _this.jumpToSection = 0;
+        //   _this.jumpSkip = 1;
+        //   _this.currentSection = divID;
+        //   });
+        // }
       },
       postsChanged: function() {
         if(this.posts){

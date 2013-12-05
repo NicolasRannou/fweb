@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="research-element" attributes="currentSection currentSectionIndex jumpToSection">
+<polymer-element name="research-element" attributes="currentSection currentSectionIndex jumpToSection reloaded scrollToSection">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -196,19 +196,19 @@
       </div>
     </section>
 
-    <section id="near-infrared spectroscopy" class="element" data-type="background" data-speed="1.5">
+    <section id="near-infrared spectroscopy" class="element" data-type="background" data-speed="1.5" style="min-height: 500px;">
       <div id="generalContent" class="container"></div>
     </section>
 
-    <section id="magnetoencephalography" class="element" data-type="background" data-speed="10">
+    <section id="magnetoencephalography" class="element" data-type="background" data-speed="10" style="min-height: 500px;">
       <div id="researchContent" class="container"></div>
     </section>
 
-    <section id="software development" class="element" data-type="background" data-speed="2">
+    <section id="software development" class="element" data-type="background" data-speed="2" style="min-height: 500px;">
       <div id="softwareContent" class="container"></div>
     </section>
 
-    <section id="high-performace computing" class="element" data-type="background" data-speed="2">
+    <section id="high-performace computing" class="element" data-type="background" data-speed="2" style="min-height: 500px;">
       <div id="softwareContent2" class="container"></div>
     </section>
 
@@ -223,8 +223,10 @@
     Polymer('research-element', {
       currentSection: '',
       currentSectionIdex: null,
-      jumpToSection: 1,
+      jumpToSection: 0,
+      scrollToSection: 0,
       jumpSkip: 0,
+      reloaded: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
@@ -236,11 +238,13 @@
         // increase and range 0-4
         this.currentSectionIndex = (this.currentSectionIndex+1)%5;
       },
-      jumpToSectionChanged: function(){
-        if(this.jumpSkip == 1){
-          this.jumpSkip = 0;
-          return;
-        }
+scrollToSectionChanged: function(){
+        window.console.log('-RESEARCH- SCROLL');
+        // if(this.jumpSkip == 1){
+        //   window.console.log('skip...');
+        //   this.jumpSkip = 0;
+        //   return;
+        // }
 
         var lastIndex = this.currentSectionIndex;
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
@@ -257,32 +261,35 @@
           if(offset <= 0){
             current = this.sections[i];
             currentIndex = i;
-          }
+           }
 
-          // parallax
-          // get jquery element
-          var elt = $(this.$.wrapper).find('#'+this.sections[i])
-          var yPos = -(fromTop / elt.data('speed'));
-          // Put together our final background position
-          var coords = '50% '+ yPos + 'px';
-          // Move the background
-          elt.css({ backgroundPosition: coords });
+        //   // parallax
+        //   // get jquery element
+        //   // from previous section instead!
+        //   var elt = $(this.$.wrapper).find('#'+this.sections[i])
+        //   var yPos = -(fromTop / elt.data('speed'));
+        //   // Put together our final background position
+        //   var coords = '50% '+ yPos + 'px';
+        //   // Move the background
+        //   elt.css({ backgroundPosition: coords });
 
         }
 
         if(this.jumpToSection == 0){
-          if(lastIndex != currentIndex){
-            this.currentSection = current;
-            this.currentSectionIndex = currentIndex;
-          };
-        };
-      },
-      currentSectionIndexChanged: function(){
-        window.console.log('in ' + this.currentSectionIndex);
-        if(this.jumpToSection == 1){
+        // window.console.log('update...');
+        //   this.reloaded = 0;
 
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
+
+        }
+      },
+      jumpToSectionChanged: function(){
+        window.console.log("-RESEARCH- JUMP");
           // maybe not necessary
-                    var index = 0;
+          var index = 0;
           if(this.currentSectionIndex != null){
             index = this.currentSectionIndex;
           }
@@ -294,10 +301,30 @@
             scrollLeft: 0
           },500, function(){
           _this.jumpToSection = 0;
-          _this.jumpSkip = 1;
-          _this.currentSection = divID;
-          });
-        }
+          // _this.jumpSkip = 1;
+          // _this.currentSection = divID;
+          }); 
+      },
+      currentSectionIndexChanged: function(){
+        // if(this.jumpToSection == 1){
+        //   window.console.log("-HOME- jump");
+        //   // maybe not necessary
+        //   var index = 0;
+        //   if(this.currentSectionIndex != null){
+        //     index = this.currentSectionIndex;
+        //   }
+
+        //   var divID = this.sections[index];
+        //   var _this = this;
+        //   $(this.parentNode).closest('#main').animate({
+        //     scrollTop: this.$[divID].offsetTop,
+        //     scrollLeft: 0
+        //   },500, function(){
+        //   _this.jumpToSection = 0;
+        //   _this.jumpSkip = 1;
+        //   _this.currentSection = divID;
+        //   });
+        // }
       },
       postsChanged: function() {
         if(this.posts){
