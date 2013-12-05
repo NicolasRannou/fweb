@@ -1,7 +1,7 @@
 <link rel="import" href="people.html">
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="team-element"  attributes="">
+<polymer-element name="team-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
@@ -49,8 +49,8 @@
 
 
     </style>
-
-  <div class="wrapper" id="faculty">
+  <div id="wrapper">
+  <section class="wrapper" id="faculty">
   <div class="sticky">
   FACULTY
   </div>
@@ -59,9 +59,10 @@
       <people-element people="{{people}}"></people-element>
     </template>
   </template>
-  </div>
+  </section>
   
-  <div class="wrapper" id="staff">
+
+  <section class="wrapper" id="staff">
   <div class="sticky">
   STAFF
   </div>
@@ -70,9 +71,9 @@
       <people-element people="{{people}}"></people-element>
     </template>
   </template>
-  </div>
+  </section>
   
-  <div class="wrapper" id="collaborators">
+  <section class="wrapper" id="collaborators">
   <div class="sticky">
   COLLABORATORS
   </div>
@@ -81,9 +82,9 @@
       <people-element people="{{people}}"></people-element>
     </template>
   </template>
-  </div>
+  </section>
   
-  <div class="wrapper" id="alumni">
+  <section class="wrapper" id="alumni">
   <div class="sticky">
   ALUMNI
   </div>
@@ -92,26 +93,112 @@
       <people-element people="{{people}}"></people-element>
     </template>
   </template>
-  </div>
+  </section>
+</div>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdExWYWNTdU9IX1pSc0h3ZF9DNVdHYlE/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>
 
   </template>
   <script>
     Polymer('team-element', {
-      preventDispose: true,
-      //applyAuthorStyles: true,
-      //resetStyleInheritance: true,
-      ready: function() {
-      this.cancelUnbindAll();
-//    var sticky = this.shadowRoot.querySelector('.sticky');
-//      window.console.log('sticky', sticky);
-//    var origOffsetY = sticky.offsetTop;
+      currentSection: '',
+      currentSectionIdex: null,
+      scrollToSection: 0,
+      jumpToSection: 0,
+      jumpSkip: 0,
+      reloaded: 0,
+      ready: function(){
+        // create scroll list (all sections)
+        this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+        window.console.log(this.sections);
       },
+      nextSection: function(){
+        //update next
+        this.jumpToSection = 1;
+        // increase and range 0-3
+        this.currentSectionIndex = (this.currentSectionIndex+1)%4;
+      },
+      scrollToSectionChanged: function(){
+        window.console.log('-TEAM- SCROLL');
+        if(this.reloaded == 1){
+          window.console.log('skip...');
+          this.reloaded = 0;
+          return;
+        }
+
+        var lastIndex = this.currentSectionIndex;
+        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+
+        // Get id of current scroll item
+        var current= this.currentSection;
+        var currentIndex = this.currentSectionIndex;
+
+        for (var i = 0; i < this.sections.length; i++) {
+
+          var diff2 = this.$[this.sections[i]].offsetTop;
+          var offset = diff2 - fromTop; 
+
+          if(offset <= 0){
+            current = this.sections[i];
+            currentIndex = i;
+           }
+
+           // parallax
+           // get jquery element
+           // from previous section instead!
+           var elt = $(this.$.wrapper).find('#'+this.sections[i])
+           var yPos = -(fromTop / elt.data('speed'));
+           // Put together our final background position
+           var coords = '50% '+ yPos + 'px';
+           // Move the background
+           elt.css({ backgroundPosition: coords });
+
+        }
+
+        if(this.jumpToSection == 0){
+          
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
+
+        }
+      },
+      jumpToSectionChanged: function(){
+        window.console.log("-TEAM- JUMP");
+         if(this.jumpToSection == 0){
+           window.console.log('skip...');
+           return;
+         };
+          // maybe not necessary
+          var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+
+          window.console.log(index);
+          var divID = this.sections[index];
+                    window.console.log(divID);
+          var _this = this;
+          $(this.parentNode).closest('#main').animate({
+            scrollTop: this.$[divID].offsetTop,
+            scrollLeft: 0
+          },500, function(){
+          _this.jumpToSection = 0;
+          _this.reloaded = 1;
+          // _this.currentSection = divID;
+          }); 
+      },
+      postsChanged: function() {
+        if(this.posts){
+          this.$.generalContent.innerHTML = this.posts.feed.entry[0].gsx$general.$t;
+          this.$.researchContent.innerHTML = this.posts.feed.entry[0].gsx$research.$t;
+          this.$.softwareContent.innerHTML = this.posts.feed.entry[0].gsx$software.$t;
+        }
+      },
+      created: function() { },
       enteredView: function() { },
-      leftView: function() {
-      this.cancelUnbindAll();
-},
+      leftView: function() { },
       attributeChanged: function(attrName, oldVal, newVal) { }
     });
 

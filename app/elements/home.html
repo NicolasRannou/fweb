@@ -93,7 +93,7 @@
       }
 
       #research{
-        background: url(../images/background/Beaumont_Wide_Open_MRI.JPG) 50% 0 repeat fixed;
+        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 repeat fixed;
           -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -288,21 +288,19 @@
             currentIndex = i;
            }
 
-        //   // parallax
-        //   // get jquery element
-        //   // from previous section instead!
-        //   var elt = $(this.$.wrapper).find('#'+this.sections[i])
-        //   var yPos = -(fromTop / elt.data('speed'));
-        //   // Put together our final background position
-        //   var coords = '50% '+ yPos + 'px';
-        //   // Move the background
-        //   elt.css({ backgroundPosition: coords });
+           // parallax
+           // get jquery element
+           // from previous section instead!
+           var elt = $(this.$.wrapper).find('#'+this.sections[i])
+           var yPos = -(fromTop / elt.data('speed'));
+           // Put together our final background position
+           var coords = '50% '+ yPos + 'px';
+           // Move the background
+           elt.css({ backgroundPosition: coords });
 
         }
 
         if(this.jumpToSection == 0){
-        // window.console.log('update...');
-        //   this.reloaded = 0;
 
            if(lastIndex != currentIndex){
              this.currentSection = current;
@@ -335,27 +333,6 @@
           _this.reloaded = 1;
           // _this.currentSection = divID;
           }); 
-      },
-      currentSectionIndexChanged: function(){
-        // if(this.jumpToSection == 1){
-        //   window.console.log("-HOME- jump");
-        //   // maybe not necessary
-        //   var index = 0;
-        //   if(this.currentSectionIndex != null){
-        //     index = this.currentSectionIndex;
-        //   }
-
-        //   var divID = this.sections[index];
-        //   var _this = this;
-        //   $(this.parentNode).closest('#main').animate({
-        //     scrollTop: this.$[divID].offsetTop,
-        //     scrollLeft: 0
-        //   },500, function(){
-        //   _this.jumpToSection = 0;
-        //   _this.jumpSkip = 1;
-        //   _this.currentSection = divID;
-        //   });
-        // }
       },
       postsChanged: function() {
         if(this.posts){

@@ -1,0 +1,313 @@
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="contact-element" attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+      .masthead{
+        height: 408px;
+        background: #1A1B2B;
+      }
+
+      .masthead .container{
+        background: radial-gradient(ellipse farthest-side at bottom,#403c53 0,#1A1B2B 100%);
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        height: 100%;
+        position: relative;
+      }
+
+      #image{
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        width: 400px;
+        height: 400px;
+        background: url(../images/moco3_grey_0.svg) center top no-repeat; 
+      }
+      h2{
+        font-family: 'Open Sans';
+        margin: 0;
+        padding: 0;
+        color: #FFF;
+        text-shadow: 0 2px 2px rgba(0,0,0,0.4);
+      }
+
+      div{
+        display: block;
+      }
+
+      span{
+        display: block;
+        position: absolute;
+        z-index: 1;
+        font-family: sans-serif;
+      }
+
+      span.small{
+        font-style: italic;
+        font-weight: 100;
+        left: 5%;
+        top: 44px;
+        font-size: 12px;
+        color: #5dc9fa;
+        font-size: 31px;
+        top: 100px;
+        left: 5%;
+      }
+
+      span.large{
+        font-weight: 700;
+        text-transform: uppercase;
+        width: 65%;
+        left: 5.5%;
+        top: 56px;
+        font-size: 32px;
+        font-size: 102px;
+        top: 128px;
+        left: 13.5%;
+        width: 64%;
+        line-height: 1.05;
+        letter-spacing: -3px;
+      }
+
+      #autmun{
+        background: url(../images/background/baby_happy.jpg) 50% 0 repeat fixed;
+        min-height: 800px;
+        position: relative;
+        background-color: #ddd;
+        padding: 80px 0;
+        font-size: 30px;
+        line-height: normal;
+      }
+
+      #autmun .container{
+        position: absolute;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      #autmun .container p{
+        padding: 10px 0;
+      }
+
+      #waltham{
+        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 repeat fixed;
+          -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+        min-height: 800px;
+        background-color: #999;
+        padding: 80px 0;
+        font-size: 30px;
+        line-height: normal;
+        position: relative;
+      }
+
+      #waltham .container{
+        position: absolute;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .7);
+      }
+      #waltham .container p{
+        padding: 10px 0;
+      }
+
+      #next{
+        display: block;
+        position: fixed;
+        left: auto;
+        right: 35px;
+        bottom: 90px;
+        margin-left: -26px;
+        z-index: 9999;
+        cursor: pointer;
+        font-size:72px;
+        font-weight: normal;
+        font-family: "FontAwesome";
+        color:rgba(0, 0, 0, 0);
+        text-shadow: 0 0 5px #000; /* horizontal-offset vertical-offset 'blur' colour */
+        -moz-text-shadow: 0 0 5px #000;
+        -webkit-text-shadow: 0 0 5px #000;
+      }
+
+      #next:hover{
+        text-shadow: 0 0 1px #000;  horizontal-offset vertical-offset 'blur' colour 
+        -moz-text-shadow: 0 0 1px #000;
+        -webkit-text-shadow: 0 0 1px #000;
+      }
+
+      #test:before{
+        content:"\f13a";
+        color: #000;
+      }
+
+      #testB:before{
+        color: #FFF;
+        opacity: 0.3;
+        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
+        -moz-text-shadow: 0 0 0 #000;
+        -webkit-text-shadow: 0 0 0 #000;
+        content:"\f111";
+      }
+
+      #next:hover #testB:before{
+        color: #FFF;
+        opacity: .6;
+        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
+        -moz-text-shadow: 0 0 0 #000;
+        -webkit-text-shadow: 0 0 0 #000;
+        content:"\f111";
+      }
+
+      .wrapper {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;  
+        -webkit-flex-flow: row wrap;
+      }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 800px){
+      .element{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+
+      #next{
+        bottom: 35px;
+      }
+    }
+    </style>
+
+  <div id="wrapper">
+   <section id="main" class="masthead element" data-type="background" data-speed="10">
+      <div class="container">
+        <div id="image"></div>
+        <h2>
+          <span class="small">Welcome to the</span>
+          <span class="large">FNNDSC</span>
+        </h2>
+      </div>
+    </section>
+
+    <section id="autmun" class="element" data-type="background" data-speed="1.5">
+      <div id="generalContent" class="container"></div>
+    </section>
+
+    <section id="waltham" class="element" data-type="background" data-speed="10">
+      <div id="researchContent" class="container"></div>
+    </section>
+
+    <div on-tap="{{nextSection}}" id="next"><div id="testB" style="float:left;"></div><div id="test" style="float:left;position:absolute;"></div></next>
+</div>
+  </div>
+ 
+<polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
+
+  </template>
+  <script>
+    Polymer('contact-element', {
+      currentSection: '',
+      currentSectionIdex: null,
+      scrollToSection: 0,
+      jumpToSection: 0,
+      jumpSkip: 0,
+      reloaded: 0,
+      ready: function(){
+        // create scroll list (all sections)
+        this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+      },
+      nextSection: function(){
+        //update next
+        this.jumpToSection = 1;
+        // increase and range 0-2
+        this.currentSectionIndex = (this.currentSectionIndex+1)%3;
+      },
+      scrollToSectionChanged: function(){
+        window.console.log('-CONTACT- SCROLL');
+        if(this.reloaded == 1){
+          window.console.log('skip...');
+          this.reloaded = 0;
+          return;
+        }
+
+        var lastIndex = this.currentSectionIndex;
+        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+
+        // Get id of current scroll item
+        var current= this.currentSection;
+        var currentIndex = this.currentSectionIndex;
+
+        for (var i = 0; i < this.sections.length; i++) {
+
+          var diff2 = this.$[this.sections[i]].offsetTop;
+          var offset = diff2 - fromTop; 
+
+          if(offset <= 0){
+            current = this.sections[i];
+            currentIndex = i;
+           }
+
+           // parallax
+           // get jquery element
+           // from previous section instead!
+           var elt = $(this.$.wrapper).find('#'+this.sections[i])
+           var yPos = -(fromTop / elt.data('speed'));
+           // Put together our final background position
+           var coords = '50% '+ yPos + 'px';
+           // Move the background
+           elt.css({ backgroundPosition: coords });
+
+        }
+
+        if(this.jumpToSection == 0){
+
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
+
+        }
+      },
+      jumpToSectionChanged: function(){
+        window.console.log("-CONTACT- JUMP");
+         if(this.jumpToSection == 0){
+           window.console.log('skip...');
+           return;
+         };
+          // maybe not necessary
+          var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+
+          window.console.log(index);
+          var divID = this.sections[index];
+                    window.console.log(divID);
+          var _this = this;
+          $(this.parentNode).closest('#main').animate({
+            scrollTop: this.$[divID].offsetTop,
+            scrollLeft: 0
+          },500, function(){
+          _this.jumpToSection = 0;
+          _this.reloaded = 1;
+          // _this.currentSection = divID;
+          }); 
+      },
+      postsChanged: function() {
+        if(this.posts){
+          this.$.generalContent.innerHTML = this.posts.feed.entry[0].gsx$general.$t;
+          this.$.researchContent.innerHTML = this.posts.feed.entry[0].gsx$research.$t;
+        }
+      }
+    });
+  </script>
+</polymer-element>
