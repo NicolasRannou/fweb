@@ -3,6 +3,7 @@
 <link rel="import" href="home.html">
 <link rel="import" href="research.html">
 <link rel="import" href="team.html">
+<link rel="import" href="contact.html">
 
 <polymer-element name="container-element"  attributes="">
   <template>
@@ -136,25 +137,41 @@ display: -webkit-flex;
 
           <!-- page navigation -->
           <span class="enveloppe">
-          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndex}}">
-            <polymer-ui-menu-item class="home icon" title="home" label="home"></polymer-ui-menu-item>
-            <polymer-ui-menu-item class="research icon" title="research" label="research"></polymer-ui-menu-item>
+          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndexTop}}">
+            <template repeat="{{ pages }}">
+              <polymer-ui-menu-item class="{{page}} icon" title="{{page}}" label="{{page}}"></polymer-ui-menu-item>
+            </template>
           </polymer-ui-menu-button>
           </span>
 
           <!-- section navigation -->
+
           <!-- home section -->
           <span class="enveloppe">
-          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndex}}">
+          <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndexTop}}">
             <template repeat="{{ home }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- research section -->
-          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndex}}" style="display:none;">
+          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndexTop}}" style="display:none;">
             <template repeat="{{ research }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
+          <!-- team section -->
+          <polymer-ui-menu-button id="team-topnav" label="{{teamSection}}" selected="{{teamIndexTop}}" style="display:none;">
+            <template repeat="{{ team }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{section}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
+          <!-- contact section -->
+          <polymer-ui-menu-button id="contact-topnav" label="{{contactSection}}" selected="{{contactIndexTop}}" style="display:none;">
+            <template repeat="{{ contact }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
         </span>
@@ -164,42 +181,49 @@ display: -webkit-flex;
       <div on-scroll="{{scroll}}" id="main" main>
 
         <!-- home element -->
-        <home-element id="home" reloaded="{{homeReloaded}}" scrollToSection="{{homeScroll}}"  jumpToSection="{{homeJump}}" currentSection="{{homeSection}}" currentSectionIndex="{{homeIndex}}"></home-element>
+        <home-element id="home" reloaded="{{homeReloaded}}" scrollToSection="{{homeScroll}}"  jumpToSection="{{homeJump}}" currentSection="{{homeSection}}" currentSectionIndex="{{homeIndexTop}}"></home-element>
 
         <!-- research element -->
-        <research-element id="research" reloaded="{{researchReloaded}}" scrollToSection="{{researchScroll}}" jumpToSection="{{researchJump}}" currentSection="{{researchSection}}" currentSectionIndex="{{researchIndex}}" style="display:none;"></research-element>
+        <research-element id="research" reloaded="{{researchReloaded}}" scrollToSection="{{researchScroll}}" jumpToSection="{{researchJump}}" currentSection="{{researchSection}}" currentSectionIndex="{{researchIndexTop}}" style="display:none;"></research-element>
+
+        <!-- team element -->
+        <team-element id="team" reloaded="{{teamReloaded}}" scrollToSection="{{teamScroll}}" jumpToSection="{{teamJump}}" currentSection="{{teamSection}}" currentSectionIndex="{{teamIndexTop}}" style="display:none;"></team-element>
+
+        <!-- contact element -->
+        <contact-element id="contact" reloaded="{{contactReloaded}}" scrollToSection="{{contactScroll}}" jumpToSection="{{contactJump}}" currentSection="{{contactSection}}" currentSectionIndex="{{contactIndexTop}}" style="display:none;"></contact-element>
 
       </div>
 
-      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{sidenav}}" selected="{{pageIndexTest}}">
+      <polymer-ui-sidebar-menu navigation label="Navigation" offscreen="basement" selectedItem="{{item}}" on-polymer-select="{{sidenav}}" selected="{{pageIndexSide}}">
 
         <!-- home section -->
-        <!-- selected="{{homeIndex}}" -->
-        <polymer-ui-submenu-item class="home icon" title="home" label="Home" selected="{{homeIndexTest}}">
+        <polymer-ui-submenu-item class="home icon" title="home" label="Home" selected="{{homeIndexSide}}">
           <template repeat="{{ home }}">
             <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
           </template>
         </polymer-ui-submenu-item>
 
         <!-- research section -->
-        <!-- selected="{{researchIndex}}" -->
-        <polymer-ui-submenu-item class="research icon" title="research" label="Research" selected="{{researchIndexTest}}">
+        <polymer-ui-submenu-item class="research icon" title="research" label="Research" selected="{{researchIndexSide}}">
           <template repeat="{{ research }}">
             <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
           </template>
         </polymer-ui-submenu-item>
 
-        <polymer-ui-submenu-item class="team icon" title="Meet Our Team" label="Meet Our Team">
-          <polymer-ui-menu-item title="Meet Our Team" label="Faculty"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Meet Our Team" label="Staff"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Meet Our Team" label="Collaborators"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Meet Our Team" label="Alumni"></polymer-ui-menu-item>
+        <!-- team section -->
+        <polymer-ui-submenu-item class="team icon" title="team" label="Team" selected="{{teamIndexSide}}">
+          <template repeat="{{ team }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{section}}"></polymer-ui-menu-item>
+          </template>
         </polymer-ui-submenu-item>
-        <polymer-ui-submenu-item class="contact icon" title="Contact Us" label="Contact Us">
-          <polymer-ui-menu-item title="Contact Us" label="Boston - Main Hospital"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Contact Us" label="Boston - 1 Autumn St"></polymer-ui-menu-item>
-          <polymer-ui-menu-item title="Contact Us" label="Waltham - MEG Group"></polymer-ui-menu-item>
+
+        <!-- contact section -->
+        <polymer-ui-submenu-item class="contact icon" title="contact" label="Contact" selected="{{contactIndexSide}}">
+          <template repeat="{{ contact }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{section}}"></polymer-ui-menu-item>
+          </template>
         </polymer-ui-submenu-item>
+
      </polymer-ui-sidebar-menu>
     </polymer-ui-scaffold3>
 
@@ -207,174 +231,163 @@ display: -webkit-flex;
   <script>
     Polymer('container-element', {
       ready: function() {
-        // selected item
-        this.item = null;
-        //
-        this.firstLoad = 1;
+        // list the pages
+        this.pages = [{page:'home', index:0},
+                     {page:'research', index:1},
+                     {page:'team', index:2},
+                     {page:'contact', index:3}];
 
-        this.team = null;
-        this.contact = null;
-
-        this.pageIndex = null;
-        this.pageIndexTest = null;
-
-        // page
+        // home page
         this.home = [{section:'welcome', index:0},
                      {section:'about', index:1},
                      {section:'research', index:2},
                      {section:'software', index:3}];
-        this.homeSection = 'welcome';
-        this.homeIndex =  null;
-        this.homeJump =0;
-        this.homeScroll =0;
-        this.homeIndexTest = null;
-        this.homeReloaded = 0;
+        this.initPageVars('home', this.home);
 
+        // research page
         this.research = [{section:'magnetic resonance imaging', index:0},
                          {section:'near-infrared spectroscopy', index:1},
                          {section:'magnetoencephalography', index:2},
                          {section:'software development', index:3},
                          {section:'high-performace computing', index:4}];
-        this.researchSection = 'magnetic resonance imaging';
-        this.researchIndex =  null;
-        this.researchJump = 0;
-        this.researchScroll =0;
-        this.researchIndexTest = null;
-        this.researchReloaded = 0;
+        this.initPageVars('research', this.research);
+
+        // team page
+        this.team = [{section:'faculty', index:0},
+                     {section:'staff', index:1},
+                     {section:'collaborators', index:2},
+                     {section:'alumni', index:3}];
+        this.initPageVars('team', this.team);
+
+        // contact page
+        this.contact = [{section:'main', index:0},
+                     {section:'autumn', index:1},
+                     {section:'waltham', index:2}];
+        this.initPageVars('contact', this.contact);
 
         // navigation
         this.previousPage =  'home';
+        this.pageIndexTop = 0;
+        this.jumpReady = 0;
+        this.pageIndexSide = null;
+      },
+      initPageVars: function(pageName, pageObject){
+        this[pageName+'Section'] = pageObject[0].section;
+        this[pageName+'IndexTop'] =  null;
+        this[pageName+'Jump'] = 0;
+        this[pageName+'Scroll'] =0;
+        this[pageName+'IndexSide'] = null;
+        this[pageName+'Reload'] = 0;
       },
       jump: function(){
-        this[this.previousPage+'Jump'] = 1;
+        this.jumpReady = 1;
       },
       scroll: function() {
         this[this.previousPage+'Scroll'] *= -1;
       },
-      // trigger change page on left navbar
-      topnavPage: function(e, detail){
-        window.console.log("--TOP-- PAGE");
-        // if(detail.isSelected){
-        //   var selectedPage = detail.item.title;
+      pageIndexTopChanged: function(){
 
-        //   // todo: generalize
-        //   if(selectedPage != this.previousPage){
-        //     if( selectedPage == 'home'){
-        //       this.pageIndexTest = 0;
-        //     }
-        //     else{
-        //       this.pageIndexTest = 1;
-        //     }
-        //   }
-        // }
-      },
-      pageIndexChanged: function(){
-      window.console.log("--TOP-- PAGE CHANGED");
-      window.console.log(this.pageIndex);
-      if(this.pageIndex != null){
-      // update sidebar
-      // clean up previous page section in top nav!
-      this[this.previousPage+'Section'] = this[this.previousPage][0].section ;
-      this[this.previousPage+'Index'] = null;
+      if(this.pageIndexTop != null){
+        // update sidebar
+        // clean up previous page section in top nav!
+        this[this.previousPage+'Section'] = this[this.previousPage][0].section ;
+        this[this.previousPage+'IndexTop'] = null;
 
-      // select page
-      this.pageIndexTest = this.pageIndex;
-    }
+        // select page
+        this.pageIndexSide = this.pageIndexTop;
+        }
       },
-      homeIndexChanged: function(){
-      window.console.log("--TOP-- SECTION HOME CHANGED");
-      window.console.log(this.homeIndex);
-      if(this.homeIndex != null){
-      // update sidebar
-      // select page
-      this.pageIndexTest = 0;
-      // selecet section
-      this.homeIndexTest = this.homeIndex;
-    }
+      homeIndexTopChanged: function(){
+
+      if(this.homeIndexTop != null){
+        // update sidebar
+        // select page
+        this.pageIndexSide = 0;
+        // select section
+        this.homeIndexSide = this.homeIndexTop;
+        }
       },
-      researchIndexChanged: function(){
-      window.console.log("--TOP-- SECTION RESEARCH CHANGED");
-      window.console.log(this.researchIndex);
-      if(this.researchIndex != null){
-      // update sidebar
-      // select page
-      this.pageIndexTest = 1;
-      // selecet section
-      this.researchIndexTest = this.researchIndex;
-    }
+      researchIndexTopChanged: function(){
+
+      if(this.researchIndexTop != null){
+        // update sidebar
+        // select page
+        this.pageIndexSide = 1;
+        // select section
+        this.researchIndexSide = this.researchIndexTop;
+        }
       },
-      // trigger change section on left navbar
-      topnavSection: function(e, target){
-        // window.console.log("--TOP-- SECTION");
-        // window.console.log(e);
-        // window.console.log(e.target);
-        // window.console.log(this[this.previousPage+'Index']);
-        // if(detail.isSelected){
-        //   var selectedPage = detail.item.title;
-        //     // find index
-        //     var len = this[selectedPage].length;
-        //     while (len--) {
-        //       if(this[selectedPage][len].section == detail.item.label){
-        //         // this[this.previousPage+'IndexTest'] = len;
-        //         // this[this.previousPage+'Index'] = len;
-        //         break;
-        //       }
-        //     }
-        // }
+      teamIndexTopChanged: function(){
+
+      if(this.teamIndexTop != null){
+        // update sidebar
+        // select page
+        this.pageIndexSide = 2;
+        // select section
+        this.teamIndexSide = this.teamIndexTop;
+        }
+      },
+      contactIndexTopChanged: function(){
+
+      if(this.contactIndexTop != null){
+        // update sidebar
+        // select page
+        this.pageIndexSide = 3;
+        // select section
+        this.contactIndexSide = this.contactIndexTop;
+        }
       },
       sidenav: function(e, detail){
+
         if(detail.isSelected){
           var selectedPage = detail.item.title;
 
           if(selectedPage != this.previousPage){
-            window.console.log("--SIDE-- PAGE");
-
-            this.$.main.scrollTop = 0;
-
             // hide previous page
             this.$[this.previousPage].style.display = 'none';
             this.$[this.previousPage+'-topnav'].style.display = 'none';
             // clean up previous page section in top nav!
             this[this.previousPage+'Section'] = this[this.previousPage][0].section ;
-            this[this.previousPage+'IndexTest'] = null;
-            this[this.previousPage+'Index'] = null;
-
-            // this[this.previousPage+'Index'] = null;
-            // this[this.previousPage+'IndexTest'] = null;
-            // // this[this.previousPage+'Jump'] = 0;
-            // this[this.previousPage+'Reloaded'] = 0;
+            this[this.previousPage+'IndexSide'] = null;
+            this[this.previousPage+'IndexTop'] = null;
 
             // show current page
             this.$[selectedPage].style.display = 'block';
             this.$[selectedPage+'-topnav'].style.display = 'block';
-            // this[selectedPage+'Index'] = null;
-            // this[selectedPage+'IndexTest'] = null;
-            // // this[selectedPage+'Jump'] = 1;
-            // this[selectedPage+'Reloaded'] = 0;
 
-            // todo: generalize
+            // ignore the scroll event
+            this[selectedPage+'Reloaded'] = 1;
+            this.$.main.scrollTop = 0;
+
             // selected page index
             this.previousPage = selectedPage;
-            if( selectedPage == 'home'){
-               this.pageIndex = 0;
-             }
-             else{
-               this.pageIndex = 1;
-             }
+            var len = this.pages.length;
+
+            while (len--) {
+
+              if(this.pages[len].page == selectedPage){
+                this.pageIndexTop = len;
+                break;
+              }
+            }
+
           }
           else{
-            window.console.log("--SIDE-- SECTION");
             // find index
             var len = this[selectedPage].length;
+
             while (len--) {
+
               if(this[selectedPage][len].section == detail.item.label){
                 // update topnav
-                this[this.previousPage+'IndexTest'] = len;
+                this[this.previousPage+'IndexTop'] = len;
                 this[this.previousPage+'Section'] = detail.item.label;
-                // go to section scrolling
-                // this[this.previousPage+'Index'] = len;
-                // this[this.previousPage+'Jump'] = 1;
 
+                // start jumping
+                 if(this.jumpReady  == 1){
+                    this.jumpReady = 0;
+                    this[this.previousPage+'Jump'] = 1;
+                 }
                 break;
               }
             }

@@ -6,11 +6,11 @@
       @host { :scope {display: block;} }
       .masthead{
         height: 408px;
-        background: #1A1B2B;
+        background: rgb(155, 155, 200);
       }
 
       .masthead .container{
-        background: radial-gradient(ellipse farthest-side at bottom,#403c53 0,#1A1B2B 100%);
+        background: radial-gradient(ellipse farthest-side at bottom,#FFF 0,rgb(155, 155, 200) 100%);
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
@@ -21,10 +21,14 @@
       #image{
         position: absolute;
         right: 10px;
-        top: 20px;
+        top: 40px;
         width: 400px;
         height: 400px;
-        background: url(../images/moco3_grey_0.svg) center top no-repeat; 
+        background: url(../images/background/surfview.png) center top no-repeat; 
+                  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
       }
       h2{
         font-family: 'Open Sans';
@@ -51,7 +55,7 @@
         left: 5%;
         top: 44px;
         font-size: 12px;
-        color: #5dc9fa;
+        color: #000;
         font-size: 31px;
         top: 100px;
         left: 5%;
@@ -93,7 +97,7 @@
       }
 
       #research{
-        background: url(../images/background/Beaumont_Wide_Open_MRI.JPG) 50% 0 repeat fixed;
+        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 repeat fixed;
           -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -265,11 +269,11 @@
       },
       scrollToSectionChanged: function(){
         window.console.log('-HOME- SCROLL');
-        // if(this.jumpSkip == 1){
-        //   window.console.log('skip...');
-        //   this.jumpSkip = 0;
-        //   return;
-        // }
+        if(this.reloaded == 1){
+          window.console.log('skip...');
+          this.reloaded = 0;
+          return;
+        }
 
         var lastIndex = this.currentSectionIndex;
         var fromTop = $(this.parentNode).closest('#main').scrollTop();
@@ -288,21 +292,19 @@
             currentIndex = i;
            }
 
-        //   // parallax
-        //   // get jquery element
-        //   // from previous section instead!
-        //   var elt = $(this.$.wrapper).find('#'+this.sections[i])
-        //   var yPos = -(fromTop / elt.data('speed'));
-        //   // Put together our final background position
-        //   var coords = '50% '+ yPos + 'px';
-        //   // Move the background
-        //   elt.css({ backgroundPosition: coords });
+           // parallax
+           // get jquery element
+           // from previous section instead!
+           var elt = $(this.$.wrapper).find('#'+this.sections[i])
+           var yPos = -(fromTop / elt.data('speed'));
+           // Put together our final background position
+           var coords = '50% '+ yPos + 'px';
+           // Move the background
+           elt.css({ backgroundPosition: coords });
 
         }
 
         if(this.jumpToSection == 0){
-        // window.console.log('update...');
-        //   this.reloaded = 0;
 
            if(lastIndex != currentIndex){
              this.currentSection = current;
@@ -313,43 +315,28 @@
       },
       jumpToSectionChanged: function(){
         window.console.log("-HOME- JUMP");
+         if(this.jumpToSection == 0){
+           window.console.log('skip...');
+           return;
+         };
           // maybe not necessary
           var index = 0;
           if(this.currentSectionIndex != null){
             index = this.currentSectionIndex;
           }
 
+          window.console.log(index);
           var divID = this.sections[index];
+                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
           _this.jumpToSection = 0;
-          // _this.jumpSkip = 1;
+          _this.reloaded = 1;
           // _this.currentSection = divID;
           }); 
-      },
-      currentSectionIndexChanged: function(){
-        // if(this.jumpToSection == 1){
-        //   window.console.log("-HOME- jump");
-        //   // maybe not necessary
-        //   var index = 0;
-        //   if(this.currentSectionIndex != null){
-        //     index = this.currentSectionIndex;
-        //   }
-
-        //   var divID = this.sections[index];
-        //   var _this = this;
-        //   $(this.parentNode).closest('#main').animate({
-        //     scrollTop: this.$[divID].offsetTop,
-        //     scrollLeft: 0
-        //   },500, function(){
-        //   _this.jumpToSection = 0;
-        //   _this.jumpSkip = 1;
-        //   _this.currentSection = divID;
-        //   });
-        // }
       },
       postsChanged: function() {
         if(this.posts){
