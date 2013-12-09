@@ -110,6 +110,18 @@
         padding:0 10px;
       }
 
+      .enveloppe{
+-webkit-transition: background-color 200ms ease;
+    -moz-transition: background-color 200ms ease;
+    -o-transition: background-color 200ms ease;
+    transition: background-color 200ms ease;
+      }
+
+      .envP-selected{
+        background: rgb(0, 157, 233);
+      }
+
+
       .navTopLink{
         -webkit-box-align: center;
 -ms-flex-align: center;
@@ -136,7 +148,7 @@ display: -webkit-flex;
         <polymer-ui-toolbar class="navTopMenu" responsive>
 
           <!-- page navigation -->
-          <span class="enveloppe">
+          <span id="envP" class="enveloppe">
           <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndexTop}}">
             <template repeat="{{ pages }}">
               <polymer-ui-menu-item class="{{page}} icon" title="{{page}}" label="{{page}}"></polymer-ui-menu-item>
@@ -147,7 +159,7 @@ display: -webkit-flex;
           <!-- section navigation -->
 
           <!-- home section -->
-          <span class="enveloppe">
+          <span id="envS" class="enveloppe envS">
           <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndexTop}}">
             <template repeat="{{ home }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
@@ -267,9 +279,24 @@ display: -webkit-flex;
 
         // navigation
         this.previousPage =  'home';
-        this.pageIndexTop = 0;
+        this.pageIndexTop = null;
         this.jumpReady = 0;
         this.pageIndexSide = null;
+
+        $(this.$.envP).on(
+    "transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd",
+    function() {
+        $(this).removeClass("envP-selected");
+    }
+);
+
+        $(this.$.envS).on(
+    "transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd",
+    function() {
+        $(this).removeClass("envP-selected");
+    }
+);
+
       },
       initPageVars: function(pageName, pageObject){
         this[pageName+'Section'] = pageObject[0].section;
@@ -287,7 +314,11 @@ display: -webkit-flex;
       },
       pageIndexTopChanged: function(){
 
+
+
       if(this.pageIndexTop != null){
+
+                $(this.$.envP).toggleClass('envP-selected');
         // update sidebar
         // clean up previous page section in top nav!
         this[this.previousPage+'Section'] = this[this.previousPage][0].section ;
@@ -299,7 +330,12 @@ display: -webkit-flex;
       },
       homeIndexTopChanged: function(){
 
+
+
       if(this.homeIndexTop != null){
+
+                $(this.$.envS).toggleClass('envP-selected');
+
         // update sidebar
         // select page
         this.pageIndexSide = 0;
@@ -309,7 +345,12 @@ display: -webkit-flex;
       },
       researchIndexTopChanged: function(){
 
+
+
       if(this.researchIndexTop != null){
+
+         $(this.$.envS).toggleClass('envP-selected');
+
         // update sidebar
         // select page
         this.pageIndexSide = 1;
@@ -320,6 +361,8 @@ display: -webkit-flex;
       teamIndexTopChanged: function(){
 
       if(this.teamIndexTop != null){
+
+         $(this.$.envS).toggleClass('envP-selected');
         // update sidebar
         // select page
         this.pageIndexSide = 2;
@@ -329,7 +372,11 @@ display: -webkit-flex;
       },
       contactIndexTopChanged: function(){
 
+
       if(this.contactIndexTop != null){
+
+         $(this.$.envS).toggleClass('envP-selected');
+
         // update sidebar
         // select page
         this.pageIndexSide = 3;

@@ -25,10 +25,10 @@
         width: 400px;
         height: 400px;
         background: url(../images/background/surfview.png) center top no-repeat; 
-                  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain;
       }
       h2{
         font-family: 'Open Sans';
@@ -77,8 +77,13 @@
       }
 
       #about{
-        background: url(../images/background/baby_happy.jpg) 50% 0 repeat fixed;
-        min-height: 800px;
+        background: url(../images/background/baby_happy.jpg) 50% 0 no-repeat fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: 50% 21.25px;
+        min-height: 1000px;
         position: relative;
         background-color: #ddd;
         padding: 80px 0;
@@ -97,12 +102,12 @@
       }
 
       #research{
-        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 repeat fixed;
-          -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-        min-height: 800px;
+        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 no-repeat fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        min-height: 1000px;
         background-color: #999;
         padding: 80px 0;
         font-size: 30px;
@@ -123,15 +128,12 @@
       }
 
       #software{
-        background: url(../images/background/chris.png) 50% 0 repeat fixed;
-        min-height: 800px;
-/*        background-color: lightcyan;*/
-        background-repeat: repeat-y;
-/                 -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-/*        background-color: #ddd;*/
+        background: url(../images/background/chris.png) 50% 0 no-repeat fixed;
+        min-height: 1000px;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
         padding: 80px 0;
         font-size: 30px;
         line-height: normal;
@@ -220,7 +222,7 @@
     </style>
 
   <div id="wrapper">
-   <section id="welcome" class="masthead element" data-type="background" data-speed="10">
+   <section id="welcome" class="masthead element" data-type="background" data-speed="50">
       <div class="container">
         <div id="image"></div>
         <h2>
@@ -230,15 +232,15 @@
       </div>
     </section>
 
-    <section id="about" class="element" data-type="background" data-speed="1.5">
+    <section id="about" class="element" data-type="background" data-speed="50">
       <div id="generalContent" class="container"></div>
     </section>
 
-    <section id="research" class="element" data-type="background" data-speed="10">
+    <section id="research" class="element" data-type="background" data-speed="50">
       <div id="researchContent" class="container"></div>
     </section>
 
-    <section id="software" class="element" data-type="background" data-speed="15">
+    <section id="software" class="element" data-type="background" data-speed="50">
       <div id="softwareContent" class="container"></div>
     </section>
 
@@ -276,8 +278,7 @@
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
-
+           var fromTop = $(this.parentNode).closest('#main').scrollTop();
         // Get id of current scroll item
         var current= this.currentSection;
         var currentIndex = this.currentSectionIndex;
@@ -291,18 +292,57 @@
             current = this.sections[i];
             currentIndex = i;
            }
+        }
 
+        // parralax current section
            // parallax
            // get jquery element
            // from previous section instead!
-           var elt = $(this.$.wrapper).find('#'+this.sections[i])
-           var yPos = -(fromTop / elt.data('speed'));
-           // Put together our final background position
-           var coords = '50% '+ yPos + 'px';
-           // Move the background
-           elt.css({ backgroundPosition: coords });
 
+
+           var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex]);
+           // offset + height: get %
+           var diff = this.$[this.sections[currentIndex]].offsetTop;
+           var off = diff - fromTop; 
+           var hei = this.$[this.sections[currentIndex]].offsetHeight;
+           window.console.log(off/hei);
+
+          var yPos = off/hei;
+          // Put together our final background position
+          var coords = '50% '+ yPos*elt.data('speed') + 'px';
+          // Move the background
+          elt.css({
+           backgroundPosition: coords});
+
+
+           var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
+           if(elt.length){
+           var diff = this.$[this.sections[currentIndex + 1]].offsetTop;
+           var off = diff - fromTop; 
+           var hei = this.$[this.sections[currentIndex + 1]].offsetHeight;
+
+           window.console.log(off/hei);
+
+          var yPos = off/hei;
+          // Put together our final background position
+          var coords = '50% '+ yPos*elt.data('speed') + 'px';
+          // Move the background
+          elt.css({
+           backgroundPosition: coords});
         }
+
+        // // and next...!
+        //    var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
+        //    var yPos = -(fromTop / elt.data('speed'));
+        //    // Put together our final background position
+        //    var coords = '50% '+ yPos + 'px';
+        //    // Move the background
+        //    elt.css({
+        //     backgroundPosition: coords,
+        //     '-webkit-background-size': 'cover',
+        //     '-moz-background-size': 'cover',
+        //     '-o-background-size': 'cover',
+        //     'background-size': 'cover'});
 
         if(this.jumpToSection == 0){
 

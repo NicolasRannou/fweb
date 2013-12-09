@@ -6,6 +6,7 @@
       @host { :scope {display: block;
        padding: 5px;
        box-sizing: border-box;
+       vertical-align: top;
 } }
 
      .icon{
@@ -49,7 +50,7 @@ polymer-ui-collapsible {
         padding: 10px;
       }
 
-      .wrapper {
+      .wrapper2 {
       border:1px solid #353535;
        display: -webkit-box;
   display: -moz-box;
@@ -60,8 +61,16 @@ polymer-ui-collapsible {
   -webkit-flex-flow: row wrap;
  
       background-color:#FFF !important; 
+      padding: 0;
+      width:100%!important;
       }
- 
+ h1{
+  font-size: 14px;
+font-weight: 600;
+ }
+ h3{
+  font-size: 11px;
+ }
      #picture{
       order: 0;
       }
@@ -75,7 +84,7 @@ polymer-ui-collapsible {
       }
 
     /* Responsive small screen*/
-    @media all and (min-width: 500px){
+/*    @media all and (min-width: 500px){
       #picture{
         -webkit-flex: 0 1 100% !important;
         flex: 0 1 100% !important;
@@ -84,7 +93,7 @@ polymer-ui-collapsible {
         -webkit-flex: 0 1 100% !important;
         flex: 0 1 100% !important;
       }
-    }
+    }*/
 
     /* Responsive small screen*/
     @media all and (min-width: 800px){
@@ -99,9 +108,9 @@ polymer-ui-collapsible {
     }
 
     </style>
-    <div class="wrapper">
+    <div class="wrapper2">
       <div id="picture">
-        <img src="http://meanion.files.wordpress.com/2012/09/minion-clipboard.jpg" style="width:100%;">
+        <img src="../images/team/{{people.gsx$picture.$t}}" style="width:100%;">
       </div>
       <div id="info" class="aside">
         <h1>{{people.gsx$name.$t}}</h1>
