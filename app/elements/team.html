@@ -10,10 +10,11 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         width:100%;
-        background: #08c;
+background-color: rgb(0, 153, 153);
         color: #FFF;
         padding: 25px;
-        text-transform: uppercase;
+font-family: 'Open Sans', sans-serif;
+font-size: 20px;
       }
       .fixed{
         position: fixed;
@@ -21,11 +22,11 @@
       }
 
 #wrapper{
-  background-color:rgb(200, 200, 200);
+  background-color:rgb(107, 107, 107);
 }
 
 section{
-  background-color:rgb(200, 200, 200);
+  background-color:rgb(107, 107, 107);
 }
 
 
@@ -84,7 +85,7 @@ width: 800px;
   <section id="faculty">
         <div class="wrapper">
   <div class="sticky">
-  FACULTY
+  faculty members
   </div>
   <div class="peeps">
   <template repeat="{{people in team.feed.entry}}">
@@ -100,7 +101,7 @@ width: 800px;
   <section  id="staff">
     <div class="wrapper">
   <div class="sticky">
-  STAFF
+  staff
   </div>
   <div class="peeps">
   <template repeat="{{people in team.feed.entry}}">
@@ -114,7 +115,7 @@ width: 800px;
   
   <section class="wrapper" id="collaborators">
   <div class="sticky">
-  COLLABORATORS
+  collaborators
   </div>
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'collaborators'}}">
@@ -125,7 +126,7 @@ width: 800px;
   
   <section class="wrapper" id="alumni">
   <div class="sticky">
-  ALUMNI
+  alumni
   </div>
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'alumni'}}">
@@ -182,15 +183,15 @@ width: 800px;
             currentIndex = i;
            }
 
-           // parallax
-           // get jquery element
-           // from previous section instead!
-           var elt = $(this.$.wrapper).find('#'+this.sections[i])
-           var yPos = -(fromTop / elt.data('speed'));
-           // Put together our final background position
-           var coords = '50% '+ yPos + 'px';
-           // Move the background
-           elt.css({ backgroundPosition: coords });
+           // // parallax
+           // // get jquery element
+           // // from previous section instead!
+           // var elt = $(this.$.wrapper).find('#'+this.sections[i])
+           // var yPos = -(fromTop / elt.data('speed'));
+           // // Put together our final background position
+           // var coords = '50% '+ yPos + 'px';
+           // // Move the background
+           // elt.css({ backgroundPosition: coords });
 
         }
 

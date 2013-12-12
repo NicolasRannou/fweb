@@ -13,6 +13,7 @@
         font-weight: normal;
         font-family: "FontAwesome";
         color: #08C;
+        text-align: center;
      }
 
      .phone::before{
@@ -25,14 +26,19 @@
         content:"\f003";
      }
      .location::before{
-        content:"\f08d";
+        content:"\f0d1";
         vertical-align:top; 
      }
      .biography{
+              text-align: left;
       }
 
       .biography::before{
-        content:"\f18c";
+        content:"\f107";
+      }
+
+      .contact::before{
+        content:"\f08d";
       }
 
 polymer-ui-collapsible {
@@ -52,26 +58,20 @@ polymer-ui-collapsible {
 
       .wrapper2 {
       border:1px solid #353535;
-       display: -webkit-box;
+/*       display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;  
   
-  -webkit-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;*/
  
       background-color:#FFF !important; 
       padding: 0;
       width:100%!important;
       }
- h1{
-  font-size: 14px;
-font-weight: 600;
- }
- h3{
-  font-size: 11px;
- }
-     #picture{
+
+/*     #picture{
       order: 0;
       }
       #info{
@@ -81,7 +81,7 @@ font-weight: 600;
         order: 2;
         -webkit-flex: 0 1 100% !important;
         flex: 0 1 100% !important;
-      }
+      }*/
 
     /* Responsive small screen*/
 /*    @media all and (min-width: 500px){
@@ -98,19 +98,73 @@ font-weight: 600;
     /* Responsive small screen*/
     @media all and (min-width: 800px){
       #picture{
-        -webkit-flex: 0 1 30% !important;
-        flex: 0 1 30% !important;
+/*        -webkit-flex: 0 1 30% !important;
+        flex: 0 1 30% !important;*/
       }
       .aside{
-        -webkit-flex: 0 1 70% !important;
-        flex: 0 1 70% !important;
+/*        -webkit-flex: 0 1 70% !important;
+        flex: 0 1 70% !important;*/
       }
     }
 
+    #gallery{
+  position:relative;
+  margin: 0 auto;
+  overflow:hidden;
+  width:740px;
+  height:300px;
+}
+#slider{
+  position:absolute;
+  left:0;
+  height:300px;  
+}
+#slider > div {
+  position:relative;
+  float:left;
+  width:740px;
+  height:300px;
+  overflow-y:auto;
+}
+
+.pageNav{
+  float:left;
+  padding: 5px;
+}
+.pageNav:hover{
+  background-color: lightgrey;
+  cursor:pointer;
+}
+
+h1{
+  color: #009999;
+display: block;
+padding: 5px;
+margin: 0 !important;
+font-size: 20px;
+font-family: 'Open Sans', sans-serif;
+font-weight: normal;
+}
+
+h3{
+  font-size: 1.17em;
+  line-height:20px;
+}
+#contactInfo{
+position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.selected{
+  background-color: rgb(0, 136, 204);
+  color:white;
+}
     </style>
     <div class="wrapper2">
-      <div id="picture">
-        <img src="../images/team/{{people.gsx$picture.$t}}" style="width:100%;">
+      <div class="summary" style="height:160px; position:relative;">
+      <div id="picture" style="width:130px;height:160px; float:left">
+        <img src="../images/team/{{people.gsx$picture.$t}}" style="width:100%; height:100%;">
       </div>
       <div id="info" class="aside">
         <h1>{{people.gsx$name.$t}}</h1>
@@ -118,17 +172,58 @@ font-weight: 600;
         {{people.gsx$academictitle.$t}}</br>
         {{people.gsx$department.$t}}
         </h3>
-        <div class="icon phone"><span style="padding-left:5px;">{{people.gsx$phone.$t}}</span></div>
+      </div>
+
+      <div id="contactInfo">
+
+      <polymer-ui-collapsible id="biocontent2">
+        <div class="polymer-ui-collapsible-header contact icon"><span style="padding-left:5px;">Contact Information</span></div>
+               <div class="icon phone"><span style="padding-left:5px;">{{people.gsx$phone.$t}}</span></div>
         <div class="icon fax"><span style="padding-left:5px;">{{people.gsx$fax.$t}}</span></div>
         <div class="icon email"><span style="padding-left:5px;">{{people.gsx$email.$t}}</span></div>
         <div class="icon location"><div id="location" style="padding-left:5px;display:inline-block"></div></div>
+
+      </polymer-ui-collapsible>
+
+
+
       </div>
-    <div id="bio">
+
+    </div>
+
+<!--     <div id="contactInfo">
       <polymer-ui-collapsible id="biocontent" preventDispose="true">
-        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">Short Biography</span></div>
-        <div id="content"></div>
+        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">Contact Information</span></div>
+
+
       </polymer-ui-collapsible>
     </div>
+ -->
+
+    <div id="bio">
+      <polymer-ui-collapsible id="biocontent">
+        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">More about me</span></div>
+
+<div class="more" style="clear: both">
+        <div class="pageNav selected" id="page1">Biography</div>
+        <div class="pageNav" id="page2">Awards</div>
+        <div class="pageNav" id="page3">Publications</div>
+</div>
+
+              <div id="gallery">
+  <div id="slider">
+     <div style="background:#EAF5EA"><div id="content"></div></div>
+     <div style="background:#EAF5F5"><div id="content0"></div></div>
+     <div style="background:#EAEEF5"><div id="content1"></div></div>
+  </div>
+</div>
+
+
+      </polymer-ui-collapsible>
+    </div>
+      </div>
+
+
     </div>
   </template>
   <script>
@@ -138,8 +233,45 @@ font-weight: 600;
       peopleChanged: function() {
         this.$.content.innerHTML = this.people.gsx$bio.$t;
         this.$.location.innerHTML = this.people.gsx$location.$t;
+
+$(this.$.slider).width(2220);
+
+// use on-tap instead!
+
+                $(this.$.page3).on("click",function() {
+          // $(this.parentNode).closest('#slider').stop().animate({left: -1000},800);
+
+
+                    $(this.parentNode.parentNode).find('.selected').removeClass("selected");
+$(this.parentNode.parentNode).find('#page3').addClass("selected");
+
+window.console.log($(this.parentNode.parentNode).find('#slider'));
+$(this.parentNode.parentNode).find('#slider').stop().animate({left: -1480},800);
+        });
+
+                                $(this.$.page1).on("click",function() {
+          // $(this.parentNode).closest('#slider').stop().animate({left: -1000},800);
+
+          $(this.parentNode.parentNode).find('.selected').removeClass("selected");
+$(this.parentNode.parentNode).find('#page1').addClass("selected");
+
+window.console.log($(this.parentNode.parentNode).find('#slider'));
+$(this.parentNode.parentNode).find('#slider').stop().animate({left: 0},800);
+        });
+
+                                                                $(this.$.page2).on("click",function() {
+          // $(this.parentNode).closest('#slider').stop().animate({left: -1000},800);
+window.console.log($(this.parentNode.parentNode).find('#slider'));
+
+$(this.parentNode.parentNode).find('.selected').removeClass("selected");
+$(this.parentNode.parentNode).find('#page2').addClass("selected");
+
+$(this.parentNode.parentNode).find('#slider').stop().animate({left: -740},800);
+        });
       },
-      created: function() { },
+      created: function() {
+
+      },
       enteredView: function() { },
       leftView: function() { },
       attributeChanged: function(attrName, oldVal, newVal) { }
