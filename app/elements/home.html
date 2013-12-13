@@ -83,19 +83,23 @@
         -o-background-size: cover;
         background-size: cover;
         background-position: 50% 21.25px;
-        min-height: 1000px;
+        min-height: 500px;
         position: relative;
         background-color: #ddd;
         padding: 80px 0;
         font-size: 30px;
         line-height: normal;
+                padding-right: 500px;
       }
 
       #about .container{
-        position: absolute;
+/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-        margin: 0 auto;
+                margin: 0 auto;
+/*        left: 200px;*/
+background-color: rgba(196, 196, 196, 0.5);
+padding: 20px;
       }
       #about .container p{
         padding: 10px 0;
@@ -107,21 +111,24 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        min-height: 1000px;
+        min-height: 500px;
         background-color: #999;
         padding: 80px 0;
         font-size: 30px;
         line-height: normal;
         position: relative;
+         padding-left: 500px;
       }
 
       #research .container{
-        position: absolute;
+/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
         color: #fff;
-        background-color: rgba(0, 0, 0, .7);
+        background-color: rgba(0, 0, 0, .5);
+/*right: 200px;*/
+padding: 20px;
       }
       #research .container p{
         padding: 10px 0;
@@ -129,7 +136,7 @@
 
       #software{
         background: url(../images/background/chris.png) 50% 0 no-repeat fixed;
-        min-height: 1000px;
+        min-height: 500px;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -141,62 +148,37 @@
       }
 
       #software .container{
-        position: absolute;
+/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
         color: #fff;
-        background-color: rgba(0, 0, 0, .7);
+background-color: rgba(0, 0, 0, .7);
+padding: 20px;
       }
       #software .container p{
         padding: 10px 0;
       }
 
-      #next{
-        display: block;
-        position: fixed;
-        left: auto;
-        right: 35px;
-        bottom: 90px;
-        margin-left: -26px;
-        z-index: 9999;
-        cursor: pointer;
-        font-size:72px;
-        font-weight: normal;
-        font-family: "FontAwesome";
-        color:rgba(0, 0, 0, 0);
-        text-shadow: 0 0 5px #000; /* horizontal-offset vertical-offset 'blur' colour */
-        -moz-text-shadow: 0 0 5px #000;
-        -webkit-text-shadow: 0 0 5px #000;
+      #credits{
+        padding: 30px 0;
+        font-size: 20px;
+        line-height: normal;
+        position: relative;
+        background-color: grey;
       }
 
-      #next:hover{
-        text-shadow: 0 0 1px #000;  horizontal-offset vertical-offset 'blur' colour 
-        -moz-text-shadow: 0 0 1px #000;
-        -webkit-text-shadow: 0 0 1px #000;
-      }
-
-      #test:before{
-        content:"\f13a";
+      #credits .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
         color: #000;
+        background-color: rgba(255, 255, 255, .7);
+        padding: 20px;
       }
-
-      #testB:before{
-        color: #FFF;
-        opacity: 0.3;
-        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
-        -moz-text-shadow: 0 0 0 #000;
-        -webkit-text-shadow: 0 0 0 #000;
-        content:"\f111";
-      }
-
-      #next:hover #testB:before{
-        color: #FFF;
-        opacity: .6;
-        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
-        -moz-text-shadow: 0 0 0 #000;
-        -webkit-text-shadow: 0 0 0 #000;
-        content:"\f111";
+      #credits .container p{
+        padding: 10px 0;
       }
 
       .wrapper {
@@ -214,22 +196,23 @@
         -webkit-flex: 0 1 100% !important;
         flex: 0 1 100% !important;
       }
-
-      #next{
-        bottom: 35px;
-      }
     }
     </style>
 
   <div id="wrapper">
    <section id="welcome" class="masthead element" data-type="background" data-speed="50">
-      <div class="container">
+
+       <div class="container">
         <div id="image"></div>
         <h2>
           <span class="small">Welcome to the</span>
           <span class="large">FNNDSC</span>
         </h2>
       </div>
+
+         <canvas id="canvas" style="display: block; position: absolute;
+top: 0;
+left: 0; "></canvas>
     </section>
 
     <section id="about" class="element" data-type="background" data-speed="50">
@@ -244,8 +227,11 @@
       <div id="softwareContent" class="container"></div>
     </section>
 
-    <div on-tap="{{nextSection}}" id="next"><div id="testB" style="float:left;"></div><div id="test" style="float:left;position:absolute;"></div></next>
-</div>
+    <section id="credits" class="element" data-type="background" data-speed="50">
+      <div id="creditsContent" class="container"><p>This is a FNNDSC project</p>
+<img style="max-width:50%;"src="../images/technology.png" alt="Technology">
+        <p>Source code:</p></div>
+    </section>
   </div>
  
 <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
@@ -262,12 +248,9 @@
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
-      },
-      nextSection: function(){
-        //update next
-        this.jumpToSection = 1;
-        // increase and range 0-3
-        this.currentSectionIndex = (this.currentSectionIndex+1)%4;
+
+        //canvas init snow
+        this.letitsnow();
       },
       scrollToSectionChanged: function(){
         window.console.log('-HOME- SCROLL');
@@ -355,7 +338,8 @@
       },
       jumpToSectionChanged: function(){
         window.console.log("-HOME- JUMP");
-         if(this.jumpToSection == 0){
+        window.console.log(this.jumpToSection);
+         if(this.jumpToSection == 0 || this.jumpToSection > 1){
            window.console.log('skip...');
            return;
          };
@@ -374,10 +358,14 @@
             scrollLeft: 0
           },500, function(){
             window.console.log('STOP animation');
+                      _this.reloaded = 1;
           _this.jumpToSection = 0;
-          _this.reloaded = 1;
+
           // _this.currentSection = divID;
           }); 
+
+//           var _this = this;
+// setTimeout(function(){_this.jumpToSection = 0;}, 50);
       },
       postsChanged: function() {
         if(this.posts){
@@ -386,10 +374,93 @@
           this.$.softwareContent.innerHTML = this.posts.feed.entry[0].gsx$software.$t;
         }
       },
-      created: function() { },
-      enteredView: function() { },
-      leftView: function() { },
-      attributeChanged: function(attrName, oldVal, newVal) { }
+      letitsnow: function(){
+                // credits
+        //http://thecodeplayer.com/walkthrough/html5-canvas-snow-effect
+  var canvas = this.$.canvas;
+  var ctx = canvas.getContext("2d");
+  
+  //canvas dimensions
+  var W = window.innerWidth;
+  var H = window.innerHeight;
+  canvas.width = W;
+  canvas.height = 308;
+  
+  //snowflake particles
+  var mp = 100; //max particles
+  var particles = [];
+  for(var i = 0; i < mp; i++)
+  {
+    particles.push({
+      x: Math.random()*W, //x-coordinate
+      y: Math.random()*H, //y-coordinate
+      r: Math.random()*4+1, //radius
+      d: Math.random()*mp //density
+    })
+  }
+  
+  //Lets draw the flakes
+  function draw()
+  {
+    ctx.clearRect(0, 0, W, H);
+    
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.beginPath();
+    for(var i = 0; i < mp; i++)
+    {
+      var p = particles[i];
+      ctx.moveTo(p.x, p.y);
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+    }
+    ctx.fill();
+    update();
+  }
+  
+  //Function to move the snowflakes
+  //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+  var angle = 0;
+  function update()
+  {
+    angle += 0.01;
+    for(var i = 0; i < mp; i++)
+    {
+      var p = particles[i];
+      //Updating X and Y coordinates
+      //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+      //Every particle has its own density which can be used to make the downward movement different for each flake
+      //Lets make it more random by adding in the radius
+      p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+      p.x += Math.sin(angle) * 2;
+      
+      //Sending flakes back from the top when it exits
+      //Lets make it a bit more organic and let flakes enter from the left and right also.
+      if(p.x > W+5 || p.x < -5 || p.y > H)
+      {
+        if(i%3 > 0) //66.67% of the flakes
+        {
+          particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
+        }
+        else
+        {
+          //If the flake is exitting from the right
+          if(Math.sin(angle) > 0)
+          {
+            //Enter from the left
+            particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
+          }
+          else
+          {
+            //Enter from the right
+            particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
+          }
+        }
+      }
+    }
+  }
+  
+  //animation loop
+  setInterval(draw, 33);
+      }
     });
   </script>
 </polymer-element>

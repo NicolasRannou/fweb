@@ -28,6 +28,7 @@
 
       display: flex;
       flex-direction: row;height:100% !important;
+      justify-content: center;
       }
       #main {
         overflow-y:scroll;
@@ -105,20 +106,30 @@
         -moz-align-items: center;
         -webkit-align-items: center;
         align-items: center;
-        display: flex !important;
+/*        display: flex !important;*/
+display:none;
         border-right:1px solid;
         padding:0 10px;
+
+
       }
 
       .enveloppe{
--webkit-transition: background-color 200ms ease;
-    -moz-transition: background-color 200ms ease;
-    -o-transition: background-color 200ms ease;
-    transition: background-color 200ms ease;
+-webkit-transition: -webkit-text-shadow 300ms ease;
+    -moz-transition: -moz-text-shadow 300ms ease;
+    -o-transition: -o-text-shadow 300ms ease;
+    transition: text-shadow  300ms ease;
+
+
       }
 
       .envP-selected{
-        background: rgb(0, 157, 233);
+/*        background: rgb(0, 157, 233);
+#009DE9
+*/
+                text-shadow: 0 0 10px #FFF; /* horizontal-offset vertical-offset 'blur' colour */
+        -moz-text-shadow: 0 0 10px #FFF;
+        -webkit-text-shadow: 0 0 10px #FFF;
       }
 
 
@@ -127,7 +138,20 @@
 -ms-flex-align: center;
 -moz-align-items: center;
 -webkit-align-items: center;
-align-items: center;display: flex !important; border-right:1px solid;border-left:1px solid; padding:0 10px;
+align-items: center;display: flex !important; padding:0 10px;
+        height:100%;
+      }
+
+      #topNav{
+        align-items: center;display: flex !important;
+                height:100%;
+
+      }
+
+            .navTopLink:hover{
+background:#FFF;
+color: #353535;
+cursor: pointer;
       }
 
       .navTopMenu{
@@ -138,18 +162,98 @@ display: -webkit-flex;
       flex-direction: row;
       }
 
+      #envS2{
+/*        position: fixed;
+bottom: 100px;
+height: 60px;
+z-index: 15;
+right: 10px;*/
+      }
+
+            .eightNav{
+        position: fixed;
+top: 70px;
+z-index: 15;
+right: 10px;
+        border-right:1px solid;
+        background-color: rgba(0, 0, 0, 0.8);
+
+      }
+
+      .section-selected{
+        border-left: 4px solid white;
+        padding-right: 9px;
+                padding-top: 9px;        padding-bottom: 9px;
+padding-left: 5px!important;
+color:white;
+      }
+
+            .page-selected{
+        background:#FFF;
+color:#353535;
+      }
+
+      .section-right{
+               padding:9px; 
+      }
+
+      .section-right:hover{
+        cursor:pointer;
+        background: lightgrey;
+      }
+
+      polymer-ui-toolbar.polymer-ui-dark-theme{
+        background-color: rgb(0, 0, 0)!important;
+      }
+
+#rightNav{
+  border: 1px solid rgb(63, 63, 63);
+margin-right: -1px;
+padding: 10px;
+}
     </style>
   <polymer-ui-scaffold3 theme="polymer-ui-dark-theme" style="height:100%;position: relative;">
 
+
+
       <div tool flex>
-        <div class="navTopLink">Boston Childrens Hospital</div>
-        <div class="navTopLink">FNNDSC</div>
+<!--          <div class="navTopLink">Boston Childrens Hospital</div>
+        <div class="navTopLink">FNNDSC</div> -->
+        <div id="topNav">
+             <template repeat="{{ pages }}">
+                      <div class="navTopLink {{page}}-top page-top" on-tap="{{horizontalMenu}}">{{page}}</div>
+
+            </template>
+          </div>
+
+            <div id="rightNav" class="eightNav" style="color:black;">
+            <div id="right-container-home" class="right-container">
+              <template repeat="{{ home }}">
+                <div class="home {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+              </template>
+            </div>
+            <div id="right-container-research" class="right-container" style="display:none">
+             <template repeat="{{ research }}">
+                <div class="research {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+              </template>
+            </div>
+            <div id="right-container-team" class="right-container" style="display:none">
+              <template repeat="{{ team }}">
+                <div class="team {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+              </template>
+            </div>
+            <div id="right-container-contact" class="right-container" style="display:none">
+              <template repeat="{{ contact }}">
+                <div class="contact {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+              </template>
+            </div>
+          </div>
 
         <polymer-ui-toolbar class="navTopMenu" responsive>
 
           <!-- page navigation -->
-          <span id="envP" class="enveloppe">
-          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndexTop}}">
+           <span id="envP" class="enveloppe">
+          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndexTop}}" >
             <template repeat="{{ pages }}">
               <polymer-ui-menu-item class="{{page}} icon" title="{{page}}" label="{{page}}"></polymer-ui-menu-item>
             </template>
@@ -167,28 +271,28 @@ display: -webkit-flex;
           </polymer-ui-menu-button>
 
           <!-- research section -->
-          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndexTop}}" style="display:none;">
+         <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndexTop}}" style="display:none">
             <template repeat="{{ research }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- team section -->
-          <polymer-ui-menu-button id="team-topnav" label="{{teamSection}}" selected="{{teamIndexTop}}" style="display:none;">
+          <polymer-ui-menu-button id="team-topnav" label="{{teamSection}}" selected="{{teamIndexTop}}" style="display:none">
             <template repeat="{{ team }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- contact section -->
-          <polymer-ui-menu-button id="contact-topnav" label="{{contactSection}}" selected="{{contactIndexTop}}" style="display:none;">
+          <polymer-ui-menu-button id="contact-topnav" label="{{contactSection}}" selected="{{contactIndexTop}}" style="display:none">
             <template repeat="{{ contact }}">
               <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{section}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
         </span>
-
-        </polymer-ui-toolbar></div>
+ </polymer-ui-toolbar>
+      </div>
            
       <div on-scroll="{{scroll}}" id="main" main>
 
@@ -298,6 +402,48 @@ display: -webkit-flex;
 );
 
       },
+      horizontalMenu: function(e, detail){
+        var page = e.srcElement.innerHTML;
+
+        // previous index: unselect it!
+        $(this.$.topNav).find('.page-selected').removeClass("page-selected");
+        $(this.$.topNav).find('.'+page+'-top').addClass("page-selected");
+
+        var len = this.pages.length;
+        while (len--) {
+
+          if(this.pages[len].page == page){
+            this.pageIndexTop = len;
+            break;
+          }
+        }
+      },
+      verticalMenu: function(e, detail){
+        // previous index: unselect it!
+        if(this[this.previousPage+'IndexTop'] != null){
+          $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        }
+
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+e.srcElement.innerHTML+'-right').addClass("section-selected");
+
+        var len = this[this.previousPage].length;
+
+        while (len--) {
+
+          if(this[this.previousPage][len].section == e.srcElement.innerHTML){
+
+            // update topnav
+            this[this.previousPage+'IndexTop'] = len;
+            this[this.previousPage+'Section'] = e.srcElement.innerHTML;
+
+            // start jumping
+            this.jumpReady = 0;
+            this[this.previousPage+'Jump'] = 1;
+
+            break;
+          }
+        }
+      },
       initPageVars: function(pageName, pageObject){
         this[pageName+'Section'] = pageObject[0].section;
         this[pageName+'IndexTop'] =  null;
@@ -314,11 +460,19 @@ display: -webkit-flex;
       },
       pageIndexTopChanged: function(){
 
-
-
       if(this.pageIndexTop != null){
 
-                $(this.$.envP).toggleClass('envP-selected');
+        $(this.$.envP).toggleClass('envP-selected');
+
+        // update topbar
+        $(this.$.topNav).find('.page-selected').removeClass("page-selected");
+        $(this.$.topNav).find('.'+this.pages[this.pageIndexTop].page+'-top').addClass("page-selected");
+
+        // update rightbar
+        $(this.$.rightNav).find('.right-container').hide();
+        $(this.$.rightNav).find('#right-container-'+this.pages[this.pageIndexTop].page).show();
+
+
         // update sidebar
         // clean up previous page section in top nav!
         this[this.previousPage+'Section'] = this[this.previousPage][0].section ;
@@ -330,11 +484,13 @@ display: -webkit-flex;
       },
       homeIndexTopChanged: function(){
 
-
-
       if(this.homeIndexTop != null){
 
-                $(this.$.envS).toggleClass('envP-selected');
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.home[this.homeIndexTop].section+'-right').addClass("section-selected");
 
         // update sidebar
         // select page
@@ -345,11 +501,13 @@ display: -webkit-flex;
       },
       researchIndexTopChanged: function(){
 
-
-
       if(this.researchIndexTop != null){
 
-         $(this.$.envS).toggleClass('envP-selected');
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.research[this.researchIndexTop].section+'-right').addClass("section-selected");
 
         // update sidebar
         // select page
@@ -362,7 +520,12 @@ display: -webkit-flex;
 
       if(this.teamIndexTop != null){
 
-         $(this.$.envS).toggleClass('envP-selected');
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.team[this.teamIndexTop].section+'-right').addClass("section-selected");
+
         // update sidebar
         // select page
         this.pageIndexSide = 2;
@@ -372,10 +535,13 @@ display: -webkit-flex;
       },
       contactIndexTopChanged: function(){
 
-
       if(this.contactIndexTop != null){
 
-         $(this.$.envS).toggleClass('envP-selected');
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.contact[this.contactIndexTop].section+'-right').addClass("section-selected");
 
         // update sidebar
         // select page

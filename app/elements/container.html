@@ -149,8 +149,8 @@ align-items: center;display: flex !important; padding:0 10px;
       }
 
             .navTopLink:hover{
-background:#FFF;
-color: #353535;
+background:lightgrey;
+color: #000;
 cursor: pointer;
       }
 
@@ -217,8 +217,6 @@ padding: 10px;
 
 
       <div tool flex>
-<!--          <div class="navTopLink">Boston Childrens Hospital</div>
-        <div class="navTopLink">FNNDSC</div> -->
         <div id="topNav">
              <template repeat="{{ pages }}">
                       <div class="navTopLink {{page}}-top page-top" on-tap="{{horizontalMenu}}">{{page}}</div>
@@ -432,13 +430,18 @@ padding: 10px;
 
           if(this[this.previousPage][len].section == e.srcElement.innerHTML){
 
+            window.console.log(this[this.previousPage][len].section);
+            window.console.log(this[this.previousPage+'IndexTop']);
+                        window.console.log(this[this.previousPage+'Section']);
+                                    window.console.log(this[this.previousPage+'Jump']);
+                                                                        window.console.log(len);
             // update topnav
             this[this.previousPage+'IndexTop'] = len;
             this[this.previousPage+'Section'] = e.srcElement.innerHTML;
 
             // start jumping
             this.jumpReady = 0;
-            this[this.previousPage+'Jump'] = 1;
+            this[this.previousPage+'Jump'] += 1;
 
             break;
           }
@@ -598,6 +601,7 @@ padding: 10px;
 
                 // start jumping
                  if(this.jumpReady  == 1){
+                  window.console.log("side JJUMP");
                     this.jumpReady = 0;
                     this[this.previousPage+'Jump'] = 1;
                  }

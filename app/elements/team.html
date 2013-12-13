@@ -22,11 +22,19 @@ font-size: 20px;
       }
 
 #wrapper{
-  background-color:rgb(107, 107, 107);
+background: rgb(41,41,41);
+background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
+background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
+
 }
 
 section{
-  background-color:rgb(107, 107, 107);
+/*  background-color:none!important;*/
 }
 
 
@@ -45,7 +53,7 @@ section{
   display: flex;  
   
   -webkit-flex-flow: row wrap;*/
-   background-color:rgba(255, 255, 255, 0.3);
+background-color:rgba(177, 177, 177, 0.298039)
       }
 
     /* Responsive small screen*/
@@ -82,6 +90,41 @@ width: 800px;
 
     </style>
   <div id="wrapper">
+
+  
+
+<div style="background: rgb(0,0,0);
+background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,109,109,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,109,109,1)));
+background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046d6d',GradientType=0 );
+">
+<div class="wrapper" style="background: rgb(0,0,0);
+background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,109,109,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,109,109,1)));
+background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046d6d',GradientType=0 );
+ color:#FFF; font-size: 25px;
+padding: 40px 20px;text-align: center;
+line-height: normal;">
+  <template repeat="{{people in team.feed.entry}}">
+    <template if="{{people.gsx$group.$t === 'intro'}}">
+<!--       <div style="text-align:left">&ldquo;</div> -->
+      {{people.gsx$bio.$t}}
+<!--       <div style="text-align:right">&rdquo;</div> -->
+    </template>
+  </template>
+
+</div>
+</div>
+
+
   <section id="faculty">
         <div class="wrapper">
   <div class="sticky">
@@ -152,12 +195,6 @@ width: 800px;
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
         window.console.log(this.sections);
       },
-      nextSection: function(){
-        //update next
-        this.jumpToSection = 1;
-        // increase and range 0-3
-        this.currentSectionIndex = (this.currentSectionIndex+1)%4;
-      },
       scrollToSectionChanged: function(){
         window.console.log('-TEAM- SCROLL');
         if(this.reloaded == 1){
@@ -182,16 +219,6 @@ width: 800px;
             current = this.sections[i];
             currentIndex = i;
            }
-
-           // // parallax
-           // // get jquery element
-           // // from previous section instead!
-           // var elt = $(this.$.wrapper).find('#'+this.sections[i])
-           // var yPos = -(fromTop / elt.data('speed'));
-           // // Put together our final background position
-           // var coords = '50% '+ yPos + 'px';
-           // // Move the background
-           // elt.css({ backgroundPosition: coords });
 
         }
 
@@ -228,18 +255,7 @@ width: 800px;
           _this.reloaded = 1;
           // _this.currentSection = divID;
           }); 
-      },
-      postsChanged: function() {
-        if(this.posts){
-          this.$.generalContent.innerHTML = this.posts.feed.entry[0].gsx$general.$t;
-          this.$.researchContent.innerHTML = this.posts.feed.entry[0].gsx$research.$t;
-          this.$.softwareContent.innerHTML = this.posts.feed.entry[0].gsx$software.$t;
-        }
-      },
-      created: function() { },
-      enteredView: function() { },
-      leftView: function() { },
-      attributeChanged: function(attrName, oldVal, newVal) { }
+      }
     });
 
   </script>
