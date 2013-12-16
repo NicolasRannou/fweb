@@ -149,7 +149,7 @@ align-items: center;display: flex !important; padding:0 10px;
       }
 
             .navTopLink:hover{
-background:lightgrey;
+background:#FFF!important;
 color: #000;
 cursor: pointer;
       }
@@ -189,8 +189,31 @@ color:white;
       }
 
             .page-selected{
-        background:#FFF;
-color:#353535;
+/*        background:#FFF;
+color:#353535;*/
+      }
+
+            .page-selected.research-top{
+/*        background:#FFF;
+color:#353535;*/
+background-color: #0DA861
+      }
+
+                  .page-selected.team-top{
+/*        background:#FFF;
+color:#353535;*/
+background-color: #08B8B8
+      }
+
+                  .page-selected.contact-top{
+/*        background:#FFF;
+color:#353535;*/
+background-color: #08C
+      }
+                        .page-selected.home-top{
+/*        background:#FFF;
+color:#353535;*/
+background-color: #BA55D3
       }
 
       .section-right{
@@ -359,11 +382,12 @@ padding: 10px;
         this.initPageVars('home', this.home);
 
         // research page
-        this.research = [{section:'magnetic resonance imaging', index:0},
-                         {section:'near-infrared spectroscopy', index:1},
-                         {section:'magnetoencephalography', index:2},
-                         {section:'software development', index:3},
-                         {section:'high-performace computing', index:4}];
+        this.research = [{section:'challenges', index:0},
+                         {section:'mri', index:1},
+                         {section:'nirs', index:2},
+                         {section:'meg', index:3},
+                         {section:'software', index:4},
+                         {section:'hpc', index:5}];
         this.initPageVars('research', this.research);
 
         // team page

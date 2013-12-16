@@ -39,7 +39,7 @@ margin-right: 0px!important;
 
 
       .wrapper {
-background-color:rgba(177, 177, 177, 0.298039)
+background-color:rgba(177, 177, 177, 0.298039);
       }
 
     /* Responsive small screen*/
@@ -59,6 +59,26 @@ width: 800px;
 
     }
 
+
+     .icon{
+        font-weight: normal;
+        font-family: "FontAwesome";
+        text-align: left;
+     }
+
+     .phone::before{
+        content:"\f095";
+        color: #08C;
+     }
+     .fax::before{
+        content:"\f02f";
+        color: #08C;
+     }
+
+.info{
+  background-color: #FFF;
+padding: 10px;
+}
 
     </style>
   <div id="wrapper">
@@ -91,34 +111,106 @@ We have offices in 3 different locations
 </div>
 
 
-  <section id="main">
-        <div class="wrapper">
-  <div class="sticky">
-  Main Hospital
-  </div>
-    </div>
-  </section>
-  
+    <section id="main">
+      <div class="wrapper">
+  <template repeat="{{location in contact.feed.entry}}">
+    <template if="{{location.gsx$location.$t === 'main'}}">
 
-  <section  id="autmun">
-    <div class="wrapper">
   <div class="sticky">
-  1 Autmun Street
+  {{location.gsx$full.$t}}
   </div>
-</div>
+   <div class="info">
+  {{location.gsx$name.$t}}</br>
+  {{location.gsx$address.$t}}</br>
+  {{location.gsx$city.$t}}, {{location.gsx$state.$t}} {{location.gsx$zip.$t}}</br>
+</br>
+  <div class="icon phone"><span style="padding-left:5px;">{{location.gsx$phone.$t}}</span></div>
+        <div class="icon fax"><span style="padding-left:5px;">{{location.gsx$fax.$t}}</span></div>
+
+  </div>
+
+
+    </template>
+  </template>
+    <div id="main-map">
+    </div>
+  </div>
   </section>
-  
-  <section id="waltham">
+
+    <section id="autumn">
+      <div class="wrapper">
+  <template repeat="{{location in contact.feed.entry}}">
+    <template if="{{location.gsx$location.$t === 'autumn'}}">
+
+  <div class="sticky">
+  {{location.gsx$full.$t}}
+  </div>
+   <div  class="info">
+  {{location.gsx$name.$t}}</br>
+  {{location.gsx$address.$t}}</br>
+  {{location.gsx$city.$t}}, {{location.gsx$state.$t}} {{location.gsx$zip.$t}}</br>
+  </br>
+
+  <div class="icon phone"><span style="padding-left:5px;">{{location.gsx$phone.$t}}</span></div>
+        <div class="icon fax"><span style="padding-left:5px;">{{location.gsx$fax.$t}}</span></div>
+
+</div>
+
+    </template>
+  </template
+>    <div id="autumn-map">
+  </div>
+  </div>
+  </section>
+
+    <section id="waltham">
+      <div class="wrapper">
+  <template repeat="{{location in contact.feed.entry}}">
+    <template if="{{location.gsx$location.$t === 'waltham'}}">
+
+  <div class="sticky">
+  {{location.gsx$full.$t}}
+  </div>
+   <div  class="info">
+  {{location.gsx$name.$t}}</br>
+  {{location.gsx$address.$t}}</br>
+  {{location.gsx$city.$t}}, {{location.gsx$state.$t}} {{location.gsx$zip.$t}}</br>
+  </br>
+  <div class="icon phone"><span style="padding-left:5px;">{{location.gsx$phone.$t}}</span></div>
+        <div class="icon fax"><span style="padding-left:5px;">{{location.gsx$fax.$t}}</span></div>
+</div>
+
+    </template>
+  </template>
+    <div id="waltham-map">
+  </div>
+  </div>
+  </section>
+
+<!--     <template repeat="{{location in contact.feed.entry}}">
+
+      <section id="{{location.gsx$location.$t}}">
       <div class="wrapper">
   <div class="sticky">
-  Waltham Campus
+  {{location.gsx$full.$t}}
+  </div>
+  <div>
+  {{location.gsx$name.$t}}</br>
+  {{location.gsx$address.$t}}</br>
+  {{location.gsx$city.$t}}, {{location.gsx$state.$t}} {{location.gsx$zip.$t}}</br>
+  <div id="{{location.gsx$location.$t}}-map">
+  </div>
   </div>
 </div>
   </section>
+
+  
+
+  </template> -->
   
 </div>
   
-  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdExWYWNTdU9IX1pSc0h3ZF9DNVdHYlE/od6/public/values?alt=json-in-script&callback=" response="{{contact}}"></polymer-jsonp>
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdEFDUWh1dXJOSVFBTlhkU0hXc055TUE/od6/public/values?alt=json-in-script&callback=" response="{{contact}}"></polymer-jsonp>
 
   </template>
   <script>
@@ -129,9 +221,21 @@ We have offices in 3 different locations
       jumpToSection: 0,
       jumpSkip: 0,
       reloaded: 0,
+      mapLoaded: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+      },
+      reloadedChanged: function(){
+      window.console.log(this.reloaded);
+          if(this.mapLoaded == 0){
+          var index;
+          for (index = 0; index < this.contact.feed.entry.length; ++index) {
+this.$[this.contact.feed.entry[index].gsx$location.$t+'-map'].innerHTML = this.contact.feed.entry[index].gsx$map.$t;
+          }
+
+          this.mapLoaded = 1;
+        }
       },
       scrollToSectionChanged: function(){
         window.console.log('-CONTACT- SCROLL');

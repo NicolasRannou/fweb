@@ -212,9 +212,9 @@ position: absolute;
 
               <div id="gallery">
   <div id="slider">
-     <div style="background:#EAF5EA"><div id="content"></div></div>
-     <div style="background:#EAF5F5"><div id="content0"></div></div>
-     <div style="background:#EAEEF5"><div id="content1"></div></div>
+     <div style="background:#EAF5EA"><div id="contentBio"></div></div>
+     <div style="background:#EAF5F5"><div id="contentAwds"></div></div>
+     <div style="background:#EAEEF5"><div id="contentPubs"></div></div>
   </div>
 </div>
 
@@ -231,7 +231,9 @@ position: absolute;
       //applyAuthorStyles: true,
       //resetStyleInheritance: true,
       peopleChanged: function() {
-        this.$.content.innerHTML = this.people.gsx$bio.$t;
+        this.$.contentBio.innerHTML = this.people.gsx$bio.$t;
+        this.$.contentAwds.innerHTML = this.people.gsx$awards.$t;
+        this.$.contentPubs.innerHTML = this.people.gsx$publications.$t;
         this.$.location.innerHTML = this.people.gsx$location.$t;
 
 $(this.$.slider).width(2220);

@@ -73,7 +73,7 @@ background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
 background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046b05',GradientType=0 );
 ">
-<div class="wrapper" style="width:1200px; background: rgb(0,0,0);
+<div class="wrapper" style="background: rgb(0,0,0);
 background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,107,5,1) 100%);
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,107,5,1)));
 background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
@@ -81,18 +81,28 @@ background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
 background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
 background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046b05',GradientType=0 );
- color:#FFF; font-size: 20px;
-line-height: normal;
-padding: 20px;">
+color:#FFF; font-size: 25px;
+padding: 40px 20px;text-align: center;
+line-height: normal;">
     <div id="introContent">
     </div>
 </div>
 </div>
 
-  <section id="magnetic resonance imaging">
+  <section id="challenges">
         <div class="wrapper">
   <div class="sticky">
-  MRI
+  challenges
+  </div>
+  <div id="challengesContent" class="content">
+</div>
+    </div>
+  </section>
+
+  <section id="mri">
+        <div class="wrapper">
+  <div class="sticky">
+  magnectic resonance imaging
   </div>
   <div id="mriContent" class="content">
 </div>
@@ -100,40 +110,40 @@ padding: 20px;">
   </section>
   
 
-  <section  id="near-infrared spectroscopy">
+  <section  id="nirs">
     <div class="wrapper">
   <div class="sticky">
-  NIRS
+  near-infrared spectroscopy
   </div>
     <div id="nirsContent" class="content">
 </div>
 </div>
   </section>
   
-  <section id="magnetoencephalography">
+  <section id="meg">
       <div class="wrapper">
   <div class="sticky">
-  MEG
+  magnetoencephalography
   </div>
     <div id="megContent" class="content">
 </div>
 </div>
   </section>
 
-    <section id="software development">
+    <section id="software">
       <div class="wrapper">
   <div class="sticky">
-  SOFTWARE
+  software development
   </div>
     <div id="softwareContent" class="content">
 </div>
 </div>
   </section>
 
-    <section id="high-performance computing" class="content">
+    <section id="hpc" class="content">
       <div class="wrapper">
   <div class="sticky">
-  HPC
+  high-performance computing
   </div>
     <div id="hpcContent">
 </div>
@@ -221,6 +231,7 @@ padding: 20px;">
       researchChanged: function() {
         if(this.research){
           this.$.introContent.innerHTML = this.research.feed.entry[0].gsx$intro.$t;
+          this.$.challengesContent.innerHTML = this.research.feed.entry[0].gsx$challenges.$t;
           this.$.mriContent.innerHTML = this.research.feed.entry[0].gsx$mri.$t;
           this.$.nirsContent.innerHTML = this.research.feed.entry[0].gsx$nirs.$t;
           this.$.megContent.innerHTML = this.research.feed.entry[0].gsx$meg.$t;
