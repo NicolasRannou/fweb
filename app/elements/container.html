@@ -140,6 +140,7 @@ display:none;
 -webkit-align-items: center;
 align-items: center;display: flex !important; padding:0 10px;
         height:100%;
+        color:grey;
       }
 
       #topNav{
@@ -149,8 +150,8 @@ align-items: center;display: flex !important; padding:0 10px;
       }
 
             .navTopLink:hover{
-background:#FFF!important;
-color: #000;
+/*background:#FFF!important;*/
+color: #FFF;
 cursor: pointer;
       }
 
@@ -191,6 +192,7 @@ color:white;
             .page-selected{
 /*        background:#FFF;
 color:#353535;*/
+color:#FFF!important;
       }
 
             .page-selected.research-top{
@@ -243,7 +245,6 @@ padding: 10px;
         <div id="topNav">
              <template repeat="{{ pages }}">
                       <div class="navTopLink {{page}}-top page-top" on-tap="{{horizontalMenu}}">{{page}}</div>
-
             </template>
           </div>
 
