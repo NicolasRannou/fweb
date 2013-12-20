@@ -2,8 +2,11 @@
 
 <link rel="import" href="home.html">
 <link rel="import" href="research.html">
+<link rel="import" href="highlights.html">
+<link rel="import" href="software.html">
 <link rel="import" href="team.html">
 <link rel="import" href="contact.html">
+<link rel="import" href="live.html">
 
 <polymer-element name="container-element"  attributes="">
   <template>
@@ -71,10 +74,38 @@
       .research{
         color: #0DA861
       }
+
       polymer-ui-submenu-item.research::before{
         content:"\f0c3";
       }
-     
+
+      .highlights{
+        color:rgb(168, 162, 13)
+      }
+            polymer-ui-submenu-item.highlights::before{
+        content:"\f18c";
+      }
+            .software{
+        color:rgb(78, 78, 78)
+      }
+            polymer-ui-submenu-item.software::before{
+        content:"\f085";
+      }
+            .live{
+        color:rgb(240, 0, 0)
+      }
+            polymer-ui-submenu-item.live::before{
+        content:"\f03d";
+      }
+
+      .events{
+        color: #0DA861
+      }
+
+      polymer-ui-submenu-item.events::before{
+        content:"\f073";
+      }
+         
       polymer-ui-submenu-item  polymer-ui-menu-item{
         display:inline-block !important;
         min-width:60%
@@ -151,7 +182,7 @@ align-items: center;display: flex !important; padding:0 10px;
 
             .navTopLink:hover{
 /*background:#FFF!important;*/
-color: #FFF;
+color: #353535;
 cursor: pointer;
       }
 
@@ -189,35 +220,40 @@ padding-left: 5px!important;
 color:white;
       }
 
-            .page-selected{
-/*        background:#FFF;
-color:#353535;*/
+            .pageSelected{
 color:#FFF!important;
       }
 
-            .page-selected.research-top{
-/*        background:#FFF;
-color:#353535;*/
+             #navTop-research.pageSelected{
 background-color: #0DA861
       }
 
-                  .page-selected.team-top{
-/*        background:#FFF;
-color:#353535;*/
+                  #navTop-team.pageSelected{
 background-color: #08B8B8
       }
 
-                  .page-selected.contact-top{
-/*        background:#FFF;
-color:#353535;*/
+                  #navTop-contact.pageSelected{
 background-color: #08C
       }
-                        .page-selected.home-top{
-/*        background:#FFF;
-color:#353535;*/
+                        #navTop-home.pageSelected{
 background-color: #BA55D3
       }
 
+                              #navTop-software.pageSelected{
+background-color: rgb(78, 78, 78)
+      }
+
+                                    #navTop-highlights.pageSelected{
+background-color: rgb(168, 162, 13)
+      }
+
+                                          #navTop-live.pageSelected{
+background-color: rgb(240, 0, 0)
+      }
+
+                                                #navTop-events.pageSelected{
+background-color: #0DA861
+      }
       .section-right{
                padding:9px; 
       }
@@ -227,8 +263,13 @@ background-color: #BA55D3
         background: lightgrey;
       }
 
-      polymer-ui-toolbar.polymer-ui-dark-theme{
-        background-color: rgb(0, 0, 0)!important;
+      polymer-ui-toolbar.polymer-ui-light-theme{
+        background-color: rgb(242, 242, 242)!important;
+      }
+
+      polymer-ui-sidebar-menu{
+        background: rgb(242, 242, 242) !important;
+
       }
 
 #rightNav{
@@ -237,36 +278,57 @@ margin-right: -1px;
 padding: 10px;
 }
     </style>
-  <polymer-ui-scaffold3 theme="polymer-ui-dark-theme" style="height:100%;position: relative;">
+  <polymer-ui-scaffold3 theme="polymer-ui-light-theme" style="height:100%;position: relative;">
 
 
 
       <div tool flex>
         <div id="topNav">
              <template repeat="{{ pages }}">
-                      <div class="navTopLink {{page}}-top page-top" on-tap="{{horizontalMenu}}">{{page}}</div>
+                      <div id='navTop-{{id}}' data-page='{{id}}' class="navTopLink page-top" on-tap="{{horizontalMenu}}">{{label}}</div>
+
             </template>
           </div>
 
             <div id="rightNav" class="eightNav" style="color:black;">
             <div id="right-container-home" class="right-container">
               <template repeat="{{ home }}">
-                <div class="home {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+                <div data-section='{{id}}' class="home {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
               </template>
             </div>
             <div id="right-container-research" class="right-container" style="display:none">
              <template repeat="{{ research }}">
-                <div class="research {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+                <div data-section='{{id}}' class="research {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            <div id="right-container-highlights" class="right-container" style="display:none">
+              <template repeat="{{ highlights }}">
+                <div data-section='{{id}}' class="highlights {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            <div id="right-container-software" class="right-container" style="display:none">
+              <template repeat="{{ software }}">
+                <div data-section='{{id}}' class="software {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
               </template>
             </div>
             <div id="right-container-team" class="right-container" style="display:none">
               <template repeat="{{ team }}">
-                <div class="team {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+                <div data-section='{{id}}' class="team {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
               </template>
             </div>
             <div id="right-container-contact" class="right-container" style="display:none">
               <template repeat="{{ contact }}">
-                <div class="contact {{section}}-right section-right" on-tap="{{verticalMenu}}">{{section}}</div>
+                <div data-section='{{id}}' class="contact {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            <div id="right-container-live" class="right-container" style="display:none">
+              <template repeat="{{ live }}">
+                <div data-section='{{id}}' class="live {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            <div id="right-container-events" class="right-container" style="display:none">
+              <template repeat="{{ events }}">
+                <div data-section='{{id}}' class="events {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
               </template>
             </div>
           </div>
@@ -275,9 +337,9 @@ padding: 10px;
 
           <!-- page navigation -->
            <span id="envP" class="enveloppe">
-          <polymer-ui-menu-button id="page-topnav" label="{{previousPage}}" selected="{{pageIndexTop}}" >
+          <polymer-ui-menu-button id="page-topnav" label="{{previousPageLabel}}" selected="{{pageIndexTop}}" >
             <template repeat="{{ pages }}">
-              <polymer-ui-menu-item class="{{page}} icon" title="{{page}}" label="{{page}}"></polymer-ui-menu-item>
+              <polymer-ui-menu-item class="{{id}} icon" title="{{label}}" label="{{label}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
           </span>
@@ -288,28 +350,56 @@ padding: 10px;
           <span id="envS" class="enveloppe envS">
           <polymer-ui-menu-button id="home-topnav" label="{{homeSection}}" selected="{{homeIndexTop}}">
             <template repeat="{{ home }}">
-              <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
+              <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{label}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- research section -->
          <polymer-ui-menu-button id="research-topnav" label="{{researchSection}}" selected="{{researchIndexTop}}" style="display:none">
             <template repeat="{{ research }}">
-              <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
+              <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{label}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
+          <!-- highlights and awards section -->
+          <polymer-ui-menu-button id="highlights-topnav" label="{{highlightsSection}}" selected="{{highlightsIndexTop}}" style="display:none">
+            <template repeat="{{ highlights }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="highlights" label="{{label}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
+          <!-- software section -->
+          <polymer-ui-menu-button id="software-topnav" label="{{softwareSection}}" selected="{{softwareIndexTop}}" style="display:none">
+            <template repeat="{{ software }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="software" label="{{label}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- team section -->
           <polymer-ui-menu-button id="team-topnav" label="{{teamSection}}" selected="{{teamIndexTop}}" style="display:none">
             <template repeat="{{ team }}">
-              <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{section}}"></polymer-ui-menu-item>
+              <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{label}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
 
           <!-- contact section -->
           <polymer-ui-menu-button id="contact-topnav" label="{{contactSection}}" selected="{{contactIndexTop}}" style="display:none">
             <template repeat="{{ contact }}">
-              <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{section}}"></polymer-ui-menu-item>
+              <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{label}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
+          <!-- live section -->
+          <polymer-ui-menu-button id="live-topnav" label="{{liveSection}}" selected="{{liveIndexTop}}" style="display:none">
+            <template repeat="{{ live }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="live" label="{{label}}"></polymer-ui-menu-item>
+            </template>
+          </polymer-ui-menu-button>
+
+          <!-- events section -->
+          <polymer-ui-menu-button id="events-topnav" label="{{eventsSection}}" selected="{{eventsIndexTop}}" style="display:none">
+            <template repeat="{{ events }}">
+              <polymer-ui-menu-item on-tap="{{jump}}" title="events" label="{{label}}"></polymer-ui-menu-item>
             </template>
           </polymer-ui-menu-button>
         </span>
@@ -324,11 +414,25 @@ padding: 10px;
         <!-- research element -->
         <research-element id="research" reloaded="{{researchReloaded}}" scrollToSection="{{researchScroll}}" jumpToSection="{{researchJump}}" currentSection="{{researchSection}}" currentSectionIndex="{{researchIndexTop}}" style="display:none;"></research-element>
 
+        <!-- publication element -->
+        <highlights-element id="highlights" reloaded="{{highlightsReloaded}}" scrollToSection="{{highlightsScroll}}" jumpToSection="{{highlightsJump}}" currentSection="{{highlightsSection}}" currentSectionIndex="{{highlightsIndexTop}}" style="display:none;"></highlights-element>
+
+        <!-- software element -->
+        <software-element id="software" reloaded="{{softwareReloaded}}" scrollToSection="{{softwareScroll}}" jumpToSection="{{softwareJump}}" currentSection="{{softwareSection}}" currentSectionIndex="{{softwareIndexTop}}" style="display:none;"></software-element>
+
         <!-- team element -->
         <team-element id="team" reloaded="{{teamReloaded}}" scrollToSection="{{teamScroll}}" jumpToSection="{{teamJump}}" currentSection="{{teamSection}}" currentSectionIndex="{{teamIndexTop}}" style="display:none;"></team-element>
 
         <!-- contact element -->
         <contact-element id="contact" reloaded="{{contactReloaded}}" scrollToSection="{{contactScroll}}" jumpToSection="{{contactJump}}" currentSection="{{contactSection}}" currentSectionIndex="{{contactIndexTop}}" style="display:none;"></contact-element>
+
+        <!-- live element -->
+        <live-element id="live" reloaded="{{liveReloaded}}" scrollToSection="{{liveScroll}}" jumpToSection="{{liveJump}}" currentSection="{{liveSection}}" currentSectionIndex="{{liveIndexTop}}" style="display:none;"></live-element>
+
+        <!-- calendar element-->
+        <div id="events" style="display:none;"><div style="margin: 0px auto!important;width: 80%;
+height: 100%;
+display: block; "><iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=admin%40babymri.org&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0; width: 100%;height:100%;" frameborder="0" scrolling="no"></iframe></div></div>
 
       </div>
 
@@ -337,28 +441,56 @@ padding: 10px;
         <!-- home section -->
         <polymer-ui-submenu-item class="home icon" title="home" label="Home" selected="{{homeIndexSide}}">
           <template repeat="{{ home }}">
-            <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{section}}"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" title="home" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
           </template>
         </polymer-ui-submenu-item>
 
         <!-- research section -->
         <polymer-ui-submenu-item class="research icon" title="research" label="Research" selected="{{researchIndexSide}}">
           <template repeat="{{ research }}">
-            <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{section}}"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" title="research" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
+          </template>
+        </polymer-ui-submenu-item>
+
+        <!-- highlights section -->
+        <polymer-ui-submenu-item class="highlights icon" title="highlights" label="Highlights" selected="{{highlightsIndexSide}}">
+          <template repeat="{{ highlights }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="highlights" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
+          </template>
+        </polymer-ui-submenu-item>
+
+        <!-- software section -->
+        <polymer-ui-submenu-item class="software icon" title="software" label="Software" selected="{{softwareIndexSide}}">
+          <template repeat="{{ software }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="software" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
           </template>
         </polymer-ui-submenu-item>
 
         <!-- team section -->
-        <polymer-ui-submenu-item class="team icon" title="team" label="Team" selected="{{teamIndexSide}}">
+        <polymer-ui-submenu-item class="team icon" title="team" label="Meet our team" selected="{{teamIndexSide}}">
           <template repeat="{{ team }}">
-            <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{section}}"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" title="team" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
           </template>
         </polymer-ui-submenu-item>
 
         <!-- contact section -->
-        <polymer-ui-submenu-item class="contact icon" title="contact" label="Contact" selected="{{contactIndexSide}}">
+        <polymer-ui-submenu-item class="contact icon" title="contact" label="Contact us" selected="{{contactIndexSide}}">
           <template repeat="{{ contact }}">
-            <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{section}}"></polymer-ui-menu-item>
+            <polymer-ui-menu-item on-tap="{{jump}}" title="contact" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
+          </template>
+        </polymer-ui-submenu-item>
+
+        <!-- live section -->
+        <polymer-ui-submenu-item class="live icon" title="live" label="Live" selected="{{liveIndexSide}}">
+          <template repeat="{{ live }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="live" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
+          </template>
+        </polymer-ui-submenu-item>
+
+        <!-- events section -->
+        <polymer-ui-submenu-item class="events icon" title="events" label="Events" selected="{{eventsIndexSide}}">
+          <template repeat="{{ events }}">
+            <polymer-ui-menu-item on-tap="{{jump}}" title="events" label="{{label}}" data-section="{{id}}"></polymer-ui-menu-item>
           </template>
         </polymer-ui-submenu-item>
 
@@ -370,42 +502,68 @@ padding: 10px;
     Polymer('container-element', {
       ready: function() {
         // list the pages
-        this.pages = [{page:'home', index:0},
-                     {page:'research', index:1},
-                     {page:'team', index:2},
-                     {page:'contact', index:3}];
+        this.pages = [{id:'home', label:'home', index:0},
+                     {id:'research', label:'research', index:1},
+                     {id:'highlights', label:'highlights', index:2},
+                     {id:'software', label:'software', index:3},
+                     {id:'team', label:'meet our team', index:4},
+                     {id:'contact', label:'contact us', index:5},
+                     {id:'live', label:'on air', index:6},
+                     {id:'events', label:'events', index:7}];
 
         // home page
-        this.home = [{section:'welcome', index:0},
-                     {section:'about', index:1},
-                     {section:'research', index:2},
-                     {section:'software', index:3}];
+        this.home = [{id:'welcome', label:'welcome',index:0},
+                     {id:'about', label:'about us',index:1},
+                     {id:'research', label:'research',index:2},
+                     {id:'software', label:'cool software',index:3}];
         this.initPageVars('home', this.home);
 
         // research page
-        this.research = [{section:'challenges', index:0},
-                         {section:'mri', index:1},
-                         {section:'nirs', index:2},
-                         {section:'meg', index:3},
-                         {section:'software', index:4},
-                         {section:'hpc', index:5}];
+        this.research = [{id:'challenges', label:'challenges', index:0},
+                         {id:'mri', label:'m r i', index:1},
+                         {id:'nirs', label:'nirs', index:2},
+                         {id:'meg', label:'meg', index:3}];
         this.initPageVars('research', this.research);
 
+        // highlights a and awards page
+        this.highlights = [{id:'highlights', label:'highlights', index:0},
+                         {id:'ttthirteen', label:'2013', index:1},
+                         {id:'tttwelve', label:'2012', index:2},
+                         {id:'tteleven', label:'2011', index:3}];
+        this.initPageVars('highlights', this.highlights);
+
+        // software page
+        this.software = [{id:'labbook', label:'The Web LabBook', index:0},
+                         {id:'slicedrop', label:'SliceDrop', index:1},
+                         {id:'xtk', label:'The X-Toolkit', index:1}];
+        this.initPageVars('software', this.software);
+
         // team page
-        this.team = [{section:'faculty', index:0},
-                     {section:'staff', index:1},
-                     {section:'collaborators', index:2},
-                     {section:'alumni', index:3}];
+        this.team = [{id:'faculty', label:'faculty', index:0},
+                     {id:'staff', label:'staff', index:1},
+                     {id:'collaborators', label:'collaborators', index:2},
+                     {id:'alumni', label:'alumni', index:3}];
         this.initPageVars('team', this.team);
 
         // contact page
-        this.contact = [{section:'main', index:0},
-                     {section:'autumn', index:1},
-                     {section:'waltham', index:2}];
+        this.contact = [{id:'main', label:'main campus', index:0},
+                     {id:'autumn', label:'1 autumn street', index:1},
+                     {id:'waltham', label:'waltham', index:2}];
         this.initPageVars('contact', this.contact);
+
+        // live page
+        this.live = [{id:'live', label:'Live stream', index:0},
+        {id:'upcoming', label:'Upcoming streams', index:0},
+        {id:'previous', label:'Previous sessions', index:0}];
+        this.initPageVars('live', this.live);
+
+        // live page
+        this.events = [{id:'calendar', label:'calendar', index:0}];
+        this.initPageVars('events', this.events);
 
         // navigation
         this.previousPage =  'home';
+        this.previousPageLabel =  'Home';
         this.pageIndexTop = null;
         this.jumpReady = 0;
         this.pageIndexSide = null;
@@ -426,43 +584,42 @@ padding: 10px;
 
       },
       horizontalMenu: function(e, detail){
-        var page = e.srcElement.innerHTML;
 
-        // previous index: unselect it!
-        $(this.$.topNav).find('.page-selected').removeClass("page-selected");
-        $(this.$.topNav).find('.'+page+'-top').addClass("page-selected");
+        window.console.log("H menu clicked");
+
+        var id = e.target.getAttribute('data-page');
+        $(this.$.topNav).find('.pageSelected').removeClass("pageSelected");
+        $(this.$.topNav).find('#navTop-'+id).addClass("pageSelected");
 
         var len = this.pages.length;
         while (len--) {
-
-          if(this.pages[len].page == page){
+          if(this.pages[len].id == id){
             this.pageIndexTop = len;
             break;
           }
         }
       },
       verticalMenu: function(e, detail){
+
+        window.console.log("V menu clicked");
+
         // previous index: unselect it!
+        var id = e.target.getAttribute('data-section');
         if(this[this.previousPage+'IndexTop'] != null){
           $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
         }
 
-        $(this.$.rightNav).find('.'+this.previousPage+'.'+e.srcElement.innerHTML+'-right').addClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+id+'-right').addClass("section-selected");
 
         var len = this[this.previousPage].length;
 
         while (len--) {
 
-          if(this[this.previousPage][len].section == e.srcElement.innerHTML){
+          if(this[this.previousPage][len].id == id){
 
-            window.console.log(this[this.previousPage][len].section);
-            window.console.log(this[this.previousPage+'IndexTop']);
-                        window.console.log(this[this.previousPage+'Section']);
-                                    window.console.log(this[this.previousPage+'Jump']);
-                                                                        window.console.log(len);
             // update topnav
             this[this.previousPage+'IndexTop'] = len;
-            this[this.previousPage+'Section'] = e.srcElement.innerHTML;
+            this[this.previousPage+'Section'] = id;
 
             // start jumping
             this.jumpReady = 0;
@@ -473,7 +630,11 @@ padding: 10px;
         }
       },
       initPageVars: function(pageName, pageObject){
-        this[pageName+'Section'] = pageObject[0].section;
+
+        window.console.log("Init page");
+if(pageObject[0] != null){
+        this[pageName+'Section'] = pageObject[0].id;
+      }
         this[pageName+'IndexTop'] =  null;
         this[pageName+'Jump'] = 0;
         this[pageName+'Scroll'] =0;
@@ -488,17 +649,20 @@ padding: 10px;
       },
       pageIndexTopChanged: function(){
 
+      window.console.log("Page index Top changed");
+      window.console.log(this.pageIndexTop);
+
       if(this.pageIndexTop != null){
 
         $(this.$.envP).toggleClass('envP-selected');
 
         // update topbar
-        $(this.$.topNav).find('.page-selected').removeClass("page-selected");
-        $(this.$.topNav).find('.'+this.pages[this.pageIndexTop].page+'-top').addClass("page-selected");
+        $(this.$.topNav).find('.pageSelected').removeClass("pageSelected");
+        $(this.$.topNav).find('#navTop-'+this.pages[this.pageIndexTop].id).addClass("pageSelected");
 
         // update rightbar
         $(this.$.rightNav).find('.right-container').hide();
-        $(this.$.rightNav).find('#right-container-'+this.pages[this.pageIndexTop].page).show();
+        $(this.$.rightNav).find('#right-container-'+this.pages[this.pageIndexTop].id).show();
 
 
         // update sidebar
@@ -518,7 +682,7 @@ padding: 10px;
 
         // update rightbar
         $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
-        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.home[this.homeIndexTop].section+'-right').addClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.home[this.homeIndexTop].id+'-right').addClass("section-selected");
 
         // update sidebar
         // select page
@@ -535,13 +699,47 @@ padding: 10px;
 
         // update rightbar
         $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
-        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.research[this.researchIndexTop].section+'-right').addClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.research[this.researchIndexTop].id+'-right').addClass("section-selected");
 
         // update sidebar
         // select page
         this.pageIndexSide = 1;
         // select section
         this.researchIndexSide = this.researchIndexTop;
+        }
+      },
+      highlightsIndexTopChanged: function(){
+
+      if(this.highlightsIndexTop != null){
+
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.highlights[this.highlightsIndexTop].id+'-right').addClass("section-selected");
+
+        // update sidebar
+        // select page
+        this.pageIndexSide = 2;
+        // select section
+        this.highlightsIndexSide = this.highlightsIndexTop;
+        }
+      },
+      softwareIndexTopChanged: function(){
+
+      if(this.softwareIndexTop != null){
+
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.software[this.softwareIndexTop].id+'-right').addClass("section-selected");
+
+        // update sidebar
+        // select page
+        this.pageIndexSide = 3;
+        // select section
+        this.softwareIndexSide = this.softwareIndexTop;
         }
       },
       teamIndexTopChanged: function(){
@@ -552,11 +750,11 @@ padding: 10px;
 
         // update rightbar
         $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
-        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.team[this.teamIndexTop].section+'-right').addClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.team[this.teamIndexTop].id+'-right').addClass("section-selected");
 
         // update sidebar
         // select page
-        this.pageIndexSide = 2;
+        this.pageIndexSide = 4;
         // select section
         this.teamIndexSide = this.teamIndexTop;
         }
@@ -569,16 +767,52 @@ padding: 10px;
 
         // update rightbar
         $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
-        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.contact[this.contactIndexTop].section+'-right').addClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.contact[this.contactIndexTop].id+'-right').addClass("section-selected");
 
         // update sidebar
         // select page
-        this.pageIndexSide = 3;
+        this.pageIndexSide = 5;
         // select section
         this.contactIndexSide = this.contactIndexTop;
         }
       },
+      liveIndexTopChanged: function(){
+
+      if(this.liveIndexTop != null){
+
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.live[this.liveIndexTop].id+'-right').addClass("section-selected");
+
+        // update sidebar
+        // select page
+        this.pageIndexSide = 6;
+        // select section
+        this.liveIndexSide = this.liveIndexTop;
+        }
+      },
+      eventsIndexTopChanged: function(){
+
+      if(this.eventsIndexTop != null){
+
+        $(this.$.envS).toggleClass('envP-selected');
+
+        // update rightbar
+        $(this.$.rightNav).find('.section-selected').removeClass("section-selected");
+        $(this.$.rightNav).find('.'+this.previousPage+'.'+this.events[this.eventsIndexTop].id+'-right').addClass("section-selected");
+
+        // update sidebar
+        // select page
+        this.pageIndexSide = 7;
+        // select section
+        this.eventsIndexSide = this.eventsIndexTop;
+        }
+      },
       sidenav: function(e, detail){
+
+window.console.log("Side nav changed");
 
         if(detail.isSelected){
           var selectedPage = detail.item.title;
@@ -606,8 +840,9 @@ padding: 10px;
 
             while (len--) {
 
-              if(this.pages[len].page == selectedPage){
+              if(this.pages[len].id == selectedPage){
                 this.pageIndexTop = len;
+                this.previousPageLabel = this.pages[len].label;
                 break;
               }
             }
@@ -617,16 +852,17 @@ padding: 10px;
             // find index
             var len = this[selectedPage].length;
 
+            window.console.log(detail.item);
+
             while (len--) {
 
-              if(this[selectedPage][len].section == detail.item.label){
+              if(this[selectedPage][len].id == detail.item.getAttribute('data-section')){
                 // update topnav
                 this[this.previousPage+'IndexTop'] = len;
                 this[this.previousPage+'Section'] = detail.item.label;
 
                 // start jumping
                  if(this.jumpReady  == 1){
-                  window.console.log("side JJUMP");
                     this.jumpReady = 0;
                     this[this.previousPage+'Jump'] = 1;
                  }

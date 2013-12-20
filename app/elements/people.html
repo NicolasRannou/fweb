@@ -167,7 +167,7 @@ position: absolute;
         <img src="../images/team/{{people.gsx$picture.$t}}" style="width:100%; height:100%;">
       </div>
       <div id="info" class="aside">
-        <h1>{{people.gsx$name.$t}}</h1>
+        <h1>{{people.gsx$firstname.$t}} {{people.gsx$middlename.$t}} {{people.gsx$lastname.$t}}, {{people.gsx$suffix.$t}}</h1>
         <h3>{{people.gsx$hospitaltitle.$t}}</br>
         {{people.gsx$academictitle.$t}}</br>
         {{people.gsx$department.$t}}
@@ -212,9 +212,36 @@ position: absolute;
 
               <div id="gallery">
   <div id="slider">
-     <div style="background:#EAF5EA"><div id="contentBio"></div></div>
-     <div style="background:#EAF5F5"><div id="contentAwds"></div></div>
-     <div style="background:#EAEEF5"><div id="contentPubs"></div></div>
+     <div style="background: rgb(234,234,234);
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(left,  rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
+background: -webkit-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: -o-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: -ms-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: linear-gradient(to right,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 );
+"><div id="contentBio"></div></div>
+     <div style="background: rgb(234,234,234);
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(left,  rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
+background: -webkit-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: -o-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: -ms-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: linear-gradient(to right,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 );
+"><div id="contentAwds"></div></div>
+     <div style="background: rgb(234,234,234);
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(left,  rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
+background: -webkit-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: -o-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: -ms-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+background: linear-gradient(to right,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 );
+"><div id="contentPubs"></div></div>
   </div>
 </div>
 
@@ -270,13 +297,7 @@ $(this.parentNode.parentNode).find('#page2').addClass("selected");
 
 $(this.parentNode.parentNode).find('#slider').stop().animate({left: -740},800);
         });
-      },
-      created: function() {
-
-      },
-      enteredView: function() { },
-      leftView: function() { },
-      attributeChanged: function(attrName, oldVal, newVal) { }
+      }
     });
   </script>
 </polymer-element>

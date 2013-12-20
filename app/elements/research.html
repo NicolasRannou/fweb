@@ -21,15 +21,6 @@ font-size: 20px;
       }
 
 #wrapper{
-background: rgb(41,41,41);
-background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
-background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
-
 }
 
       .wrapper {
@@ -48,8 +39,8 @@ width: 100%!important;
     /* Responsive small screen*/
     @media all and (min-width: 801px){
       .wrapper {
-      margin: 0 auto;
-width: 800px;
+/*      margin: 0 auto;
+width: 800px;*/
 }
     }
 
@@ -64,24 +55,10 @@ width: 800px;
     </style>
   <div id="wrapper">
 
-<div style="background: rgb(0,0,0);
-background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,107,5,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,107,5,1)));
-background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046b05',GradientType=0 );
+<div style="background: rgb(242, 242, 242);
 ">
-<div class="wrapper" style="background: rgb(0,0,0);
-background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,107,5,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,107,5,1)));
-background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,107,5,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046b05',GradientType=0 );
-color:#FFF; font-size: 25px;
+<div class="wrapper" style="background: rgb(242, 242, 242);
+color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
     <div id="introContent">
@@ -91,9 +68,11 @@ line-height: normal;">
 
   <section id="challenges">
         <div class="wrapper">
-  <div class="sticky">
-  challenges
+  <div id="challengesTitle" class="sticky">
+  
   </div>
+  <div style="float:left; font-size: 8em;padding: 20px 30px;
+color: rgb(199, 0, 0);"><i class="fa fa-exclamation-triangle"></i></div>
   <div id="challengesContent" class="content">
 </div>
     </div>
@@ -101,8 +80,8 @@ line-height: normal;">
 
   <section id="mri">
         <div class="wrapper">
-  <div class="sticky">
-  magnectic resonance imaging
+  <div id="mriTitle" class="sticky">
+  
   </div>
   <div id="mriContent" class="content">
 </div>
@@ -112,8 +91,8 @@ line-height: normal;">
 
   <section  id="nirs">
     <div class="wrapper">
-  <div class="sticky">
-  near-infrared spectroscopy
+  <div id="nirsTitle" class="sticky">
+  
   </div>
     <div id="nirsContent" class="content">
 </div>
@@ -122,35 +101,14 @@ line-height: normal;">
   
   <section id="meg">
       <div class="wrapper">
-  <div class="sticky">
-  magnetoencephalography
+  <div id="megTitle" class="sticky">
+  
   </div>
     <div id="megContent" class="content">
 </div>
 </div>
   </section>
-
-    <section id="software">
-      <div class="wrapper">
-  <div class="sticky">
-  software development
-  </div>
-    <div id="softwareContent" class="content">
-</div>
-</div>
-  </section>
-
-    <section id="hpc" class="content">
-      <div class="wrapper">
-  <div class="sticky">
-  high-performance computing
-  </div>
-    <div id="hpcContent">
-</div>
-</div>
-  </section>
-
-  
+ 
 </div>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdFlZbnZ6ZnFYS3ZCa1FyVlJTVnhKTHc/od6/public/values?alt=json-in-script&callback=" response="{{research}}"></polymer-jsonp>
@@ -230,13 +188,17 @@ line-height: normal;">
       },
       researchChanged: function() {
         if(this.research){
-          this.$.introContent.innerHTML = this.research.feed.entry[0].gsx$intro.$t;
-          this.$.challengesContent.innerHTML = this.research.feed.entry[0].gsx$challenges.$t;
-          this.$.mriContent.innerHTML = this.research.feed.entry[0].gsx$mri.$t;
-          this.$.nirsContent.innerHTML = this.research.feed.entry[0].gsx$nirs.$t;
-          this.$.megContent.innerHTML = this.research.feed.entry[0].gsx$meg.$t;
-          this.$.softwareContent.innerHTML = this.research.feed.entry[0].gsx$software.$t;
-          this.$.hpcContent.innerHTML = this.research.feed.entry[0].gsx$hpc.$t;
+          this.$.introContent.innerHTML = this.research.feed.entry[1].gsx$intro.$t;
+          // titles
+          this.$.challengesTitle.innerHTML = this.research.feed.entry[0].gsx$challenges.$t;
+          this.$.mriTitle.innerHTML = this.research.feed.entry[0].gsx$mri.$t;
+          this.$.nirsTitle.innerHTML = this.research.feed.entry[0].gsx$nirs.$t;
+          this.$.megTitle.innerHTML = this.research.feed.entry[0].gsx$meg.$t;
+          // contents
+          this.$.challengesContent.innerHTML = this.research.feed.entry[1].gsx$challenges.$t;
+          this.$.mriContent.innerHTML = this.research.feed.entry[1].gsx$mri.$t;
+          this.$.nirsContent.innerHTML = this.research.feed.entry[1].gsx$nirs.$t;
+          this.$.megContent.innerHTML = this.research.feed.entry[1].gsx$meg.$t;
         }
       },
     });

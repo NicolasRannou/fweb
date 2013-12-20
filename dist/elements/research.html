@@ -1,242 +1,130 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 
-<polymer-element name="research-element" attributes="currentSection currentSectionIndex jumpToSection reloaded scrollToSection">
+<polymer-element name="research-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
-      .masthead{
-        height: 408px;
-        background: #1A1B2B;
-      }
-
-      .masthead .container{
-        background: radial-gradient(ellipse farthest-side at bottom,#403c53 0,#1A1B2B 100%);
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        height: 100%;
-        position: relative;
-      }
-
-      #image{
-        position: absolute;
-        right: 10px;
-        top: 20px;
-        width: 400px;
-        height: 400px;
-        background: url(../images/moco3_grey_0.svg) center top no-repeat; 
-      }
-      h2{
-        font-family: 'Open Sans';
-        margin: 0;
-        padding: 0;
+      .sticky {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width:100%;
+background-color: rgb(13, 168, 97);
         color: #FFF;
-        text-shadow: 0 2px 2px rgba(0,0,0,0.4);
+        padding: 25px;
+font-family: 'Open Sans', sans-serif;
+font-size: 20px;
       }
-
-      div{
-        display: block;
-      }
-
-      span{
-        display: block;
-        position: absolute;
-        z-index: 1;
-        font-family: sans-serif;
-      }
-
-      span.small{
-        font-style: italic;
-        font-weight: 100;
-        left: 5%;
-        top: 44px;
-        font-size: 12px;
-        color: #5dc9fa;
-        font-size: 31px;
-        top: 100px;
-        left: 5%;
-      }
-
-      span.large{
-        font-weight: 700;
-        text-transform: uppercase;
-        width: 65%;
-        left: 5.5%;
-        top: 56px;
-        font-size: 32px;
-        font-size: 102px;
-        top: 128px;
-        left: 13.5%;
-        width: 64%;
-        line-height: 1.05;
-        letter-spacing: -3px;
-      }
-
-      #about{
-        background: url(../images/background/baby_happy.jpg) 50% 0 repeat fixed;
-        min-height: 500px;
-        position: relative;
-        background-color: #ddd;
-        padding: 80px 0;
-        font-size: 30px;
-        line-height: normal;
-      }
-
-      #about .container{
-        position: absolute;
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-      #about .container p{
-        padding: 10px 0;
-      }
-
-      #research{
-        background: url(../images/background/baby_sleep.jpg) 50% 0 repeat fixed;
-        min-height: 500px;
-        background-color: #999;
-        padding: 80px 0;
-        font-size: 30px;
-        line-height: normal;
-        position: relative;
-      }
-
-      #research .container{
-        position: absolute;
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: #ddd;
-      }
-      #research .container p{
-        padding: 10px 0;
-      }
-
-      #software{
-        background: url(../images/background/blue-xray-brain-medium.jpg) 50% 0 repeat fixed;
-        min-height: 500px;
-        background-color: #ddd;
-        padding: 80px 0;
-        font-size: 30px;
-        line-height: normal;
-        position: relative;
-      }
-
-      #software .container{
-        position: absolute;
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: #fff;
-        background-color: rgba(0, 0, 0, .7);
-      }
-      #software .container p{
-        padding: 10px 0;
-      }
-
-      #next{
-        display: block;
+      .fixed{
         position: fixed;
-        left: auto;
-        right: 35px;
-        bottom: 90px;
-        margin-left: -26px;
-        z-index: 9999;
-        cursor: pointer;
-        font-size:72px;
-        font-weight: normal;
-        font-family: "FontAwesome";
-        color:rgba(0, 0, 0, 0);
-        text-shadow: 0 0 5px #000; /* horizontal-offset vertical-offset 'blur' colour */
-        -moz-text-shadow: 0 0 5px #000;
-        -webkit-text-shadow: 0 0 5px #000;
+        top: 0;
       }
 
-      #next:hover{
-        text-shadow: 0 0 0 #000; /* horizontal-offset vertical-offset 'blur' colour */
-        -moz-text-shadow: 0 0 0 #000;
-        -webkit-text-shadow: 0 0 0 #000;
-      }
-
-      #test:before{
-        content:"\f13a";
-      }
+#wrapper{
+}
 
       .wrapper {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;  
-        -webkit-flex-flow: row wrap;
+background-color:rgba(177, 177, 177, 0.298039)
       }
 
     /* Responsive small screen*/
-    @media all and (min-width: 800px){
-      .element{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }
+    @media all and (max-width: 800px){
+      .wrapper {
+margin: 0!important;
+width: 100%!important;
+}
 
-            #next{
-        bottom: 35px;
-      }
     }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 801px){
+      .wrapper {
+/*      margin: 0 auto;
+width: 800px;*/
+}
+    }
+
+    .content{
+      padding: 10px;
+    }
+
+#introContent p {
+  padding: 20px;
+}
+
     </style>
-
   <div id="wrapper">
-   <section id="magnetic resonance imaging" class="masthead element" data-type="background" data-speed="10">
-      <div class="container">
-        <div id="image"></div>
-        <h2>
-          <span class="small">Welcome to the</span>
-          <span class="large">RESEARCH</span>
-        </h2>
-      </div>
-    </section>
 
-    <section id="near-infrared spectroscopy" class="element" data-type="background" data-speed="1.5" style="min-height: 500px;">
-      <div id="generalContent" class="container"></div>
-    </section>
-
-    <section id="magnetoencephalography" class="element" data-type="background" data-speed="10" style="min-height: 500px;">
-      <div id="researchContent" class="container"></div>
-    </section>
-
-    <section id="software development" class="element" data-type="background" data-speed="2" style="min-height: 500px;">
-      <div id="softwareContent" class="container"></div>
-    </section>
-
-    <section id="high-performace computing" class="element" data-type="background" data-speed="2" style="min-height: 500px;">
-      <div id="softwareContent2" class="container"></div>
-    </section>
-
-    <div on-tap="{{nextSection}}" id="next"><div id="test"></div></next>
+<div style="background: rgb(242, 242, 242);
+">
+<div class="wrapper" style="background: rgb(242, 242, 242);
+color:#353535; font-size: 25px;
+padding: 20px;text-align: center;
+line-height: normal;">
+    <div id="introContent">
+    </div>
 </div>
+</div>
+
+  <section id="challenges">
+        <div class="wrapper">
+  <div id="challengesTitle" class="sticky">
+  
   </div>
+  <div style="float:left; font-size: 8em;padding: 20px 30px;
+color: rgb(199, 0, 0);"><i class="fa fa-exclamation-triangle"></i></div>
+  <div id="challengesContent" class="content">
+</div>
+    </div>
+  </section>
+
+  <section id="mri">
+        <div class="wrapper">
+  <div id="mriTitle" class="sticky">
+  
+  </div>
+  <div id="mriContent" class="content">
+</div>
+    </div>
+  </section>
+  
+
+  <section  id="nirs">
+    <div class="wrapper">
+  <div id="nirsTitle" class="sticky">
+  
+  </div>
+    <div id="nirsContent" class="content">
+</div>
+</div>
+  </section>
+  
+  <section id="meg">
+      <div class="wrapper">
+  <div id="megTitle" class="sticky">
+  
+  </div>
+    <div id="megContent" class="content">
+</div>
+</div>
+  </section>
  
-<polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
+</div>
+  
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdFlZbnZ6ZnFYS3ZCa1FyVlJTVnhKTHc/od6/public/values?alt=json-in-script&callback=" response="{{research}}"></polymer-jsonp>
 
   </template>
   <script>
     Polymer('research-element', {
       currentSection: '',
       currentSectionIdex: null,
-      jumpToSection: 0,
       scrollToSection: 0,
+      jumpToSection: 0,
       jumpSkip: 0,
       reloaded: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
-        window.console.log(this.sections);
-      },
-      nextSection: function(){
-        //update next
-        this.jumpToSection = 1;
-        // increase and range 0-4
-        this.currentSectionIndex = (this.currentSectionIndex+1)%5;
       },
       scrollToSectionChanged: function(){
         window.console.log('-RESEARCH- SCROLL');
@@ -262,21 +150,10 @@
             current = this.sections[i];
             currentIndex = i;
            }
-
-           // parallax
-           // get jquery element
-           // from previous section instead!
-           var elt = $(this.$.wrapper).find('#'+this.sections[i])
-           var yPos = -(fromTop / elt.data('speed'));
-           // Put together our final background position
-           var coords = '50% '+ yPos + 'px';
-           // Move the background
-           elt.css({ backgroundPosition: coords });
-
         }
 
         if(this.jumpToSection == 0){
-
+          
            if(lastIndex != currentIndex){
              this.currentSection = current;
              this.currentSectionIndex = currentIndex;
@@ -309,13 +186,22 @@
           // _this.currentSection = divID;
           }); 
       },
-      postsChanged: function() {
-        if(this.posts){
-          this.$.generalContent.innerHTML = this.posts.feed.entry[0].gsx$general.$t;
-          this.$.researchContent.innerHTML = this.posts.feed.entry[0].gsx$research.$t;
-          this.$.softwareContent.innerHTML = this.posts.feed.entry[0].gsx$software.$t;
+      researchChanged: function() {
+        if(this.research){
+          this.$.introContent.innerHTML = this.research.feed.entry[1].gsx$intro.$t;
+          // titles
+          this.$.challengesTitle.innerHTML = this.research.feed.entry[0].gsx$challenges.$t;
+          this.$.mriTitle.innerHTML = this.research.feed.entry[0].gsx$mri.$t;
+          this.$.nirsTitle.innerHTML = this.research.feed.entry[0].gsx$nirs.$t;
+          this.$.megTitle.innerHTML = this.research.feed.entry[0].gsx$meg.$t;
+          // contents
+          this.$.challengesContent.innerHTML = this.research.feed.entry[1].gsx$challenges.$t;
+          this.$.mriContent.innerHTML = this.research.feed.entry[1].gsx$mri.$t;
+          this.$.nirsContent.innerHTML = this.research.feed.entry[1].gsx$nirs.$t;
+          this.$.megContent.innerHTML = this.research.feed.entry[1].gsx$meg.$t;
         }
-      }
+      },
     });
+
   </script>
 </polymer-element>

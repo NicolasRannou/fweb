@@ -93,24 +93,10 @@ width: 800px;
 
   
 
-<div style="background: rgb(0,0,0);
-background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,109,109,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,109,109,1)));
-background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046d6d',GradientType=0 );
+<div style="background: rgb(242, 242, 242);
 ">
-<div class="wrapper" style="background: rgb(0,0,0);
-background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(4,109,109,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(100%,rgba(4,109,109,1)));
-background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(4,109,109,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#046d6d',GradientType=0 );
- color:#FFF; font-size: 25px;
+<div class="wrapper" style="background: rgb(242, 242, 242);
+ color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
   <template repeat="{{people in team.feed.entry}}">
@@ -179,7 +165,7 @@ line-height: normal;">
   </section>
 </div>
   
-  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdExWYWNTdU9IX1pSc0h3ZF9DNVdHYlE/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHN6R2lCX1N4VlZ3dnB2ZHhLWWFZQ3c/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>
 
   </template>
   <script>

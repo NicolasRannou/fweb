@@ -1,0 +1,303 @@
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="software-element" attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+
+      .wrapper {
+      margin: 0 auto;
+width: 800px;
+}
+
+      #labbook{
+        background: url(../images/background/baby_happy.jpg) 50% 0 no-repeat fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: 50% 0px;
+        min-height: 800px;
+        position: relative;
+        background-color: #ddd;
+        padding: 80px 0;
+        font-size: 30px;
+        line-height: normal;
+                padding-right: 500px;
+      }
+
+      #labbook .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+                margin: 0 auto;
+/*        left: 200px;*/
+background-color: rgba(196, 196, 196, 0.5);
+padding: 20px;
+      }
+      #labbook .container p{
+        padding: 10px 0;
+      }
+
+      #slicedrop{
+        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 no-repeat fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        min-height: 800px;
+        background-color: #999;
+        padding: 80px 0;
+        font-size: 30px;
+        line-height: normal;
+        position: relative;
+         padding-left: 500px;
+      }
+
+      #slicedrop .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .5);
+/*right: 200px;*/
+padding: 20px;
+      }
+      #slicedrop .container p{
+        padding: 10px 0;
+      }
+
+      #xtk{
+        background: url(../images/background/chris.png) 50% 0 no-repeat fixed;
+        min-height: 800px;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        padding: 80px 0;
+        font-size: 30px;
+        line-height: normal;
+        position: relative;
+      }
+
+      #xtk .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #fff;
+background-color: rgba(0, 0, 0, .7);
+padding: 20px;
+      }
+      #xtk .container p{
+        padding: 10px 0;
+      }
+
+      #credits{
+        padding: 30px 0;
+        font-size: 20px;
+        line-height: normal;
+        position: relative;
+        background-color: grey;
+      }
+
+      #credits .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #000;
+        background-color: rgba(255, 255, 255, .7);
+        padding: 20px;
+      }
+      #credits .container p{
+        padding: 10px 0;
+      }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 800px){
+      .element{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
+    }
+    </style>
+
+  <div id="wrapper">
+
+    <div style="background: rgb(242, 242, 242);
+">
+<div class="wrapper" style="background: rgb(242, 242, 242);
+ color:#353535; font-size: 25px;
+padding: 20px;text-align: center;
+line-height: normal;">
+  <template repeat="{{software in softwares.feed.entry}}">
+    <template if="{{software.gsx$id.$t === 'intro'}}">
+<!--       <div style="text-align:left">&ldquo;</div> -->
+      {{software.gsx$description.$t}}
+<!--       <div style="text-align:right">&rdquo;</div> -->
+    </template>
+  </template>
+
+</div>
+</div>
+
+
+<section id="labbook" class="element" data-type="background" data-speed="50">
+  <template repeat="{{software in softwares.feed.entry}}">
+    <template if="{{software.gsx$id.$t === 'labbook'}}">
+      <div id="labbookContent" class="container">{{software.gsx$description.$t}}</div>
+    </template>
+  </template>
+  </section>
+
+  <section id="slicedrop" class="element" data-type="background" data-speed="50">
+  <template repeat="{{software in softwares.feed.entry}}">
+    <template if="{{software.gsx$id.$t === 'slicedrop'}}">
+      <div id="slicedropContent" class="container">{{software.gsx$description.$t}}</div>
+    </template>
+  </template>
+  </section>
+
+  <section id="xtk" class="element" data-type="background" data-speed="50">
+  <template repeat="{{software in softwares.feed.entry}}">
+    <template if="{{software.gsx$id.$t === 'xtk'}}">
+      <div id="xtkContent" class="container">{{software.gsx$description.$t}}</div>
+    </template>
+  </template>
+  </section>
+    <section id="credits" class="element" data-type="background" data-speed="50">
+      <div id="creditsContent" class="container"><p>Follow us on Github</p>
+<img style="max-width:70%;margin:auto; display:block;"src="../images/technology.png" alt="Technology"></div>
+    </section>
+
+  </div>
+ 
+<polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdEp2SjNBaVU0ajNuZnZPQ3BaVXB3dXc/od6/public/values?alt=json-in-script&callback=" response="{{softwares}}"></polymer-jsonp>
+
+  </template>
+  <script>
+    Polymer('software-element', {
+      currentSection: '',
+      currentSectionIdex: null,
+      scrollToSection: 0,
+      jumpToSection: 0,
+      jumpSkip: 0,
+      reloaded: 0,
+      ready: function(){
+        // create scroll list (all sections)
+        this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+      },
+      scrollToSectionChanged: function(){
+        if(this.reloaded == 1){
+          this.reloaded = 0;
+          return;
+        }
+
+        var lastIndex = this.currentSectionIndex;
+        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        // Get id of current scroll item
+        var current= this.currentSection;
+        var currentIndex = this.currentSectionIndex;
+
+        for (var i = 0; i < this.sections.length; i++) {
+
+          var diff2 = this.$[this.sections[i]].offsetTop;
+          var offset = diff2 - fromTop; 
+
+          if(offset <= 0){
+            current = this.sections[i];
+            currentIndex = i;
+           }
+        }
+
+        // parralax current section
+           // parallax
+           // get jquery element
+           // from previous section instead!
+
+
+           var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex]);
+           // offset + height: get %
+           var diff = this.$[this.sections[currentIndex]].offsetTop;
+           var off = diff - fromTop; 
+           var hei = this.$[this.sections[currentIndex]].offsetHeight;
+
+
+          var yPos = off/hei;
+          // Put together our final background position
+          var coords = '50% '+ yPos*elt.data('speed') + 'px';
+          // Move the background
+          elt.css({
+           backgroundPosition: coords});
+
+
+           var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
+           if(elt.length){
+           var diff = this.$[this.sections[currentIndex + 1]].offsetTop;
+           var off = diff - fromTop; 
+           var hei = this.$[this.sections[currentIndex + 1]].offsetHeight;
+
+
+          var yPos = off/hei;
+          // Put together our final background position
+          var coords = '50% '+ yPos*elt.data('speed') + 'px';
+          // Move the background
+          elt.css({
+           backgroundPosition: coords});
+        }
+
+        // // and next...!
+        //    var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
+        //    var yPos = -(fromTop / elt.data('speed'));
+        //    // Put together our final background position
+        //    var coords = '50% '+ yPos + 'px';
+        //    // Move the background
+        //    elt.css({
+        //     backgroundPosition: coords,
+        //     '-webkit-background-size': 'cover',
+        //     '-moz-background-size': 'cover',
+        //     '-o-background-size': 'cover',
+        //     'background-size': 'cover'});
+
+        if(this.jumpToSection == 0){
+
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
+
+        }
+      },
+      jumpToSectionChanged: function(){
+        window.console.log(this.jumpToSection);
+         if(this.jumpToSection == 0 || this.jumpToSection > 1){
+           return;
+         };
+          // maybe not necessary
+          var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+
+          window.console.log(index);
+          var divID = this.sections[index];
+                    window.console.log(divID);
+          var _this = this;
+          $(this.parentNode).closest('#main').animate({
+            scrollTop: this.$[divID].offsetTop,
+            scrollLeft: 0
+          },500, function(){
+                      _this.reloaded = 1;
+          _this.jumpToSection = 0;
+
+          // _this.currentSection = divID;
+          }); 
+
+//           var _this = this;
+// setTimeout(function(){_this.jumpToSection = 0;}, 50);
+      }
+    });
+  </script>
+</polymer-element>

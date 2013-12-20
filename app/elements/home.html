@@ -5,12 +5,12 @@
     <style>
       @host { :scope {display: block;} }
       .masthead{
-        height: 308px;
-        background: rgb(0, 0, 0);
+        height: 232px;
+        background: rgb(0, 153, 153);
       }
 
       .masthead .container{
-        background: radial-gradient(ellipse farthest-side at bottom,#FFF 0,rgb(0, 0, 0) 100%);
+        background: radial-gradient(ellipse farthest-side at bottom,#FFF 0,rgb(0, 153, 153) 100%);
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
@@ -21,9 +21,9 @@
       #image{
         position: absolute;
         right: 10px;
-        top: 40px;
-        width: 400px;
-        height: 200px;
+        top: 30px;
+        width: 350px;
+        height: 170px;
         background: url(../images/background/surfview.png) center top no-repeat; 
         -webkit-background-size: contain;
         -moz-background-size: contain;
@@ -55,9 +55,8 @@
         left: 5%;
         top: 44px;
         font-size: 12px;
-        color: rgb(0, 159, 180);
+        color: #000);
         font-size: 31px;
-        top: 100px;
         left: 5%;
       }
 
@@ -66,10 +65,9 @@
         text-transform: uppercase;
         width: 65%;
         left: 5.5%;
-        top: 56px;
+        top: 86px;
         font-size: 32px;
         font-size: 102px;
-        top: 128px;
         left: 13.5%;
         width: 64%;
         line-height: 1.05;
@@ -82,8 +80,8 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        background-position: 50% 23.33333px;
-        min-height: 500px;
+        background-position: 50% 12.0833333px;
+        min-height: 800px;
         position: relative;
         background-color: #ddd;
         padding: 80px 0;
@@ -153,7 +151,7 @@ padding: 20px;
         max-width: 1000px;
         margin: 0 auto;
         color: #fff;
-background-color: rgba(0, 0, 0, .7);
+background-color: rgba(0, 0, 0, .8);
 padding: 20px;
       }
       #software .container p{
@@ -253,15 +251,13 @@ left: 0; "></canvas>
         this.letitsnow();
       },
       scrollToSectionChanged: function(){
-        window.console.log('-HOME- SCROLL');
         if(this.reloaded == 1){
-          window.console.log('skip...');
           this.reloaded = 0;
           return;
         }
 
         var lastIndex = this.currentSectionIndex;
-           var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = $(this.parentNode).closest('#main').scrollTop();
         // Get id of current scroll item
         var current= this.currentSection;
         var currentIndex = this.currentSectionIndex;
@@ -288,7 +284,7 @@ left: 0; "></canvas>
            var diff = this.$[this.sections[currentIndex]].offsetTop;
            var off = diff - fromTop; 
            var hei = this.$[this.sections[currentIndex]].offsetHeight;
-           window.console.log(off/hei);
+
 
           var yPos = off/hei;
           // Put together our final background position
@@ -304,7 +300,6 @@ left: 0; "></canvas>
            var off = diff - fromTop; 
            var hei = this.$[this.sections[currentIndex + 1]].offsetHeight;
 
-           window.console.log(off/hei);
 
           var yPos = off/hei;
           // Put together our final background position
@@ -337,10 +332,8 @@ left: 0; "></canvas>
         }
       },
       jumpToSectionChanged: function(){
-        window.console.log("-HOME- JUMP");
         window.console.log(this.jumpToSection);
          if(this.jumpToSection == 0 || this.jumpToSection > 1){
-           window.console.log('skip...');
            return;
          };
           // maybe not necessary
@@ -357,7 +350,6 @@ left: 0; "></canvas>
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
-            window.console.log('STOP animation');
                       _this.reloaded = 1;
           _this.jumpToSection = 0;
 
@@ -384,7 +376,7 @@ left: 0; "></canvas>
   var W = window.innerWidth;
   var H = window.innerHeight;
   canvas.width = W;
-  canvas.height = 308;
+  canvas.height = 232;
   
   //snowflake particles
   var mp = 100; //max particles

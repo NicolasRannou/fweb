@@ -2,12 +2,14 @@
   "name": "fweb",
   "version": "0.0.0",
   "dependencies": {
+    "bootstrap": "latest",
     "sass-bootstrap": "~2.3.0",
     "modernizr": "~2.6.2",
     "polymer": "latest",
     "polymer-elements": "latest",
     "polymer-ui-elements": "latest",
-    "font-awesome": "latest"
+    "font-awesome": "latest",
+    "scrollyeah": "https://github.com/artpolikarpov/scrollyeah.git"
   },
   "devDependencies": {}
 }

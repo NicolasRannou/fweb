@@ -1,0 +1,373 @@
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<!-- <link rel="import" href="img-slider.html"> -->
+
+<polymer-element name="highlights-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+      .sticky {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width:100%;
+background-color: rgb(168, 162, 13);
+        color: #FFF;
+        padding: 25px;
+font-family: 'Open Sans', sans-serif;
+font-size: 20px;
+      }
+      .fixed{
+        position: fixed;
+        top: 0;
+      }
+
+#wrapper{
+background: rgb(41,41,41);
+background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
+background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
+
+}
+
+#main{
+  overflow-y: auto!important;
+margin-right: 0px!important;
+}
+
+
+      .wrapper {
+background-color:rgba(177, 177, 177, 0.298039);
+      }
+
+    /* Responsive small screen*/
+    @media all and (max-width: 800px){
+      .wrapper {
+margin: 0!important;
+width: 100%!important;
+}
+    }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 801px){
+      .wrapper {
+      margin: 0 auto;
+width: 800px;
+}
+
+    }
+
+     .icon{
+        font-weight: normal;
+        font-family: "FontAwesome";
+        text-align: left;
+     }
+
+     .talk::before{
+        content:"\f130\ Talk";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+     .award::before{
+        content:"\f18c\ Award";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+     .paper::before{
+        content:"\f02d\ Paper";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+     .poster::before{
+        content:"\f075\ Poster";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+    .workshop::before{
+        content:"\f085\ Workshop";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+    .grant::before{
+        content:"\f155\ Grant";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+    .general::before{
+        content:"\f05a\ Info";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
+
+.info{
+  background-color: #FFF;
+padding: 10px;
+}
+
+/*.item {
+float: left;
+width: 128px;
+height: 128px;
+line-height: 128px;
+text-align: center;
+border: 1px solid #888;
+margin: 8px;
+}*/
+
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.caption {
+  width:100%;
+  position:absolute;
+  bottom: 0;
+text-align: center;
+padding: 10px 0;
+background-color: rgba(0, 0, 0, 0.8);
+color: #FFF;
+font-size: 40px;
+line-height: 40px;
+}
+
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.wrapper2{
+padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: center;
+}
+.flex-item{
+    background: tomato;
+  padding: 5px;
+  width: 200px;
+/*  height: 150px;*/
+  margin-top: 10px;
+  
+/*  line-height: 150px;*/
+  color: white;
+  font-weight: bold;
+/*  font-size: 3em;*/
+  text-align: center;
+}
+    </style>
+
+    <!-- Important Owl stylesheet -->
+<link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.carousel.css">
+ 
+<!-- Default Theme -->
+<link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.theme.css">
+
+  <div id="wrapper">
+
+    <div style="background: rgb(242, 242, 242);
+
+">
+<div class="wrapper" style="background: rgb(242, 242, 242);
+
+ color:#353535; font-size: 25px;
+padding: 20px;text-align: center;
+line-height: normal;">
+What we did over the past years
+</div>
+</div>
+
+    <section id="highlights" style="padding: 20px;
+background-color: #353535;">
+
+<div id="owl-demo" class="owl-carousel">
+ 
+  <div class="item"><img src="../gitroot/owlcaroussel/demos/assets/fullimage1.jpg" alt="The Last of us"></div>
+  <div class="item"><!-- <iframe id="ytplayer" type="text/html" width="100%" height="600px"
+  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0&origin=http://example.com"
+  frameborder="0" style="margin: 0 auto;display: block;"></iframe> --><img src="../gitroot/owlcaroussel/demos/assets/fullimage2.jpg" alt="GTA V"></div>
+  <div class="item"><img src="../gitroot/owlcaroussel/demos/assets/fullimage3.jpg" alt="Mirror Edge"></div>
+ 
+</div>
+
+<!-- <img-slider>
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg">
+</img-slider> -->
+
+  </section>
+
+
+    <section id="2013">
+      <div class="wrapper2">
+          <div class="sticky">
+  2013
+  </div>
+  <template repeat="{{highlight in highlights.feed.entry}}">
+    <template if="{{highlight.gsx$year.$t === '2013'}}">
+
+
+   <div class="info" style="border:1px solid lightgrey;">
+    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
+  </div>
+
+
+    </template>
+  </template>
+  </div>
+  </section>
+
+    <section id="2012">
+      <div class="wrapper">
+          <div class="sticky">
+  2012
+  </div>
+  <template repeat="{{highlight in highlights.feed.entry}}">
+    <template if="{{highlight.gsx$year.$t === '2012'}}">
+
+
+   <div class="info">
+    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">{{highlight.gsx$content.$t}}</span></div>
+  </div>
+
+
+    </template>
+  </template>
+  </div>
+  </section>
+
+    <section id="2011">
+      <div class="wrapper">
+          <div class="sticky">
+  2011
+  </div>
+  <template repeat="{{highlight in highlights.feed.entry}}">
+    <template if="{{highlight.gsx$year.$t === '2011'}}">
+
+
+   <div class="info">
+    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">{{highlight.gsx$content.$t}}</span></div>
+  </div>
+
+
+    </template>
+  </template>
+  </div>
+  </section>
+  
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHlaTndWaUVmOHRpRTMzX3VmWW9VVFE/od6/public/values?alt=json-in-script&callback=" response="{{highlights}}"></polymer-jsonp>
+
+  </template>
+
+  <script src="../gitroot/owlcaroussel/owl-carousel/owl.carousel.js"></script>
+
+  <script>
+    Polymer('highlights-element', {
+      currentSection: '',
+      currentSectionIdex: null,
+      scrollToSection: 0,
+      jumpToSection: 0,
+      jumpSkip: 0,
+      reloaded: 0,
+      ready: function(){
+        // create scroll list (all sections)
+        this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+        var _this = this;
+        addEventListener('WebComponentsReady', function() {
+
+$('#owl-demo').owlCarousel({
+ 
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true,
+      autoPlay: 3000,
+      stopOnHover: true
+  });
+
+});
+      },
+      scrollToSectionChanged: function(){
+        window.console.log('-HIGHLIGHTS- SCROLL');
+        if(this.reloaded == 1){
+          window.console.log('skip...');
+          this.reloaded = 0;
+          return;
+        }
+
+        var lastIndex = this.currentSectionIndex;
+        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+
+        // Get id of current scroll item
+        var current= this.currentSection;
+        var currentIndex = this.currentSectionIndex;
+
+        for (var i = 0; i < this.sections.length; i++) {
+
+          var diff2 = this.$[this.sections[i]].offsetTop;
+          var offset = diff2 - fromTop; 
+
+          if(offset <= 0){
+            current = this.sections[i];
+            currentIndex = i;
+           }
+        }
+
+        if(this.jumpToSection == 0){
+          
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
+
+        }
+      },
+
+      jumpToSectionChanged: function(){
+        window.console.log("-HIGHLIGHTS- JUMP");
+         if(this.jumpToSection == 0){
+           window.console.log('skip...');
+           return;
+         };
+          // maybe not necessary
+          var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+
+          window.console.log(index);
+          var divID = this.sections[index];
+                    window.console.log(divID);
+          var _this = this;
+          $(this.parentNode).closest('#main').animate({
+            scrollTop: this.$[divID].offsetTop,
+            scrollLeft: 0
+          },500, function(){
+          _this.jumpToSection = 0;
+          _this.reloaded = 1;
+          }); 
+      }
+    });
+
+  </script>
+</polymer-element>

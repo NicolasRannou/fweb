@@ -1,0 +1,232 @@
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="live-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+      .sticky {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width:100%;
+background-color: rgb(0, 136, 204);
+        color: #FFF;
+        padding: 25px;
+font-family: 'Open Sans', sans-serif;
+font-size: 20px;
+      }
+      .fixed{
+        position: fixed;
+        top: 0;
+      }
+
+#wrapper{
+background: rgb(41,41,41);
+background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
+background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
+
+}
+
+#main{
+  overflow-y: auto!important;
+margin-right: 0px!important;
+}
+
+
+      .wrapper {
+background-color:rgba(177, 177, 177, 0.298039);
+      }
+
+    /* Responsive small screen*/
+    @media all and (max-width: 800px){
+      .wrapper {
+margin: 0!important;
+width: 100%!important;
+}
+    }
+
+    /* Responsive small screen*/
+    @media all and (min-width: 801px){
+      .wrapper {
+      margin: 0 auto;
+width: 800px;
+}
+
+    }
+
+
+     .icon{
+        font-weight: normal;
+        font-family: "FontAwesome";
+        text-align: left;
+     }
+
+     .phone::before{
+        content:"\f095";
+        color: #08C;
+     }
+     .fax::before{
+        content:"\f02f";
+        color: #08C;
+     }
+
+.info{
+  background-color: #FFF;
+padding: 10px;
+}
+
+    </style>
+  <div id="wrapper">
+
+    <div style="background: rgb(242, 242, 242);
+
+">
+<div class="wrapper" style="background: rgb(242, 242, 242);
+
+ color:#353535; font-size: 25px;
+padding: 20px;text-align: center;
+line-height: normal;">
+We stream live
+
+</div>
+</div>
+
+
+    <section id="live">
+      <div class="wrapper">
+  <div class="sticky">
+  Live  Event!
+  </div>
+   <div id="liveContent" class="info">
+
+  </div>
+  </div>
+  </section>
+
+    <section id="upcoming">
+      <div class="wrapper">
+
+  <div class="sticky">
+  Upcoming Events!
+  </div>
+   <div  class="info">
+</div>
+
+  </div>
+  </section>
+
+    <section id="porvious">
+      <div class="wrapper">
+
+  <div class="sticky">
+  Past Events
+  </div>
+
+     <div  class="info">
+</div>
+
+  </div>
+  </section>
+ 
+</div>
+  
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHdNOUMxWVVvQkJlQUZvYTFQX0t5OXc/od6/public/values?alt=json-in-script&callback=" response="{{live}}"></polymer-jsonp>
+
+  </template>
+  <script>
+    Polymer('live-element', {
+      currentSection: '',
+      currentSectionIdex: null,
+      scrollToSection: 0,
+      jumpToSection: 0,
+      jumpSkip: 0,
+      reloaded: 0,
+      ready: function(){
+        // create scroll list (all sections)
+        this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+      },
+      scrollToSectionChanged: function(){
+        window.console.log('-LIVE- SCROLL');
+        if(this.reloaded == 1){
+          window.console.log('skip...');
+          this.reloaded = 0;
+          return;
+        }
+
+        var lastIndex = this.currentSectionIndex;
+        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+
+        // Get id of current scroll item
+        var current= this.currentSection;
+        var currentIndex = this.currentSectionIndex;
+
+        for (var i = 0; i < this.sections.length; i++) {
+
+          var diff2 = this.$[this.sections[i]].offsetTop;
+          var offset = diff2 - fromTop; 
+
+          if(offset <= 0){
+            current = this.sections[i];
+            currentIndex = i;
+           }
+        }
+
+        if(this.jumpToSection == 0){
+          
+           if(lastIndex != currentIndex){
+             this.currentSection = current;
+             this.currentSectionIndex = currentIndex;
+           };
+
+        }
+      },
+      jumpToSectionChanged: function(){
+        window.console.log("-LIVE- JUMP");
+         if(this.jumpToSection == 0){
+           window.console.log('skip...');
+           return;
+         };
+          // maybe not necessary
+          var index = 0;
+          if(this.currentSectionIndex != null){
+            index = this.currentSectionIndex;
+          }
+
+          window.console.log(index);
+          var divID = this.sections[index];
+                    window.console.log(divID);
+          var _this = this;
+          $(this.parentNode).closest('#main').animate({
+            scrollTop: this.$[divID].offsetTop,
+            scrollLeft: 0
+          },500, function(){
+          _this.jumpToSection = 0;
+          _this.reloaded = 1;
+          // _this.currentSection = divID;
+          }); 
+      },
+      liveChanged: function(){
+        if(this.live){
+            var len = this.live.feed.entry.length;
+window.console.log(this.live);
+            while (len--) {
+
+window.console.log(this.live.feed.entry);
+              if(this.live.feed.entry[len].gsx$time.$t == 'current'){
+                this.$.liveContent.innerHTML = this.live.feed.entry[len].gsx$url.$t;
+                break;
+              }
+            }
+
+          
+        }
+      }
+    });
+
+  </script>
+</polymer-element>
