@@ -51,9 +51,11 @@
         font-weight: normal;
         font-family: "FontAwesome";
       }
+      polymer-ui-submenu-item{
+        color:#353535;
+      }
 
-
-      .contact{
+     .contact{
         color: #08C
       }
       polymer-ui-submenu-item.contact::before{
@@ -80,7 +82,7 @@
       }
 
       .highlights{
-        color:rgb(168, 162, 13)
+        color:rgb(221, 238, 34);
       }
             polymer-ui-submenu-item.highlights::before{
         content:"\f18c";
@@ -244,7 +246,7 @@ background-color: rgb(78, 78, 78)
       }
 
                                     #navTop-highlights.pageSelected{
-background-color: rgb(168, 162, 13)
+background-color: rgb(221, 238, 34)
       }
 
                                           #navTop-live.pageSelected{
@@ -527,9 +529,10 @@ display: block; "><iframe src="https://www.google.com/calendar/embed?showTitle=0
 
         // highlights a and awards page
         this.highlights = [{id:'highlights', label:'highlights', index:0},
-                         {id:'ttthirteen', label:'2013', index:1},
-                         {id:'tttwelve', label:'2012', index:2},
-                         {id:'tteleven', label:'2011', index:3}];
+                         {id:'ttfourteen', label:'2014', index:1},
+                         {id:'ttthirteen', label:'2013', index:2},
+                         {id:'tttwelve', label:'2012', index:3},
+                         {id:'tteleven', label:'2011', index:4}];
         this.initPageVars('highlights', this.highlights);
 
         // software page
