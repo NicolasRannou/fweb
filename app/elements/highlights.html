@@ -10,7 +10,7 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         width:100%;
-background-color: rgb(221, 238, 34);
+background-color: rgb(255, 133, 0);
         color: #FFF;
         padding: 25px;
 font-family: 'Open Sans', sans-serif;
@@ -22,14 +22,7 @@ font-size: 20px;
       }
 
 #wrapper{
-background: #191919;
-background: -moz-linear-gradient(top,  #191919 40%, rgba(239,239,239,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #191919), color-stop(100%,rgba(239,239,239,1)));
-background: -webkit-linear-gradient(top,  #191919 40%,rgba(239,239,239,1) 100%);
-background: -o-linear-gradient(top,  #191919 40%,rgba(239,239,239,1) 100%);
-background: -ms-linear-gradient(top,  #191919 40%,rgba(239,239,239,1) 100%);
-background: linear-gradient(to bottom,  #191919 40%,rgba(239,239,239,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191919', endColorstr='#efefef',GradientType=0 );
+background: rgb(242, 242, 242);
 
 }
 
@@ -37,11 +30,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191919', end
   overflow-y: auto!important;
 margin-right: 0px!important;
 }
-
-
-      .wrapper {
-background-color:rgba(177, 177, 177, 0.298039);
-      }
 
     /* Responsive small screen*/
     @media all and (max-width: 800px){
@@ -152,7 +140,8 @@ padding: 0;
   justify-content: center;
 }
 .flex-item{
-    background: tomato;
+  background:rgb(70, 197, 59);
+/*    background: tomato;*/
   padding: 5px;
   width: 200px;
 /*  height: 150px;*/
@@ -206,6 +195,18 @@ color: #FFF;
 font-size: 40px;
 line-height: 40px;
 }
+
+.video-caption {
+  width:915px;
+text-align: center;
+padding: 10px 0;
+background-color: rgba(0, 0, 0, 0.9);
+color: #FFF;
+font-size: 40px;
+line-height: 40px;
+margin:auto;
+}
+
     </style>
 
     <!-- Important Owl stylesheet -->
@@ -216,12 +217,10 @@ line-height: 40px;
 
   <div id="wrapper">
 
-    <div style="background: rgb(242, 242, 242);
+    <div style="background: #FFF;;
 
 ">
-<div class="wrapper" style="background: rgb(242, 242, 242);
-
- color:#353535; font-size: 25px;
+<div style="color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
 What we do
@@ -238,14 +237,17 @@ background-color: #191919;">
       <img src="../images/highlights/h1.png">
       <div class="image-info">" Wow! "<br/>" Amazing "</div>
 <!--       <a href="http://goo.gl/oML6sw" target="_blank" class="image-link">Try it now!</a> -->
-      <div class="image-caption">Real-time MRI reslicing</div>
+      <div class="image-caption">Real-time MRI reslicing in the web browser</div>
     </a>
   </div>
   <div class="item">
+<!--     <div id="highlight2video"></div>
+    <div class="video-caption">The BABY MEG system</div> -->
       <a href="http://goo.gl/oML6sw" target="_blank" class="image">
       <img src="../images/highlights/h2.png">
       <div class="image-caption">Highlight #2</div>
-    </a></div>
+    </a>
+  </div>
   <div class="item">
     <a href="http://goo.gl/oML6sw" target="_blank" class="image">
       <img src="../images/highlights/h3.png">
@@ -349,6 +351,7 @@ background-color: #191919;">
       jumpToSection: 0,
       jumpSkip: 0,
       reloaded: 0,
+      iframeLoaded: 0,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
@@ -361,10 +364,21 @@ $('#owl-demo').owlCarousel({
       paginationSpeed : 400,
       singleItem:true,
       autoPlay: 3000,
-      stopOnHover: true
+      stopOnHover: true,
+      mouseDrag:false,
+      touchDrage:false
   });
 
 });
+      },
+      reloadedChanged: function(){
+      window.console.log(this.reloaded);
+//           if(this.iframeLoaded == 0){
+
+// this.$.highlight2video.innerHTML =  '<iframe width="915" height="536" src="http://www.youtube.com/embed/1r0Dp90neLI" frameborder="0" allowfullscreen  style="display:block;margin: 0 auto;"></iframe>';
+
+//           this.iframeLoaded = 1;
+//         }
       },
       scrollToSectionChanged: function(){
         window.console.log('-HIGHLIGHTS- SCROLL');

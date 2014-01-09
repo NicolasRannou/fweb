@@ -4,136 +4,112 @@
   <template>
     <style>
       @host { :scope {display: block;} }
-      .sticky {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        width:100%;
-background-color: rgb(0, 136, 204);
-        color: #FFF;
-        padding: 25px;
-font-family: 'Open Sans', sans-serif;
-font-size: 20px;
-      }
-      .fixed{
-        position: fixed;
-        top: 0;
-      }
 
-#wrapper{
-background: rgb(41,41,41);
-background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
-background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
-
-}
-
-#main{
-  overflow-y: auto!important;
-margin-right: 0px!important;
-}
-
-
-      .wrapper {
-background-color:rgba(177, 177, 177, 0.298039);
-      }
-
-    /* Responsive small screen*/
-    @media all and (max-width: 800px){
-      .wrapper {
-margin: 0!important;
-width: 100%!important;
-}
-    }
-
-    /* Responsive small screen*/
-    @media all and (min-width: 801px){
       .wrapper {
       margin: 0 auto;
 width: 800px;
-}
 
+
+
+}
+section{
+/*  background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(239, 239, 239) 100%);*/
+}
+#wrapper{
+
+background-color: rgb(242, 242, 242);
+}
+      #live{
+/*        min-height: 800px;*/
+        position: relative;
+/*        background-color: #ddd;*/
+        font-size: 30px;
+        line-height: normal;
+        border-bottom: 2px solid #FFF;
+/*        margin-bottom: -50px;*/
+
+      }
+
+      .title{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+/*                margin: 10 auto;*/
+      color: #FFF;
+background-color: #F00;
+font-size: 40px;
+padding: 20px;
+      }
+
+      .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+margin: 60px auto;
+/*        left: 200px;*/
+background: #FFF;
+padding: 20px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box; 
+      }
+
+      #next{
+
+/*        min-height: 800px;*/
+/*        background-color: #999;*/
+/*        padding: 80px 0;*/
+        font-size: 30px;
+        line-height: normal;
+        position: relative;
+                border-bottom: 2px solid #FFF;
+/*         padding-left: 500px;*/
+      }
+
+      #prev{
+
+        font-size: 30px;
+        line-height: normal;
+        position: relative;
+                border-bottom: 2px solid #FFF;
+      }
+
+
+    /* Responsive small screen*/
+    @media all and (min-width: 800px){
+      .element{
+        -webkit-flex: 0 1 100% !important;
+        flex: 0 1 100% !important;
+      }
     }
-
-
-     .icon{
-        font-weight: normal;
-        font-family: "FontAwesome";
-        text-align: left;
-     }
-
-     .phone::before{
-        content:"\f095";
-        color: #08C;
-     }
-     .fax::before{
-        content:"\f02f";
-        color: #08C;
-     }
-
-.info{
-  background-color: #FFF;
-padding: 10px;
-}
-
     </style>
-  <div id="wrapper">
+<div id="wrapper">
 
-    <div style="background: rgb(242, 242, 242);
-
+    <div style="background: #FFF;
 ">
-<div class="wrapper" style="background: rgb(242, 242, 242);
-
- color:#353535; font-size: 25px;
+<div id="introContent" class="wrapper" style="color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
-We stream live
-
+We do live events
 </div>
 </div>
 
+<section id="live" class="element" data-type="background" data-speed="50">
+  <div id="liveTitle" class="title"></div>
+  <div id="liveContent" class="container"></div>
+</section>
 
-    <section id="live">
-      <div class="wrapper">
-  <div class="sticky">
-  Live  Event!
-  </div>
-   <div id="liveContent" class="info">
+<section id="next" class="element" data-type="background" data-speed="50">
+  <div id="nextTitle" class="title"></div>
+  <div id="nextContent" class="container"></div>
+</section>
 
-  </div>
-  </div>
-  </section>
-
-    <section id="upcoming">
-      <div class="wrapper">
-
-  <div class="sticky">
-  Upcoming Events!
-  </div>
-   <div  class="info">
-</div>
+<section id="prev" class="element" data-type="background" data-speed="50">
+  <div id="prevTitle" class="title"></div>
+  <div id="prevContent" class="container"></div>
+</section>
 
   </div>
-  </section>
-
-    <section id="porvious">
-      <div class="wrapper">
-
-  <div class="sticky">
-  Past Events
-  </div>
-
-     <div  class="info">
-</div>
-
-  </div>
-  </section>
- 
-</div>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHdNOUMxWVVvQkJlQUZvYTFQX0t5OXc/od6/public/values?alt=json-in-script&callback=" response="{{live}}"></polymer-jsonp>
 
@@ -213,13 +189,22 @@ We stream live
       liveChanged: function(){
         if(this.live){
             var len = this.live.feed.entry.length;
-window.console.log(this.live);
             while (len--) {
 
-window.console.log(this.live.feed.entry);
               if(this.live.feed.entry[len].gsx$time.$t == 'current'){
+                // current
+                this.$.liveTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
                 this.$.liveContent.innerHTML = this.live.feed.entry[len].gsx$url.$t;
-                break;
+              }
+              if(this.live.feed.entry[len].gsx$time.$t == 'prev'){
+                // current
+                this.$.prevTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
+                this.$.prevContent.innerHTML += this.live.feed.entry[len].gsx$url.$t;
+              }
+              if(this.live.feed.entry[len].gsx$time.$t == 'next'){
+                // current
+                this.$.nextTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
+                this.$.nextContent.innerHTML += this.live.feed.entry[len].gsx$url.$t;
               }
             }
 

@@ -21,15 +21,7 @@ font-size: 20px;
       }
 
 #wrapper{
-background: rgb(41,41,41);
-background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
-background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
-
+background: rgb(242,242,242);
 }
 
 #main{
@@ -39,7 +31,7 @@ margin-right: 0px!important;
 
 
       .wrapper {
-background-color:rgba(177, 177, 177, 0.298039);
+background:#FFF;
       }
 
     /* Responsive small screen*/
@@ -51,10 +43,10 @@ width: 100%!important;
     }
 
     /* Responsive small screen*/
-    @media all and (min-width: 801px){
+    @media all and (min-width: 1001px){
       .wrapper {
       margin: 0 auto;
-width: 800px;
+width: 1000px;
 }
 
     }
@@ -83,12 +75,10 @@ padding: 10px;
     </style>
   <div id="wrapper">
 
-    <div style="background: rgb(242, 242, 242);
+    <div style="background: #FFF;
 
 ">
-<div class="wrapper" style="background: rgb(242, 242, 242);
-
- color:#353535; font-size: 25px;
+<div style="color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
 We have offices in 3 different locations
@@ -173,30 +163,10 @@ We have offices in 3 different locations
   </div>
   </section>
 
-<!--     <template repeat="{{location in contact.feed.entry}}">
-
-      <section id="{{location.gsx$location.$t}}">
-      <div class="wrapper">
-  <div class="sticky">
-  {{location.gsx$full.$t}}
-  </div>
-  <div>
-  {{location.gsx$name.$t}}</br>
-  {{location.gsx$address.$t}}</br>
-  {{location.gsx$city.$t}}, {{location.gsx$state.$t}} {{location.gsx$zip.$t}}</br>
-  <div id="{{location.gsx$location.$t}}-map">
-  </div>
-  </div>
-</div>
-  </section>
-
-  
-
-  </template> -->
   
 </div>
   
-  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdEFDUWh1dXJOSVFBTlhkU0hXc055TUE/od6/public/values?alt=json-in-script&callback=" response="{{contact}}"></polymer-jsonp>
+  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHJSMXVWNzRrdWJuVFpzN05wX2N2Unc/od6/public/values?alt=json-in-script&callback=" response="{{contact}}"></polymer-jsonp>
 
   </template>
   <script>
