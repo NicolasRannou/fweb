@@ -26,6 +26,42 @@ background: rgb(242, 242, 242);
 
 }
 
+      .title{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+/*                margin: 10 auto;*/
+      color: #FFF;
+background-color: rgb(26, 187, 218);
+font-size: 30px;
+padding: 10px;
+margin:auto;
+border-radius: 5px;
+
+-webkit-transform: translateX(-70px);
+-moz-transform: translateX(-70px);
+-ms-transform: translateX(-70px);
+-o-transform: translateX(-70px);
+transform: translateX(-70px);
+      }
+
+      .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+margin: 10px auto;
+/*        left: 200px;*/
+background-color: #FFF;
+padding: 20px 0;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box; 
+  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
+/*font-size: 20px;*/
+      }
+
+
 #main{
   overflow-y: auto!important;
 margin-right: 0px!important;
@@ -140,7 +176,7 @@ padding: 0;
   justify-content: center;
 }
 .flex-item{
-  background:rgb(70, 197, 59);
+  background:tomato;
 /*    background: tomato;*/
   padding: 5px;
   width: 200px;
@@ -207,6 +243,13 @@ line-height: 40px;
 margin:auto;
 }
 
+      #credits{
+padding: 20px 0px;
+font-size: 14px;
+line-height: normal;
+background-color: rgb(242,242, 242);
+text-align: center;
+      }
     </style>
 
     <!-- Important Owl stylesheet -->
@@ -260,11 +303,10 @@ background-color: #191919;">
   </section>
 
     <section id="2014">
-      <div class="wrapper">
-          <div class="sticky">
-  2014
-  </div>
-  <template repeat="{{highlight in highlights.feed.entry}}">
+  <div class="title">2014</div>
+  <div class="container">
+        <template if="{{highlights != null}}">
+   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2014'}}">
 
 
@@ -273,18 +315,17 @@ background-color: #191919;">
       <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
   </div>
 
-
+</template>
     </template>
   </template>
   </div>
   </section>
 
     <section id="2013">
-      <div class="wrapper">
-          <div class="sticky">
-  2013
-  </div>
-  <template repeat="{{highlight in highlights.feed.entry}}">
+  <div class="title">2013</div>
+  <div class="container">
+        <template if="{{highlights != null}}">
+   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2013'}}">
 
 
@@ -293,47 +334,49 @@ background-color: #191919;">
       <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
   </div>
 
-
+</template>
     </template>
   </template>
   </div>
   </section>
 
     <section id="2012">
-      <div class="wrapper">
-          <div class="sticky">
-  2012
-  </div>
+  <div class="title">2012</div>
+  <div class="container">
+        <template if="{{highlights != null}}">
   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2012'}}">
 
-
-   <div class="info">
-    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">{{highlight.gsx$content.$t}}</span></div>
+   <div class="info" >
+    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
   </div>
 
-
+  </template>
     </template>
   </template>
   </div>
   </section>
 
     <section id="2011">
-      <div class="wrapper">
-          <div class="sticky">
-  2011
-  </div>
+  <div class="title">2011</div>
+  <div class="container">
+    <template if="{{highlights != null}}">
   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2011'}}">
 
-
-   <div class="info">
-    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">{{highlight.gsx$content.$t}}</span></div>
+   <div class="info" >
+    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
   </div>
 
-
+  </template>
     </template>
   </template>
+
+      <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
+    
   </div>
   </section>
   

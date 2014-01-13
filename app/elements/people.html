@@ -57,9 +57,11 @@ polymer-ui-collapsible {
       }
 
       .wrapper2 {
-      border:1px solid #353535;
+      border:1px solid rgb(221, 221, 221);
       padding: 0;
       width:100%!important;
+      -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
       }
 
     /* Responsive small screen*/
@@ -79,7 +81,7 @@ polymer-ui-collapsible {
   margin: 0 auto;
   overflow:hidden;
   width:940px;
-  height:300px;
+  height:250px;
 }
 #slider{
   position:absolute;
@@ -119,13 +121,17 @@ h3{
 }
 #contactInfo{
 position: absolute;
-  top: 0px;
-  right: 0px;
+top: -1px;
+right: -1px;
 }
 
 .selected{
   background-color: rgb(0, 136, 204);
   color:white;
+}
+
+.contact{
+  color:rgb(0, 136, 204)!important;
 }
     </style>
     <div class="wrapper2">
@@ -143,8 +149,8 @@ position: absolute;
 
       <div id="contactInfo">
 
-      <polymer-ui-collapsible id="biocontent2">
-        <div class="polymer-ui-collapsible-header contact icon"><span style="padding-left:5px;">Contact Information</span></div>
+      <polymer-ui-collapsible id="biocontent2" style="border-radius: 5px;">
+        <div class="polymer-ui-collapsible-header contact icon" style="border-bottom-color: rgb(221, 221, 221);"><span style="padding-left:5px;">Contact Information</span></div>
                <div class="icon phone"><span style="padding-left:5px;">{{people.gsx$phone.$t}}</span></div>
         <div class="icon fax"><span style="padding-left:5px;">{{people.gsx$fax.$t}}</span></div>
         <div class="icon email"><span style="padding-left:5px;">{{people.gsx$email.$t}}</span></div>
@@ -158,9 +164,9 @@ position: absolute;
 
     </div>
 
-    <div id="bio">
-      <polymer-ui-collapsible id="biocontent">
-        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">More about me</span></div>
+    <div id="bio" style="margin: -1px;">
+      <polymer-ui-collapsible id="biocontent" style="border-radius: 5px;">
+        <div class="polymer-ui-collapsible-header biography icon" style="border-bottom-color: rgb(221, 221, 221);"><span style="padding-left:5px;">More about me</span></div>
 
 <div class="more" style="clear: both">
         <div class="pageNav selected" id="page1">Biography</div>

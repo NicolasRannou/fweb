@@ -23,8 +23,8 @@ background-color: rgb(242, 242, 242);
         position: relative;
 /*        background-color: #ddd;*/
         font-size: 30px;
-        line-height: normal;
-        border-bottom: 2px solid #FFF;
+/*        line-height: normal;*/
+        border-bottom: 1px solid #FFF;
 /*        margin-bottom: -50px;*/
 
       }
@@ -33,22 +33,32 @@ background-color: rgb(242, 242, 242);
         width: 100%;
         max-width: 1000px;
       color: #FFF;
-background-color: #353535;
-font-size: 40px;
-padding: 20px;
+background-color: rgb(26, 26, 218);
+font-size: 30px;
+padding: 10px;
+-webkit-transform: translateX(-70px);
+-moz-transform: translateX(-70px);
+-ms-transform: translateX(-70px);
+-o-transform: translateX(-70px);
+transform: translateX(-70px);
+margin:auto;
+border-radius: 5px;
       }
 
       .container{
 /*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 60px auto;
+margin: 10px auto;
 /*        left: 200px;*/
 background-color:#FFF;
 padding: 20px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box; 
+    -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
+font-size: 20px;
       }
 
       .container p{
@@ -63,9 +73,9 @@ margin: 50px auto 0;
       #slicedrop{
 
         font-size: 30px;
-        line-height: normal;
+/*        line-height: normal;*/
         position: relative;
-                border-bottom: 2px solid #FFF;
+                border-bottom: 1px solid #FFF;
 /*         padding-left: 500px;*/
       }
 
@@ -105,11 +115,14 @@ margin: 50px auto 0;
       #xtk{
 
         font-size: 30px;
-        line-height: normal;
+/*        line-height: normal;*/
         position: relative;
-                border-bottom: 2px solid #FFF;
+                border-bottom: 1px solid #FFF;
       }
 
+      .container ul{
+        list-style-position:inside;
+      }
       .container li{
       line-height: normal;
       }
@@ -122,9 +135,9 @@ margin: 50px auto 0;
             #more{
 
         font-size: 30px;
-        line-height: normal;
+/*        line-height: normal;*/
         position: relative;
-                border-bottom: 2px solid #FFF;
+                border-bottom: 1px solid #FFF;
       }
 
 
@@ -171,6 +184,19 @@ margin: 50px auto 0;
         flex: 0 1 100% !important;
       }
     }
+
+    .technology{
+      color: grey;
+font-style: italic;
+    }
+
+          #credits{
+padding: 20px 0px;
+font-size: 14px;
+line-height: normal;
+background-color: rgb(242,242, 242);
+text-align: center;
+      }
     </style>
 
         <!-- Important Owl stylesheet -->
@@ -186,11 +212,13 @@ margin: 50px auto 0;
 <div style=" color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
+      <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'intro'}}">
 <!--       <div style="text-align:left">&ldquo;</div> -->
       {{software.gsx$description.$t}}
 <!--       <div style="text-align:right">&rdquo;</div> -->
+  </template>
     </template>
   </template>
 
@@ -199,17 +227,15 @@ line-height: normal;">
 
 
 <section id="labbook" class="element" data-type="background" data-speed="50">
+        <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'labbook'}}">
       <div id="labbookTitle" class="title">{{software.gsx$label.$t}}</div>
-      <div id="labbookContent" class="container">{{software.gsx$description.$t}}
-        <div class="buttons">
-      <div id="labbookLink" class="link"><a href="{{software.gsx$link.$t}}" target="_blank">Try it!</a></div>
-      <div id="labbookSource" class="source"><a href="{{software.gsx$source.$t}}" target="_blank">Get the code!</a></div>
-    </div>
-      </div>
+        </template>
     </template>
   </template>
+
+        <div id="labbookContent" class="container"></div>
 
   <div id="owl-demo0" class="slider" style="z-index:10;">
           
@@ -227,68 +253,66 @@ line-height: normal;">
   </section>
 
   <section id="slicedrop" class="element" data-type="background" data-speed="50">
+      <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'slicedrop'}}">
       <div id="slicedropTitle" class="title">{{software.gsx$label.$t}}</div>
-      <div id="slicedropContent" class="container">{{software.gsx$description.$t}}
-              <div class="buttons">
-      <div id="slicedropLink" class="link"><a href="{{software.gsx$link.$t}}" target="_blank">Try it!</a></div>
-      <div id="slicedropSource" class="source"><a href="{{software.gsx$source.$t}}" target="_blank">Get the code!</a></div>
-    </div>
-  </div>
+        </template>
     </template>
   </template>
 
+        <div id="slicedropContent" class="container">
+  </div>
+
   <div id="owl-demo1" class="slider" style="z-index:10;">
           
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/slicedrop1.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/slicedrop2.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/slicedrop3.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/slicedrop4.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/slicedrop5.png" alt="To complete..."></div>
  
 </div>
 
   </section>
 
   <section id="xtk" class="element" data-type="background" data-speed="50">
+          <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'xtk'}}">
       <div id="xtkTitle" class="title">{{software.gsx$label.$t}}</div>
+        </template>
     </template>
   </template>
     <div id="xtkContent" class="container"></div>
 
     <div id="owl-demo2" class="slider" style="z-index:10;">
           
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/s2.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/xtk1.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/xtk2.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/xtk3.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/xtk4.png" alt="To complete..."></div>
+  <div class="item"><img src="../images/software/xtk5.png" alt="To complete..."></div>
  
 </div>
 
   </section>
 
   <section id="more" class="element" data-type="background" data-speed="50">
+          <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'more'}}">
       <div id="moreTitle" class="title">{{software.gsx$label.$t}}</div>
-      <div id="moreContent" class="container">{{software.gsx$description.$t}}
-        <div class="buttons">
-      <div id="moreLink" class="link"><a href="{{software.gsx$link.$t}}" target="_blank">Try it!</a></div>
-      <div id="moreSource" class="source"><a href="{{software.gsx$source.$t}}" target="_blank">Get the code!</a></div>
-    </div>
-      </div>
+  </template>
     </template>
   </template>
+
+<!--     <section id="credits" class="element" data-type="background" data-speed="50">
+      <div id="creditsContent" class="container"><p>Follow us on Github</p>
+<img style="max-width:70%;margin:auto; display:block;"src="../images/technology.png" alt="Technology"></div>
+    </section> -->
+
+      <div id="moreContent" class="container"></div>
 
   <div id="owl-demo3" class="slider" style="z-index:10;">
           
@@ -305,10 +329,8 @@ line-height: normal;">
 
   </section>
 
-    <section id="credits" class="element" data-type="background" data-speed="50">
-      <div id="creditsContent" class="container"><p>Follow us on Github</p>
-<img style="max-width:70%;margin:auto; display:block;"src="../images/technology.png" alt="Technology"></div>
-    </section>
+    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
 
   </div>
  
@@ -479,9 +501,21 @@ line-height: normal;">
             window.console.log("software changed: " + len);
             while (len--) {
               if(this.softwares.feed.entry[len].gsx$id.$t == 'xtk'){
-                window.console.log("software changed: " + this.softwares.feed.entry[len].gsx$description.$t);
-                this.$.xtkContent.innerHTML = this.softwares.feed.entry[len].gsx$description.$t + '<div class="buttons"><div id="slicedropLink" class="link"><a href=" '+this.softwares.feed.entry[len].gsx$link.$t+'" target="_blank">Try it!</a></div><div id="slicedropSource" class="source"><a href="'+ this.softwares.feed.entry[len].gsx$source.$t+'" target="_blank">Get the code!</a></div></div>';
+                this.$.xtkContent.innerHTML = this.softwares.feed.entry[len].gsx$description.$t + '<div class="technology" >Technology: ' + this.softwares.feed.entry[len].gsx$technology.$t +'</div><div class="buttons"><div id="slicedropLink" class="link"><a href=" '+this.softwares.feed.entry[len].gsx$link.$t+'" target="_blank">Try it!</a></div><div id="slicedropSource" class="source"><a href="'+ this.softwares.feed.entry[len].gsx$source.$t+'" target="_blank">Get the code!</a></div></div>';
       }
+
+                    if(this.softwares.feed.entry[len].gsx$id.$t == 'labbook'){
+                this.$.labbookContent.innerHTML = this.softwares.feed.entry[len].gsx$description.$t + '<div class="technology" >Technology: ' + this.softwares.feed.entry[len].gsx$technology.$t +'</div><div class="buttons"><div id="labbookLink" class="link"><a href=" '+this.softwares.feed.entry[len].gsx$link.$t+'" target="_blank">Try it!</a></div><div id="labbookSource" class="source"><a href="'+ this.softwares.feed.entry[len].gsx$source.$t+'" target="_blank">Get the code!</a></div></div>';
+      }
+
+                          if(this.softwares.feed.entry[len].gsx$id.$t == 'slicedrop'){
+                this.$.slicedropContent.innerHTML = this.softwares.feed.entry[len].gsx$description.$t + '<div class="technology" >Technology: ' + this.softwares.feed.entry[len].gsx$technology.$t +'</div><div class="buttons"><div id="slicedropLink" class="link"><a href=" '+this.softwares.feed.entry[len].gsx$link.$t+'" target="_blank">Try it!</a></div><div id="slicedropSource" class="source"><a href="'+ this.softwares.feed.entry[len].gsx$source.$t+'" target="_blank">Get the code!</a></div></div>';
+      }
+
+                          if(this.softwares.feed.entry[len].gsx$id.$t == 'more'){
+                this.$.moreContent.innerHTML = this.softwares.feed.entry[len].gsx$description.$t + '<div class="technology" >Technology: ' + this.softwares.feed.entry[len].gsx$technology.$t +'</div><div class="buttons"><div id="moreLink" class="link"><a href=" '+this.softwares.feed.entry[len].gsx$link.$t+'" target="_blank">Try it!</a></div><div id="moreSource" class="source"><a href="'+ this.softwares.feed.entry[len].gsx$source.$t+'" target="_blank">Get the code!</a></div></div>';
+      }
+
     }
   }
 }

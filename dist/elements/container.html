@@ -38,9 +38,9 @@
         margin-right: -20px;
       }
       polymer-ui-submenu-item{
-        margin-top: -1px;
+/*        margin-top: -1px;
         border-top: 1px black solid;
-        border-bottom: 1px black solid;
+        border-bottom: 1px black solid;*/
       }
 
       polymer-ui-submenu-item #menu{
@@ -55,57 +55,92 @@
         color:#353535;
       }
 
-     .contact{
-        color: #08C
-      }
-      polymer-ui-submenu-item.contact::before{
-        content:"\f02D";
-      }
+
       .home{
-        color: #BA55D3;
+     /*   color: rgb(118, 218, 26)*/
+        color: #353535
       }
       polymer-ui-submenu-item.home::before{
         content:"\f015";
       }
-      .team{
-        color: #08B8B8;
-      }
-      polymer-ui-submenu-item.team::before
-{        content:"\f0c0";
-      }
+       #navTop-home.pageSelected{
+background-color: #353535
+}
       .research{
-        color: #0DA861
+        color: rgb(26, 218, 95)
       }
 
       polymer-ui-submenu-item.research::before{
         content:"\f0c3";
       }
 
-      .highlights{
-        color:rgb(221, 238, 34);
+     #navTop-research.pageSelected{
+background-color: rgb(26, 218, 95)
       }
-            polymer-ui-submenu-item.highlights::before{
+
+      .highlights{
+        color:rgb(26, 187, 218)
+      }
+          polymer-ui-submenu-item.highlights::before{
         content:"\f18c";
       }
-            .software{
-        color:rgb(78, 78, 78)
+
+     #navTop-highlights.pageSelected{
+background-color: rgb(26, 187, 218)
+      }
+
+     .software{
+        color:rgb(26, 26, 218)
       }
             polymer-ui-submenu-item.software::before{
         content:"\f085";
       }
-            .live{
-        color:rgb(240, 0, 0)
+      #navTop-software.pageSelected{
+background-color:rgb(26, 26, 218)
+      }
+
+      .team{
+        color:rgb(87, 26, 218)
+      }
+      polymer-ui-submenu-item.team::before
+{        content:"\f0c0";
+      }
+        #navTop-team.pageSelected{
+background-color:rgb(87, 26, 218)
+      }
+
+     .contact{
+        color: rgb(164, 26, 218)
+      }
+      polymer-ui-submenu-item.contact::before{
+        content:"\f02D";
+      }
+
+      #navTop-contact.pageSelected{
+background-color:rgb(164, 26, 218)
+      }
+
+      .live{
+        color:rgb(218, 26, 26)
       }
             polymer-ui-submenu-item.live::before{
         content:"\f03d";
       }
+      
+      #navTop-live.pageSelected{
+background-color: rgb(218, 26, 26)
+      }
 
       .events{
-        color: #0DA861
+        color: rgb(218, 103, 26)
       }
 
       polymer-ui-submenu-item.events::before{
         content:"\f073";
+      }
+      
+      #navTop-events.pageSelected{
+background-color: rgb(218, 103, 26)
       }
          
       polymer-ui-submenu-item  polymer-ui-menu-item{
@@ -128,6 +163,7 @@
 
       polymer-ui-menu-item {
         padding:0;
+        opacity:1;
       }
 
       .enveloppe{
@@ -210,52 +246,23 @@ top: 70px;
 z-index: 15;
 right: 10px;
         border-right:1px solid;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
 
       }
 
       .section-selected{
-        border-left: 4px solid white;
+        border-left: 4px solid #353535;
         padding-right: 9px;
                 padding-top: 9px;        padding-bottom: 9px;
 padding-left: 5px!important;
-color:white;
+color:#353535;
       }
 
             .pageSelected{
 color:#FFF!important;
       }
 
-             #navTop-research.pageSelected{
-background-color: #0DA861
-      }
 
-                  #navTop-team.pageSelected{
-background-color: #08B8B8
-      }
-
-                  #navTop-contact.pageSelected{
-background-color: #08C
-      }
-                        #navTop-home.pageSelected{
-background-color: #BA55D3
-      }
-
-                              #navTop-software.pageSelected{
-background-color: rgb(78, 78, 78)
-      }
-
-                                    #navTop-highlights.pageSelected{
-background-color: rgb(221, 238, 34)
-      }
-
-                                          #navTop-live.pageSelected{
-background-color: rgb(240, 0, 0)
-      }
-
-                                                #navTop-events.pageSelected{
-background-color: #0DA861
-      }
       .section-right{
                padding:9px; 
       }
@@ -278,6 +285,7 @@ background-color: #0DA861
   border: 1px solid rgb(63, 63, 63);
 margin-right: -1px;
 padding: 10px;
+border-radius: 5px;
 }
     </style>
   <polymer-ui-scaffold3 theme="polymer-ui-light-theme" style="height:100%;position: relative;">
@@ -517,12 +525,12 @@ display: block; "><iframe src="https://www.google.com/calendar/embed?showTitle=0
         this.home = [{id:'welcome', label:'welcome',index:0},
                      {id:'about', label:'about us',index:1},
                      {id:'research', label:'research',index:2},
-                     {id:'software', label:'cool software',index:3}];
+                     {id:'software', label:'software',index:3}];
         this.initPageVars('home', this.home);
 
         // research page
         this.research = [{id:'challenges', label:'challenges', index:0},
-                         {id:'mri', label:'m r i', index:1},
+                         {id:'mri', label:'mri', index:1},
                          {id:'nirs', label:'nirs', index:2},
                          {id:'meg', label:'meg', index:3}];
         this.initPageVars('research', this.research);
@@ -538,7 +546,8 @@ display: block; "><iframe src="https://www.google.com/calendar/embed?showTitle=0
         // software page
         this.software = [{id:'labbook', label:'The Web LabBook', index:0},
                          {id:'slicedrop', label:'SliceDrop', index:1},
-                         {id:'xtk', label:'The X-Toolkit', index:1}];
+                         {id:'xtk', label:'The X-Toolkit', index:2},
+                         {id:'more', label:'More', index:3}];
         this.initPageVars('software', this.software);
 
         // team page
@@ -555,9 +564,9 @@ display: block; "><iframe src="https://www.google.com/calendar/embed?showTitle=0
         this.initPageVars('contact', this.contact);
 
         // live page
-        this.live = [{id:'live', label:'Live stream', index:0},
-        {id:'upcoming', label:'Upcoming streams', index:0},
-        {id:'previous', label:'Previous sessions', index:0}];
+        this.live = [{id:'live', label:'Live', index:0},
+        {id:'upcoming', label:'Upcoming', index:0},
+        {id:'previous', label:'Previous', index:0}];
         this.initPageVars('live', this.live);
 
         // live page

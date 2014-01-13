@@ -26,6 +26,9 @@ background: rgb(242, 242, 242);
 
 }
 
+section{
+                  border-bottom: 1px solid #FFF;
+}
     /* Responsive small screen*/
     @media all and (max-width: 800px){
       .wrapper {
@@ -44,6 +47,41 @@ width: 100%!important;
       margin: 0 auto;
 width: 1000px;
 }
+
+      .title{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+/*                margin: 10 auto;*/
+      color: #FFF;
+background-color:rgb(87, 26, 218);
+font-size: 30px;
+padding: 10px;
+-webkit-transform: translateX(-70px);
+-moz-transform: translateX(-70px);
+-ms-transform: translateX(-70px);
+-o-transform: translateX(-70px);
+transform: translateX(-70px);
+margin:auto;
+border-radius: 5px;
+      }
+
+      .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+margin: 10px auto;
+/*        left: 200px;*/
+background-color: #FFF;
+padding: 20px 0;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box; 
+  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
+/*font-size: 20px;*/
+      }
+
 .peeps{
   padding: 0 25px;
   background-color: #FFF;
@@ -58,6 +96,13 @@ width: 1000px;
       }
     }
 
+      #credits{
+padding: 20px 0px;
+font-size: 14px;
+line-height: normal;
+background-color: rgb(242,242, 242);
+text-align: center;
+      }
 
     </style>
   <div id="wrapper">
@@ -69,27 +114,28 @@ width: 1000px;
 <div class="wrapper" style="color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
+ <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'intro'}}">
 <!--       <div style="text-align:left">&ldquo;</div> -->
       {{people.gsx$bio.$t}}
 <!--       <div style="text-align:right">&rdquo;</div> -->
+  </template>
     </template>
   </template>
 
 </div>
 </div>
 
-
   <section id="faculty">
-        <div class="wrapper">
-  <div class="sticky">
-  faculty members
-  </div>
+  <div class="title">faculty members</div>
+  <div class="container">
   <div class="peeps">
+    <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'faculty'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
   </div>
@@ -98,14 +144,14 @@ line-height: normal;">
   
 
   <section  id="staff">
-    <div class="wrapper">
-  <div class="sticky">
-  staff
-  </div>
+  <div class="title">staff</div>
+  <div class="container">
   <div class="peeps">
+   <template if="{{team != null}}"> 
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'staff'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
   </div>
@@ -113,14 +159,14 @@ line-height: normal;">
   </section>
   
   <section id="collaborators">
-    <div class="wrapper" >
-  <div class="sticky">
-  collaborators
-  </div>
-    <div class="peeps">
+  <div class="title">collaborators</div>
+  <div class="container">
+  <div class="peeps">
+    <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'collaborators'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
     </div>
@@ -128,19 +174,23 @@ line-height: normal;">
   </section>
   
   <section id="alumni">
-        <div class="wrapper" >
-  <div class="sticky">
-  alumni
-  </div>
-      <div class="peeps">
+  <div class="title">alumni</div>
+  <div class="container">
+  <div class="peeps">
+    <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'alumni'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
     </div>
 </div>
   </section>
+
+      <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
+
 </div>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHN6R2lCX1N4VlZ3dnB2ZHhLWWFZQ3c/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>

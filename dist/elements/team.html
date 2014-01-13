@@ -10,7 +10,7 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         width:100%;
-background-color: rgb(0, 153, 153);
+background-color: rgb(8, 184, 184);
         color: #FFF;
         padding: 25px;
 font-family: 'Open Sans', sans-serif;
@@ -22,40 +22,13 @@ font-size: 20px;
       }
 
 #wrapper{
-background: rgb(41,41,41);
-background: -moz-linear-gradient(top,  rgba(41,41,41,1) 0%, rgba(239,239,239,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(239,239,239,1)));
-background: -webkit-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -o-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: -ms-linear-gradient(top,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-background: linear-gradient(to bottom,  rgba(41,41,41,1) 0%,rgba(239,239,239,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#efefef',GradientType=0 );
+background: rgb(242, 242, 242);
 
 }
 
 section{
-/*  background-color:none!important;*/
+                  border-bottom: 1px solid #FFF;
 }
-
-
-#faculty{
-
-/*        -webkit-background-size: contain;
-        -moz-background-size: contain;
-        -o-background-size: contain;
-        background-size: contain;*/
-}
-      .wrapper {
-/*       display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;  
-  
-  -webkit-flex-flow: row wrap;*/
-background-color:rgba(177, 177, 177, 0.298039)
-      }
-
     /* Responsive small screen*/
     @media all and (max-width: 800px){
       .wrapper {
@@ -69,57 +42,100 @@ width: 100%!important;
     }
 
     /* Responsive small screen*/
-    @media all and (min-width: 801px){
+    @media all and (min-width: 1001px){
       .wrapper {
       margin: 0 auto;
-width: 800px;
+width: 1000px;
 }
+
+      .title{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+/*                margin: 10 auto;*/
+      color: #FFF;
+background-color:rgb(87, 26, 218);
+font-size: 30px;
+padding: 10px;
+-webkit-transform: translateX(-70px);
+-moz-transform: translateX(-70px);
+-ms-transform: translateX(-70px);
+-o-transform: translateX(-70px);
+transform: translateX(-70px);
+margin:auto;
+border-radius: 5px;
+      }
+
+      .container{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+margin: 10px auto;
+/*        left: 200px;*/
+background-color: #FFF;
+padding: 20px 0;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box; 
+  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
+/*font-size: 20px;*/
+      }
+
 .peeps{
   padding: 0 25px;
+  background-color: #FFF;
 }
 /*      // container width
       // people width*/
       people-element{
-        width:750px!important;
+        width:950px!important;
         display: inline-block;
 /*        -webkit-flex: 0 1 25% !important;
         flex: 0 1 25% !important;*/
       }
     }
 
+      #credits{
+padding: 20px 0px;
+font-size: 20px;
+line-height: normal;
+background-color: rgb(242,242, 242);
+text-align: center;
+      }
 
     </style>
   <div id="wrapper">
 
   
 
-<div style="background: rgb(242, 242, 242);
+<div style="background: #FFF;
 ">
-<div class="wrapper" style="background: rgb(242, 242, 242);
- color:#353535; font-size: 25px;
+<div class="wrapper" style="color:#353535; font-size: 25px;
 padding: 20px;text-align: center;
 line-height: normal;">
+ <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'intro'}}">
 <!--       <div style="text-align:left">&ldquo;</div> -->
       {{people.gsx$bio.$t}}
 <!--       <div style="text-align:right">&rdquo;</div> -->
+  </template>
     </template>
   </template>
 
 </div>
 </div>
 
-
   <section id="faculty">
-        <div class="wrapper">
-  <div class="sticky">
-  faculty members
-  </div>
+  <div class="title">faculty members</div>
+  <div class="container">
   <div class="peeps">
+    <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'faculty'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
   </div>
@@ -128,41 +144,53 @@ line-height: normal;">
   
 
   <section  id="staff">
-    <div class="wrapper">
-  <div class="sticky">
-  staff
-  </div>
+  <div class="title">staff</div>
+  <div class="container">
   <div class="peeps">
+   <template if="{{team != null}}"> 
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'staff'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
   </div>
 </div>
   </section>
   
-  <section class="wrapper" id="collaborators">
-  <div class="sticky">
-  collaborators
-  </div>
+  <section id="collaborators">
+  <div class="title">collaborators</div>
+  <div class="container">
+  <div class="peeps">
+    <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'collaborators'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
+    </div>
+</div>
   </section>
   
-  <section class="wrapper" id="alumni">
-  <div class="sticky">
-  alumni
-  </div>
+  <section id="alumni">
+  <div class="title">alumni</div>
+  <div class="container">
+  <div class="peeps">
+    <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
     <template if="{{people.gsx$group.$t === 'alumni'}}">
       <people-element people="{{people}}"></people-element>
+        </template>
     </template>
   </template>
+    </div>
+</div>
   </section>
+
+      <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
+    
 </div>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHN6R2lCX1N4VlZ3dnB2ZHhLWWFZQ3c/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>

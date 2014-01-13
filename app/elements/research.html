@@ -25,37 +25,47 @@ background: rgb(242, 242, 242);
         position: relative;
 /*        background-color: #ddd;*/
         font-size: 30px;
-        line-height: normal;
-        border-bottom: 2px solid #FFF;
+/*        line-height: normal;*/
+border-bottom: 1px solid #FFF;
 /*        margin-bottom: -50px;*/
 
       }
 
-      #challenges .title{
+      .title{
 /*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
 /*                margin: 10 auto;*/
       color: #FFF;
-background-color: rgb(13, 168, 97);
-font-size: 40px;
-padding: 20px;
+background-color: rgb(18, 189, 79);
+font-size: 30px;
+padding: 10px;
+margin:auto;
+border-radius: 5px;
+
+-webkit-transform: translateX(-70px);
+-moz-transform: translateX(-70px);
+-ms-transform: translateX(-70px);
+-o-transform: translateX(-70px);
+transform: translateX(-70px);
       }
 
       .container{
 /*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 60px auto;
+margin: 10px auto;
 /*        left: 200px;*/
 background-color: #FFF;
 padding: 20px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box; 
+  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
+font-size: 20px;
       }
-
-      #challenges .container p{
+.container p{
         padding: 10px 0;
       }
 
@@ -65,84 +75,30 @@ padding: 20px;
 /*        background-color: #999;*/
 /*        padding: 80px 0;*/
         font-size: 30px;
-        line-height: normal;
+/*        line-height: normal;*/
         position: relative;
-                border-bottom: 2px solid #FFF;
+border-bottom: 1px solid #FFF;
 /*         padding-left: 500px;*/
       }
 
-            #mri .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(13, 168, 97);
-font-size: 40px;
-padding: 20px;
-      }
-
-      #mri .container p{
-        padding: 10px 0;
-      }
-
-      #mri .container li{
+      .container li{
       line-height: normal;
       }
 
       #nirs{
 
         font-size: 30px;
-        line-height: normal;
+/*        line-height: normal;*/
         position: relative;
-                border-bottom: 2px solid #FFF;
-      }
-
-
-            #nirs .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(13, 168, 97);
-font-size: 40px;
-padding: 20px;
-      }
-
-      #nirs .container p{
-        padding: 10px 0;
-      }
-
-      #nirs .container li{
-      line-height: normal;
+border-bottom: 1px solid #FFF;
       }
 
             #meg{
 
         font-size: 30px;
-        line-height: normal;
+/*        line-height: normal;*/
         position: relative;
-                border-bottom: 2px solid #FFF;
-      }
-
-
-            #meg .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(13, 168, 97);
-font-size: 40px;
-padding: 20px;
-      }
-      #meg .container p{
-        padding: 10px 0;
-      }
-
-      #meg .container li{
-      line-height: normal;
+border-bottom: 1px solid #FFF;
       }
 
 
@@ -153,6 +109,15 @@ padding: 20px;
         flex: 0 1 100% !important;
       }
     }
+
+          #credits{
+padding: 20px 0px;
+font-size: 14px;
+line-height: normal;
+background-color: rgb(242,242, 242);
+text-align: center;
+      }
+
     </style>
 
 <div id="wrapper">
@@ -184,6 +149,9 @@ line-height: normal;">
   <div id="megTitle" class="title"></div>
   <div id="megContent" class="container"></div>
 </section>
+
+    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
 
   </div>
   

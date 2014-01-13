@@ -57,43 +57,12 @@ polymer-ui-collapsible {
       }
 
       .wrapper2 {
-      border:1px solid #353535;
-/*       display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;  
-  
-  -webkit-flex-flow: row wrap;*/
- 
-      background-color:#FFF !important; 
+      border:1px solid rgb(221, 221, 221);
       padding: 0;
       width:100%!important;
+      -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+border-radius: 5px;
       }
-
-/*     #picture{
-      order: 0;
-      }
-      #info{
-      order: 1;
-      }
-      #bio {
-        order: 2;
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }*/
-
-    /* Responsive small screen*/
-/*    @media all and (min-width: 500px){
-      #picture{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }
-      .aside{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }
-    }*/
 
     /* Responsive small screen*/
     @media all and (min-width: 800px){
@@ -111,8 +80,8 @@ polymer-ui-collapsible {
   position:relative;
   margin: 0 auto;
   overflow:hidden;
-  width:740px;
-  height:300px;
+  width:940px;
+  height:250px;
 }
 #slider{
   position:absolute;
@@ -122,7 +91,7 @@ polymer-ui-collapsible {
 #slider > div {
   position:relative;
   float:left;
-  width:740px;
+  width:940px;
   height:300px;
   overflow-y:auto;
 }
@@ -152,18 +121,22 @@ h3{
 }
 #contactInfo{
 position: absolute;
-  top: 0px;
-  right: 0px;
+top: -1px;
+right: -1px;
 }
 
 .selected{
   background-color: rgb(0, 136, 204);
   color:white;
 }
+
+.contact{
+  color:rgb(0, 136, 204)!important;
+}
     </style>
     <div class="wrapper2">
-      <div class="summary" style="height:160px; position:relative;">
-      <div id="picture" style="width:130px;height:160px; float:left">
+      <div class="summary" style="height:180px; position:relative;">
+      <div id="picture" style="width:130px;height:160px; float:left; margin: 10px 30px 10px 10px;">
         <img src="../images/team/{{people.gsx$picture.$t}}" style="width:100%; height:100%;">
       </div>
       <div id="info" class="aside">
@@ -176,8 +149,8 @@ position: absolute;
 
       <div id="contactInfo">
 
-      <polymer-ui-collapsible id="biocontent2">
-        <div class="polymer-ui-collapsible-header contact icon"><span style="padding-left:5px;">Contact Information</span></div>
+      <polymer-ui-collapsible id="biocontent2" style="border-radius: 5px;">
+        <div class="polymer-ui-collapsible-header contact icon" style="border-bottom-color: rgb(221, 221, 221);"><span style="padding-left:5px;">Contact Information</span></div>
                <div class="icon phone"><span style="padding-left:5px;">{{people.gsx$phone.$t}}</span></div>
         <div class="icon fax"><span style="padding-left:5px;">{{people.gsx$fax.$t}}</span></div>
         <div class="icon email"><span style="padding-left:5px;">{{people.gsx$email.$t}}</span></div>
@@ -191,18 +164,9 @@ position: absolute;
 
     </div>
 
-<!--     <div id="contactInfo">
-      <polymer-ui-collapsible id="biocontent" preventDispose="true">
-        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">Contact Information</span></div>
-
-
-      </polymer-ui-collapsible>
-    </div>
- -->
-
-    <div id="bio">
-      <polymer-ui-collapsible id="biocontent">
-        <div class="polymer-ui-collapsible-header biography icon"><span style="padding-left:5px;">More about me</span></div>
+    <div id="bio" style="margin: -1px;">
+      <polymer-ui-collapsible id="biocontent" style="border-radius: 5px;">
+        <div class="polymer-ui-collapsible-header biography icon" style="border-bottom-color: rgb(221, 221, 221);"><span style="padding-left:5px;">More about me</span></div>
 
 <div class="more" style="clear: both">
         <div class="pageNav selected" id="page1">Biography</div>
@@ -211,37 +175,12 @@ position: absolute;
 </div>
 
               <div id="gallery">
-  <div id="slider">
-     <div style="background: rgb(234,234,234);
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(left,  rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
-background: -webkit-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: -o-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: -ms-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: linear-gradient(to right,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 );
-"><div id="contentBio"></div></div>
-     <div style="background: rgb(234,234,234);
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(left,  rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
-background: -webkit-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: -o-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: -ms-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: linear-gradient(to right,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 );
-"><div id="contentAwds"></div></div>
-     <div style="background: rgb(234,234,234);
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(left,  rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
-background: -webkit-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: -o-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: -ms-linear-gradient(left,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-background: linear-gradient(to right,  rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=1 );
-"><div id="contentPubs"></div></div>
+  <div id="slider" style="border-top-width: 1px;
+border-top-color: rgb(211, 211, 211);
+border-top-style: solid;">
+     <div style="background: #FFF"><div id="contentBio" style="padding:10px"></div></div>
+     <div style="background: #FFF"><div id="contentAwds" style="padding:10px"></div></div>
+     <div style="background: #FFF"><div id="contentPubs" style="padding:10px"></div></div>
   </div>
 </div>
 
@@ -263,7 +202,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', end
         this.$.contentPubs.innerHTML = this.people.gsx$publications.$t;
         this.$.location.innerHTML = this.people.gsx$location.$t;
 
-$(this.$.slider).width(2220);
+$(this.$.slider).width(2820);
 
 // use on-tap instead!
 
@@ -275,7 +214,7 @@ $(this.$.slider).width(2220);
 $(this.parentNode.parentNode).find('#page3').addClass("selected");
 
 window.console.log($(this.parentNode.parentNode).find('#slider'));
-$(this.parentNode.parentNode).find('#slider').stop().animate({left: -1480},800);
+$(this.parentNode.parentNode).find('#slider').stop().animate({left: -1880},800);
         });
 
                                 $(this.$.page1).on("click",function() {
@@ -295,7 +234,7 @@ window.console.log($(this.parentNode.parentNode).find('#slider'));
 $(this.parentNode.parentNode).find('.selected').removeClass("selected");
 $(this.parentNode.parentNode).find('#page2').addClass("selected");
 
-$(this.parentNode.parentNode).find('#slider').stop().animate({left: -740},800);
+$(this.parentNode.parentNode).find('#slider').stop().animate({left: -940},800);
         });
       }
     });

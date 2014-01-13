@@ -81,7 +81,7 @@
         -o-background-size: cover;
         background-size: cover;
         background-position: 50% 12.0833333px;
-        min-height: 800px;
+        min-height: 500px;
         position: relative;
         background-color: #ddd;
         padding: 80px 0;
@@ -98,6 +98,7 @@
 /*        left: 200px;*/
 background-color: rgba(196, 196, 196, 0.5);
 padding: 20px;
+border-radius: 5px;
       }
       #about .container p{
         padding: 10px 0;
@@ -127,6 +128,7 @@ padding: 20px;
         background-color: rgba(0, 0, 0, .5);
 /*right: 200px;*/
 padding: 20px;
+border-radius: 5px;
       }
       #research .container p{
         padding: 10px 0;
@@ -153,30 +155,18 @@ padding: 20px;
         color: #fff;
 background-color: rgba(0, 0, 0, .8);
 padding: 20px;
+border-radius: 5px;
       }
       #software .container p{
         padding: 10px 0;
       }
 
       #credits{
-        padding: 30px 0;
-        font-size: 20px;
-        line-height: normal;
-        position: relative;
-        background-color: grey;
-      }
-
-      #credits .container{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: #000;
-        background-color: rgba(255, 255, 255, .7);
-        padding: 20px;
-      }
-      #credits .container p{
-        padding: 10px 0;
+padding: 20px 0px;
+font-size: 14px;
+line-height: normal;
+background-color: rgb(242,242, 242);
+text-align: center;
       }
 
       .wrapper {
@@ -225,11 +215,8 @@ left: 0; "></canvas>
       <div id="softwareContent" class="container"></div>
     </section>
 
-    <section id="credits" class="element" data-type="background" data-speed="50">
-      <div id="creditsContent" class="container"><p>This is a FNNDSC project</p>
-<img style="max-width:70%;margin:auto; display:block;"src="../images/technology.png" alt="Technology">
-        <p>Source code:</p></div>
-    </section>
+    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
   </div>
  
 <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>

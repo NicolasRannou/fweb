@@ -198,6 +198,8 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         '.htaccess',
                         'elements/**',
+                        'bower_components/**',
+                        'gitroot/**',
                         'lib-elements/**',
                         'images/{,*/}*.{webp,gif}'
                     ]
