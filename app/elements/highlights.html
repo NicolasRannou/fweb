@@ -132,21 +132,12 @@ width: 1000px;
           padding: 5px;
         background:#08C;
      }
-
-.info{
-  background-color: #FFF;
-padding: 10px;
-}
-
-/*.item {
-float: left;
-width: 128px;
-height: 128px;
-line-height: 128px;
-text-align: center;
-border: 1px solid #888;
-margin: 8px;
-}*/
+    .press::before{
+        content:"\f06c\ Press";
+        color: #FFF;
+          padding: 5px;
+        background:#08C;
+     }
 
 #owl-demo .item{
     display: block;
@@ -250,6 +241,40 @@ line-height: normal;
 background-color: rgb(242,242, 242);
 text-align: center;
       }
+
+      section{
+                  border-bottom: 1px solid #FFF;
+}
+
+.info{
+  background-color: #FFF;
+padding: 10px;
+
+display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+      -webkit-flex-direction: row;
+      flex-direction: row;
+}
+
+
+.content{
+-webkit-flex: 1 100%;
+  -moz-flex: 1 100%;
+  -ms-flex: 1 100%;
+  flex: 1 100%;
+  margin-left: 10px;
+}
+
+.tags{
+-webkit-flex: none;
+  -moz-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
     </style>
 
     <!-- Important Owl stylesheet -->
@@ -311,8 +336,17 @@ background-color: #191919;">
 
 
    <div class="info" >
-    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
+    <div class="tags">
+          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+    </span></div>
+    </div>
+    <div class="content">
+      {{highlight.gsx$content.$t}}
+      <template if="{{highlight.gsx$link.$t != null}}">
+        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+      </template>
+    </div>
   </div>
 
 </template>
@@ -330,8 +364,17 @@ background-color: #191919;">
 
 
    <div class="info" >
-    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
+    <div class="tags">
+          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+    </span></div>
+    </div>
+    <div class="content">
+      {{highlight.gsx$content.$t}}
+      <template if="{{highlight.gsx$link.$t != null}}">
+        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+      </template>
+    </div>
   </div>
 
 </template>
@@ -348,8 +391,17 @@ background-color: #191919;">
     <template if="{{highlight.gsx$year.$t === '2012'}}">
 
    <div class="info" >
-    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
+    <div class="tags">
+          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+    </span></div>
+    </div>
+    <div class="content">
+      {{highlight.gsx$content.$t}}
+      <template if="{{highlight.gsx$link.$t != null}}">
+        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+      </template>
+    </div>
   </div>
 
   </template>
@@ -365,20 +417,29 @@ background-color: #191919;">
   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2011'}}">
 
-   <div class="info" >
-    <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> {{highlight.gsx$content.$t}}</span></div>
+   <div class="info">
+    <div class="tags">
+          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
+      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+    </span></div>
+    </div>
+    <div class="content">
+      {{highlight.gsx$content.$t}}
+      <template if="{{highlight.gsx$link.$t != null}}">
+        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+      </template>
+    </div>
   </div>
 
   </template>
     </template>
   </template>
-
-      <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
-    </div>
-    
+   
   </div>
   </section>
+
+        <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHlaTndWaUVmOHRpRTMzX3VmWW9VVFE/od6/public/values?alt=json-in-script&callback=" response="{{highlights}}"></polymer-jsonp>
 
@@ -416,12 +477,6 @@ $('#owl-demo').owlCarousel({
       },
       reloadedChanged: function(){
       window.console.log(this.reloaded);
-//           if(this.iframeLoaded == 0){
-
-// this.$.highlight2video.innerHTML =  '<iframe width="915" height="536" src="http://www.youtube.com/embed/1r0Dp90neLI" frameborder="0" allowfullscreen  style="display:block;margin: 0 auto;"></iframe>';
-
-//           this.iframeLoaded = 1;
-//         }
       },
       scrollToSectionChanged: function(){
         window.console.log('-HIGHLIGHTS- SCROLL');
