@@ -100,6 +100,50 @@ line-height: normal;
 background-color: rgb(242,242, 242);
 text-align: center;
       }
+
+      #liveStream{
+-webkit-flex: none;
+  -moz-flex: none;
+  -ms-flex: none;
+  flex: none;
+      }
+
+      #liveSummary{
+        -webkit-flex: 1 100%;
+  -moz-flex: 1 100%;
+  -ms-flex: 1 100%;
+  flex: 1 100%;
+  margin-left: 10px;
+      }
+
+      #liveTitle{
+        font-size: 20px;line-size:default!important;padding-bottom: 10px;border-bottom: 1px solid #353535;
+      }
+
+      #liveContent{
+        padding: 20px 10px;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+
+      #liveTime{
+        font-size: 16px;
+        line-height: normal;
+        font-style: italic;
+        margin: 10px;
+      }
+
+      #liveSpeaker{
+        font-size: 16px;
+        line-height: normal;
+        font-weight: bold;
+        margin: 10px;
+      }
     </style>
 <div id="wrapper">
 
@@ -113,8 +157,16 @@ We do live events
 </div>
 
 <section id="live" class="element" data-type="background" data-speed="50">
-  <div id="liveTitle" class="title"></div>
-  <div id="liveContent" class="container"></div>
+  <div id="liveSectionTitle" class="title"></div>
+  <div id="liveContent" class="container">
+    <div id="liveStream">
+    </div>
+    <div id="liveSummary">
+      <div id="liveTitle" ></div>
+      <div id="liveTime" ></div>
+      <div id="liveSpeaker" ></div>
+    </div>
+  </div>
 </section>
 
 <section id="next" class="element" data-type="background" data-speed="50">
@@ -214,17 +266,20 @@ We do live events
 
               if(this.live.feed.entry[len].gsx$time.$t == 'current'){
                 // current
+                this.$.liveSectionTitle.innerHTML = this.live.feed.entry[len].gsx$section.$t;
+                this.$.liveStream.innerHTML = this.live.feed.entry[len].gsx$url.$t;
                 this.$.liveTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
-                this.$.liveContent.innerHTML = this.live.feed.entry[len].gsx$url.$t;
+                this.$.liveSpeaker.innerHTML = this.live.feed.entry[len].gsx$speaker.$t;
+                this.$.liveTime.innerHTML = this.live.feed.entry[len].gsx$showtime.$t;
               }
               if(this.live.feed.entry[len].gsx$time.$t == 'prev'){
                 // current
-                this.$.prevTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
+                this.$.prevTitle.innerHTML = this.live.feed.entry[len].gsx$section.$t;
                 this.$.prevContent.innerHTML += this.live.feed.entry[len].gsx$url.$t;
               }
               if(this.live.feed.entry[len].gsx$time.$t == 'next'){
                 // current
-                this.$.nextTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
+                this.$.nextTitle.innerHTML = this.live.feed.entry[len].gsx$section.$t;
                 this.$.nextContent.innerHTML += this.live.feed.entry[len].gsx$url.$t;
               }
             }
