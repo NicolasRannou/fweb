@@ -1,0 +1,80 @@
+
+<polymer-element name="event-element"  attributes="event">
+  <template>
+    <style>
+      @host {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+
+      #liveStream{
+        -webkit-flex: none;
+        -moz-flex: none;
+        -ms-flex: none;
+        flex: none;
+      }
+
+      #liveSummary{
+        -webkit-flex: 1 100%;
+        -moz-flex: 1 100%;
+        -ms-flex: 1 100%;
+        flex: 1 100%;
+        margin-left: 10px;
+      }
+
+      #liveTitle{
+        font-size: 20px;
+        line-size:default!important;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #353535;
+      }
+
+
+      #liveTime{
+        font-size: 16px;
+        line-height: normal;
+        font-style: italic;
+        margin: 10px;
+      }
+
+      #liveSpeaker{
+        font-size: 16px;
+        line-height: normal;
+        font-weight: bold;
+        margin: 10px;
+      }
+
+      #liveAbstract{
+      	max-height: 200px;
+        overflow-y: auto;
+        margin-left: 10px;
+        font-size: 14px;
+      }
+    </style>
+
+    <div id="liveStream">
+    </div>
+    <div id="liveSummary">
+      <div id="liveTitle" >{{event.gsx$title.$t}}</div>
+      <div id="liveTime" >{{event.gsx$showtime.$t}}</div>
+      <div id="liveSpeaker" >{{event.gsx$speaker.$t}}</div>
+      <div id="liveAbstract" >{{event.gsx$abstract.$t}}</div>
+    </div>
+  </template>
+  
+  <script>
+    Polymer('event-element', {
+        event: null,
+    	eventChanged: function(){
+           if(this.event){
+           	this.$.liveStream.innerHTML = this.event.gsx$url.$t;
+           }
+       }
+    });
+  </script>
+</polymer-element>

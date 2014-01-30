@@ -31,25 +31,6 @@ border-bottom: 1px solid #FFF;
 
       }
 
-      .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(18, 189, 79);
-font-size: 30px;
-padding: 10px;
-margin:auto;
-border-radius: 5px;
-
--webkit-transform: translateX(-70px);
--moz-transform: translateX(-70px);
--ms-transform: translateX(-70px);
--o-transform: translateX(-70px);
-transform: translateX(-70px);
-      }
-
       .container{
 /*        position: absolute;*/
         width: 100%;
@@ -63,7 +44,7 @@ padding: 20px;
   box-sizing: border-box; 
   -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
 border-radius: 5px;
-font-size: 20px;
+font-size: 16px;
       }
 .container p{
         padding: 10px 0;
@@ -118,6 +99,15 @@ background-color: rgb(242,242, 242);
 text-align: center;
       }
 
+      .title{
+        color: rgb(18, 189, 79);
+font-size: 25px;
+line-height: normal;
+padding: 10px;
+border-bottom: 1px solid rgb(18, 189, 79);
+margin-bottom: 10px;
+      }
+
     </style>
 
 <div id="wrapper">
@@ -131,23 +121,31 @@ line-height: normal;">
 </div>
 
 <section id="challenges" class="element" data-type="background" data-speed="50">
+    <div class="container">
   <div id="challengesTitle" class="title"></div>
-  <div id="challengesContent" class="container"></div>
+  <div id="challengesContent"></div>
+    </div>
 </section>
 
 <section id="mri" class="element" data-type="background" data-speed="50">
+      <div class="container">
   <div id="mriTitle" class="title"></div>
-  <div id="mriContent" class="container"></div>
+  <div id="mriContent"></div>
+</div>
 </section>
 
 <section id="nirs" class="element" data-type="background" data-speed="50">
+      <div class="container">
   <div id="nirsTitle" class="title"></div>
-  <div id="nirsContent" class="container"></div>
+  <div id="nirsContent" ></div>
+</div>
 </section>
 
 <section id="meg" class="element" data-type="background" data-speed="50">
+      <div class="container">
   <div id="megTitle" class="title"></div>
-  <div id="megContent" class="container"></div>
+  <div id="megContent" ></div>
+</div>
 </section>
 
     <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project

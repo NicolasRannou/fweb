@@ -30,19 +30,12 @@ background-color: rgb(242, 242, 242);
       }
 
       .title{
-        width: 100%;
-        max-width: 1000px;
-      color: #FFF;
-background-color: rgb(26, 26, 218);
-font-size: 30px;
+        color: rgb(26, 26, 218);
+font-size: 25px;
+line-height: normal;
 padding: 10px;
--webkit-transform: translateX(-70px);
--moz-transform: translateX(-70px);
--ms-transform: translateX(-70px);
--o-transform: translateX(-70px);
-transform: translateX(-70px);
-margin:auto;
-border-radius: 5px;
+border-bottom: 1px solid rgb(26, 26, 218);
+margin-bottom: 10px;
       }
 
       .container{
@@ -58,7 +51,7 @@ padding: 20px;
   box-sizing: border-box; 
     -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
 border-radius: 5px;
-font-size: 20px;
+font-size: 16px;
       }
 
       .container p{
@@ -227,6 +220,7 @@ line-height: normal;">
 
 
 <section id="labbook" class="element" data-type="background" data-speed="50">
+  <div class="container">
         <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'labbook'}}">
@@ -235,7 +229,8 @@ line-height: normal;">
     </template>
   </template>
 
-        <div id="labbookContent" class="container"></div>
+        <div id="labbookContent"></div>
+      </div>
 
   <div id="owl-demo0" class="slider" style="z-index:10;">
           
@@ -253,6 +248,7 @@ line-height: normal;">
   </section>
 
   <section id="slicedrop" class="element" data-type="background" data-speed="50">
+      <div class="container">
       <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'slicedrop'}}">
@@ -261,9 +257,8 @@ line-height: normal;">
     </template>
   </template>
 
-        <div id="slicedropContent" class="container">
-  </div>
-
+        <div id="slicedropContent"></div>
+</div>
   <div id="owl-demo1" class="slider" style="z-index:10;">
           
   <div class="item"><img src="../images/software/slicedrop1.png" alt="To complete..."></div>
@@ -272,11 +267,12 @@ line-height: normal;">
   <div class="item"><img src="../images/software/slicedrop4.png" alt="To complete..."></div>
   <div class="item"><img src="../images/software/slicedrop5.png" alt="To complete..."></div>
  
-</div>
+
 
   </section>
 
   <section id="xtk" class="element" data-type="background" data-speed="50">
+      <div class="container">
           <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'xtk'}}">
@@ -284,8 +280,8 @@ line-height: normal;">
         </template>
     </template>
   </template>
-    <div id="xtkContent" class="container"></div>
-
+    <div id="xtkContent"></div>
+</div>
     <div id="owl-demo2" class="slider" style="z-index:10;">
           
   <div class="item"><img src="../images/software/xtk1.png" alt="To complete..."></div>
@@ -299,6 +295,7 @@ line-height: normal;">
   </section>
 
   <section id="more" class="element" data-type="background" data-speed="50">
+      <div class="container">
           <template if="{{softwares != null}}">
   <template repeat="{{software in softwares.feed.entry}}">
     <template if="{{software.gsx$id.$t === 'more'}}">
@@ -312,7 +309,8 @@ line-height: normal;">
 <img style="max-width:70%;margin:auto; display:block;"src="../images/technology.png" alt="Technology"></div>
     </section> -->
 
-      <div id="moreContent" class="container"></div>
+      <div id="moreContent"></div>
+    </div>
 
 <!--   <div id="owl-demo3" class="slider" style="z-index:10;">
           

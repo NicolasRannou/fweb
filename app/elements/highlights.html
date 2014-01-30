@@ -5,45 +5,22 @@
   <template>
     <style>
       @host { :scope {display: block;} }
-      .sticky {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        width:100%;
-background-color: rgb(255, 133, 0);
-        color: #FFF;
-        padding: 25px;
-font-family: 'Open Sans', sans-serif;
-font-size: 20px;
-      }
-      .fixed{
-        position: fixed;
-        top: 0;
-      }
 
 #wrapper{
 background: rgb(242, 242, 242);
 
 }
 
-      .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(26, 187, 218);
-font-size: 30px;
-padding: 10px;
-margin:auto;
-border-radius: 5px;
 
--webkit-transform: translateX(-70px);
--moz-transform: translateX(-70px);
--ms-transform: translateX(-70px);
--o-transform: translateX(-70px);
-transform: translateX(-70px);
+            .title{
+        color: rgb(26, 187, 218);
+font-size: 25px;
+line-height: normal;
+padding: 10px;
+border-bottom: 1px solid rgb(26, 187, 218);
+margin-bottom: 10px;
       }
+
 
       .container{
 /*        position: absolute;*/
@@ -58,7 +35,22 @@ padding: 20px 0;
   box-sizing: border-box; 
   -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
 border-radius: 5px;
-/*font-size: 20px;*/
+font-size: 16px;
+padding: 20px;
+      }
+
+            .containerH{
+/*        position: absolute;*/
+        width: 100%;
+        max-width: 1000px;
+margin: 0 auto;
+/*        left: 200px;*/
+background-color: #191919;
+padding: 20px 0;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box; 
+font-size: 16px;
       }
 
 
@@ -190,9 +182,9 @@ padding: 0;
 }
 .image-info{
    position: absolute; 
-   top: 200px; 
+   top: 100px; 
    left: 50px; 
-   font-size: 40px;
+   font-size: 25px;
    font-weight: bold;
    line-height: normal;
 color: #000;
@@ -295,15 +287,15 @@ What we do
 </div>
 </div>
 
-    <section id="highlights" style="padding: 20px;
-background-color: #191919;">
+    <section id="highlights" style="background-color: #191919;">
+<div class="containerH">
 <div id="owl-demo" class="owl-carousel">
  
   <div class="item">
 
     <a href="http://goo.gl/oML6sw" target="_blank" class="image">
       <img src="../images/highlights/h1.png">
-      <div class="image-info">" Wow! "<br/>" Amazing "</div>
+      <div class="image-info">" Wow! "<br/>" Amazing! "</div>
 <!--       <a href="http://goo.gl/oML6sw" target="_blank" class="image-link">Try it now!</a> -->
       <div class="image-caption">Real-time MRI reslicing in the web browser</div>
     </a>
@@ -324,12 +316,13 @@ background-color: #191919;">
   </div>
  
 </div>
-
+</div>
   </section>
 
     <section id="2014">
+      <div class="container">
   <div class="title">2014</div>
-  <div class="container">
+  <div>
         <template if="{{highlights != null}}">
    <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2014'}}">
@@ -353,11 +346,13 @@ background-color: #191919;">
     </template>
   </template>
   </div>
+</div>
   </section>
 
     <section id="2013">
+      <div class="container">
   <div class="title">2013</div>
-  <div class="container">
+  <div>
         <template if="{{highlights != null}}">
    <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2013'}}">
@@ -381,11 +376,13 @@ background-color: #191919;">
     </template>
   </template>
   </div>
+</div>
   </section>
 
     <section id="2012">
+      <div class="container">
   <div class="title">2012</div>
-  <div class="container">
+  <div>
         <template if="{{highlights != null}}">
   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2012'}}">
@@ -408,11 +405,13 @@ background-color: #191919;">
     </template>
   </template>
   </div>
+</div>
   </section>
 
     <section id="2011">
+      <div class="container">
   <div class="title">2011</div>
-  <div class="container">
+  <div>
     <template if="{{highlights != null}}">
   <template repeat="{{highlight in highlights.feed.entry}}">
     <template if="{{highlight.gsx$year.$t === '2011'}}">
@@ -434,7 +433,7 @@ background-color: #191919;">
   </template>
     </template>
   </template>
-   
+   </div>
   </div>
   </section>
 

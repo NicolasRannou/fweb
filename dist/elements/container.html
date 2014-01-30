@@ -47,6 +47,7 @@ display: -webkit-box;
       #main {
         overflow-y:scroll;
         margin-right: -20px;
+        margin-top: 39px;
       }
       polymer-ui-submenu-item{
 /*        margin-top: -1px;
@@ -240,6 +241,8 @@ display: -webkit-box!important;
   display: flex!important;
                 height:100%;
 
+                font-size:18px;
+
       }
 
             .navTopLink:hover{
@@ -269,19 +272,33 @@ right: 10px;*/
 
             .eightNav{
         position: fixed;
-top: 70px;
 z-index: 15;
-right: 10px;
-        border-right:1px solid;
-        background-color: rgba(255, 255, 255, 0.9);
+                -webkit-box-align: center;
+-ms-flex-align: center;
+-moz-align-items: center;
+-webkit-align-items: center;
+align-items: center;
+display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      width:100% !important;
+-webkit-justify-content: center; 
+-webkit-box-pack: center; 
+  justify-content: center;
+        background-color: #FFF;
+        font-size: 16px;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: rgba(0, 0, 0, 0.14902);
       }
 
       .section-selected{
-        border-left: 4px solid #353535;
-        padding-right: 9px;
-                padding-top: 9px;        padding-bottom: 9px;
-padding-left: 5px!important;
+        text-decoration: underline;
 color:#353535;
       }
 
@@ -296,9 +313,12 @@ color:#FFF!important;
 
       .section-right:hover{
         cursor:pointer;
-        background: lightgrey;
+        background: rgb(242, 242, 242);
       }
 
+polymer-ui-toolbar{
+  height:50px!important;
+}
       polymer-ui-toolbar.polymer-ui-light-theme{
         background-color: rgb(242, 242, 242)!important;
       }
@@ -308,15 +328,105 @@ color:#FFF!important;
 
       }
 
-#rightNav{
-  border: 1px solid rgb(63, 63, 63);
-margin-right: -1px;
-padding: 10px;
-border-radius: 5px;
+.right-container{
+                -webkit-box-align: center;
+-ms-flex-align: center;
+-moz-align-items: center;
+-webkit-align-items: center;
+align-items: center;
+display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+      -webkit-flex-direction: row;
+      flex-direction: row;
+-webkit-justify-content: center; 
+-webkit-box-pack: center; 
+  justify-content: center; 
+/*        border-right:1px solid;*/
+        background-color: #FFF;
+}
+
+.flexDisplay{
+          -webkit-box-align: center;
+-ms-flex-align: center;
+-moz-align-items: center;
+-webkit-align-items: center;
+align-items: center;
+display: -webkit-box!important;
+  display: -moz-box!important;
+  display: -ms-flexbox!important;
+  display: -webkit-flex!important;
+  display: flex!important;
+
+padding:0 10px;
+        height:100%;
+        color:grey;
 }
     </style>
   <polymer-ui-scaffold3 theme="polymer-ui-light-theme" style="height:100%;position: relative;">
 
+
+            <div id="rightNav" class="eightNav" style="color:black;">
+            <div id="right-container-home" class="right-container">
+              <div class="flexDisplay">
+              <template repeat="{{ home }}">
+                <div data-section='{{id}}' class="home {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-research" class="right-container" style="display:none">
+              <div class="flexDisplay">
+             <template repeat="{{ research }}">
+                <div data-section='{{id}}' class="research {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-highlights" class="right-container" style="display:none">
+              <div class="flexDisplay">
+              <template repeat="{{ highlights }}">
+                <div data-section='{{id}}' class="highlights {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-software" class="right-container" style="display:none">
+              <div class="flexDisplay">
+              <template repeat="{{ software }}">
+                <div data-section='{{id}}' class="software {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-team" class="right-container" style="display:none">
+              <div class="flexDisplay">
+              <template repeat="{{ team }}">
+                <div data-section='{{id}}' class="team {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-contact" class="right-container" style="display:none">
+              <div class="flexDisplay">
+              <template repeat="{{ contact }}">
+                <div data-section='{{id}}' class="contact {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-live" class="right-container" style="display:none">
+              <div class="flexDisplay">
+              <template repeat="{{ live }}">
+                <div data-section='{{id}}' class="live {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+            <div id="right-container-events" class="right-container" style="display:none">
+              <div class="flexDisplay">
+              <template repeat="{{ events }}">
+                <div data-section='{{id}}' class="events {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
+              </template>
+            </div>
+            </div>
+          </div>
 
 
       <div tool flex>
@@ -325,49 +435,6 @@ border-radius: 5px;
                       <div id='navTop-{{id}}' data-page='{{id}}' class="navTopLink page-top" on-tap="{{horizontalMenu}}">{{label}}</div>
 
             </template>
-          </div>
-
-            <div id="rightNav" class="eightNav" style="color:black;">
-            <div id="right-container-home" class="right-container">
-              <template repeat="{{ home }}">
-                <div data-section='{{id}}' class="home {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-research" class="right-container" style="display:none">
-             <template repeat="{{ research }}">
-                <div data-section='{{id}}' class="research {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-highlights" class="right-container" style="display:none">
-              <template repeat="{{ highlights }}">
-                <div data-section='{{id}}' class="highlights {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-software" class="right-container" style="display:none">
-              <template repeat="{{ software }}">
-                <div data-section='{{id}}' class="software {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-team" class="right-container" style="display:none">
-              <template repeat="{{ team }}">
-                <div data-section='{{id}}' class="team {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-contact" class="right-container" style="display:none">
-              <template repeat="{{ contact }}">
-                <div data-section='{{id}}' class="contact {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-live" class="right-container" style="display:none">
-              <template repeat="{{ live }}">
-                <div data-section='{{id}}' class="live {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
-            <div id="right-container-events" class="right-container" style="display:none">
-              <template repeat="{{ events }}">
-                <div data-section='{{id}}' class="events {{id}}-right section-right" on-tap="{{verticalMenu}}">{{label}}</div>
-              </template>
-            </div>
           </div>
 
         <polymer-ui-toolbar class="navTopMenu" responsive>
@@ -590,8 +657,7 @@ border-radius: 5px;
 
         // live page
         this.live = [{id:'live', label:'Live', index:0},
-        {id:'upcoming', label:'Upcoming', index:0},
-        {id:'previous', label:'Previous', index:0}];
+        {id:'previous', label:'Previous', index:1}];
         this.initPageVars('live', this.live);
 
         // live page

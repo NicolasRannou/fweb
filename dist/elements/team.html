@@ -5,21 +5,6 @@
   <template>
     <style>
       @host { :scope {display: block;} }
-      .sticky {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        width:100%;
-background-color: rgb(8, 184, 184);
-        color: #FFF;
-        padding: 25px;
-font-family: 'Open Sans', sans-serif;
-font-size: 20px;
-      }
-      .fixed{
-        position: fixed;
-        top: 0;
-      }
 
 #wrapper{
 background: rgb(242, 242, 242);
@@ -48,23 +33,15 @@ width: 100%!important;
 width: 1000px;
 }
 
-      .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color:rgb(87, 26, 218);
-font-size: 30px;
+            .title{
+        color: rgb(87, 26, 218);
+font-size: 25px;
+line-height: normal;
 padding: 10px;
--webkit-transform: translateX(-70px);
--moz-transform: translateX(-70px);
--ms-transform: translateX(-70px);
--o-transform: translateX(-70px);
-transform: translateX(-70px);
-margin:auto;
-border-radius: 5px;
+border-bottom: 1px solid rgb(87, 26, 218);
+margin-bottom: 10px;
       }
+
 
       .container{
 /*        position: absolute;*/
@@ -79,11 +56,12 @@ padding: 20px 0;
   box-sizing: border-box; 
   -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
 border-radius: 5px;
-/*font-size: 20px;*/
+font-size: 16px;
+padding: 20px;
       }
 
 .peeps{
-  padding: 0 25px;
+  padding: 0 5px;
   background-color: #FFF;
 }
 /*      // container width
@@ -128,8 +106,8 @@ line-height: normal;">
 </div>
 
   <section id="faculty">
+      <div class="container">
   <div class="title">faculty members</div>
-  <div class="container">
   <div class="peeps">
     <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
@@ -144,8 +122,8 @@ line-height: normal;">
   
 
   <section  id="staff">
+      <div class="container">
   <div class="title">staff</div>
-  <div class="container">
   <div class="peeps">
    <template if="{{team != null}}"> 
   <template repeat="{{people in team.feed.entry}}">
@@ -159,8 +137,8 @@ line-height: normal;">
   </section>
   
   <section id="collaborators">
+      <div class="container">
   <div class="title">collaborators</div>
-  <div class="container">
   <div class="peeps">
     <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">
@@ -174,8 +152,8 @@ line-height: normal;">
   </section>
   
   <section id="alumni">
+      <div class="container">
   <div class="title">alumni</div>
-  <div class="container">
   <div class="peeps">
     <template if="{{team != null}}">
   <template repeat="{{people in team.feed.entry}}">

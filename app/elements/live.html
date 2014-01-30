@@ -1,80 +1,41 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="event.html">
 
 <polymer-element name="live-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
 
-      .wrapper {
-      margin: 0 auto;
-width: 800px;
-
-
-
-}
-section{
-/*  background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(239, 239, 239) 100%);*/
-}
-#wrapper{
-
-background-color: rgb(242, 242, 242);
-}
-
+      #wrapper{
+        background-color: rgb(242, 242, 242);
+      }
 
       .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(218, 26, 26);
-font-size: 30px;
-padding: 10px;
--webkit-transform: translateX(-70px);
--moz-transform: translateX(-70px);
--ms-transform: translateX(-70px);
--o-transform: translateX(-70px);
-transform: translateX(-70px);
-margin:auto;
-border-radius: 5px;
+        color: rgb(218, 26, 26);
+        font-size: 25px;
+        line-height: normal;
+        padding: 10px;
+        border-bottom: 1px solid rgb(218, 26, 26);
+        margin-bottom: 10px;
       }
 
       .container{
-/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 10px auto;
-/*        left: 200px;*/
-background-color: #FFF;
-padding: 20px 0;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box; 
-  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
-border-radius: 5px;
-/*font-size: 20px;*/
+        margin: 10px auto;
+        background-color: #FFF;
+        padding: 20px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box; 
+        -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+        border-radius: 5px;
       }
 
-            #live{
-
-/*        min-height: 800px;*/
-/*        background-color: #999;*/
-/*        padding: 80px 0;*/
+      #live{
         font-size: 30px;
         position: relative;
-                border-bottom: 2px solid #FFF;
-/*         padding-left: 500px;*/
-      }
-
-      #next{
-
-/*        min-height: 800px;*/
-/*        background-color: #999;*/
-/*        padding: 80px 0;*/
-        font-size: 30px;
-        position: relative;
-                border-bottom: 2px solid #FFF;
-/*         padding-left: 500px;*/
+        border-bottom: 2px solid #FFF;
       }
 
       #prev{
@@ -85,42 +46,23 @@ border-radius: 5px;
       }
 
 
-    /* Responsive small screen*/
-    @media all and (min-width: 800px){
-      .element{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }
-    }
-
-          #credits{
-padding: 20px 0px;
-font-size: 14px;
-line-height: normal;
-background-color: rgb(242,242, 242);
-text-align: center;
+      /* Responsive small screen*/
+      @media all and (min-width: 800px){
+        .element{
+          -webkit-flex: 0 1 100% !important;
+          flex: 0 1 100% !important;
+        }
       }
 
-      #liveStream{
--webkit-flex: none;
-  -moz-flex: none;
-  -ms-flex: none;
-  flex: none;
+      #credits{
+        padding: 20px 0px;
+        font-size: 14px;
+        line-height: normal;
+        background-color: rgb(242,242, 242);
+        text-align: center;
       }
 
-      #liveSummary{
-        -webkit-flex: 1 100%;
-  -moz-flex: 1 100%;
-  -ms-flex: 1 100%;
-  flex: 1 100%;
-  margin-left: 10px;
-      }
-
-      #liveTitle{
-        font-size: 20px;line-size:default!important;padding-bottom: 10px;border-bottom: 1px solid #353535;
-      }
-
-      #liveContent{
+      #liveContent, #prevContent{
         padding: 20px 10px;
         display: -webkit-box;
         display: -moz-box;
@@ -131,56 +73,45 @@ text-align: center;
         flex-direction: row;
       }
 
-      #liveTime{
-        font-size: 16px;
-        line-height: normal;
-        font-style: italic;
-        margin: 10px;
-      }
-
-      #liveSpeaker{
-        font-size: 16px;
-        line-height: normal;
-        font-weight: bold;
-        margin: 10px;
-      }
     </style>
-<div id="wrapper">
 
-    <div style="background: #FFF;
-">
-<div id="introContent" class="wrapper" style="color:#353535; font-size: 25px;
-padding: 20px;text-align: center;
-line-height: normal;">
-We do live events
-</div>
-</div>
+    <div id="wrapper">
+      <div style="background: #FFF;">
+        <div id="introContent" class="wrapper" style="color:#353535; font-size: 25px;padding: 20px;text-align: center;line-height: normal;">We do live events</div>
+      </div>
 
-<section id="live" class="element" data-type="background" data-speed="50">
-  <div id="liveSectionTitle" class="title"></div>
-  <div id="liveContent" class="container">
-    <div id="liveStream">
-    </div>
-    <div id="liveSummary">
-      <div id="liveTitle" ></div>
-      <div id="liveTime" ></div>
-      <div id="liveSpeaker" ></div>
-    </div>
-  </div>
-</section>
+    <section id="live" class="element">
+      <div class="container">
+        <div id="liveSectionTitle" class="title">Next talk</div>
+        <template if="{{live != null}}">
+          <template repeat="{{event in live.feed.entry}}">
+            <template if="{{event.gsx$section.$t === 'next'}}">
+              <div id="liveContent">
+                <event-element event="{{event}}"></event-element>
+              </div>
+              <a href="{{event.gsx$hangout.$t}}" target="_blank" style="text-align: center;display: block;">Ask questions to {{event.gsx$speaker.$t}} in the G+ Hangout!</a>
+            </template>
+          </template>
+        </template>
+      </div>
+    </section>
 
-<section id="next" class="element" data-type="background" data-speed="50">
-  <div id="nextTitle" class="title"></div>
-  <div id="nextContent" class="container"></div>
-</section>
+    <section id="prev" class="element" data-type="background" data-speed="50">
+      <div class="container">
+        <div id="prevTitle" class="title">Past talks</div>
+        <template if="{{live != null}}">
+          <template repeat="{{event in live.feed.entry}}">
+            <template if="{{event.gsx$section.$t === 'past'}}">
+              <div id="prevContent">
+                <event-element event="{{event}}"></event-element>
+              </div>
+            </template>
+          </template>
+        </template>
+      </div>
+    </section>
 
-<section id="prev" class="element" data-type="background" data-speed="50">
-  <div id="prevTitle" class="title"></div>
-  <div id="prevContent" class="container"></div>
-</section>
-
-    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
-    </div>
+    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project</div>
 
   </div>
   
@@ -235,9 +166,7 @@ We do live events
         }
       },
       jumpToSectionChanged: function(){
-        window.console.log("-LIVE- JUMP");
          if(this.jumpToSection == 0){
-           window.console.log('skip...');
            return;
          };
           // maybe not necessary
@@ -256,36 +185,7 @@ We do live events
           },500, function(){
           _this.jumpToSection = 0;
           _this.reloaded = 1;
-          // _this.currentSection = divID;
           }); 
-      },
-      liveChanged: function(){
-        if(this.live){
-            var len = this.live.feed.entry.length;
-            while (len--) {
-
-              if(this.live.feed.entry[len].gsx$time.$t == 'current'){
-                // current
-                this.$.liveSectionTitle.innerHTML = this.live.feed.entry[len].gsx$section.$t;
-                this.$.liveStream.innerHTML = this.live.feed.entry[len].gsx$url.$t;
-                this.$.liveTitle.innerHTML = this.live.feed.entry[len].gsx$title.$t;
-                this.$.liveSpeaker.innerHTML = this.live.feed.entry[len].gsx$speaker.$t;
-                this.$.liveTime.innerHTML = this.live.feed.entry[len].gsx$showtime.$t;
-              }
-              if(this.live.feed.entry[len].gsx$time.$t == 'prev'){
-                // current
-                this.$.prevTitle.innerHTML = this.live.feed.entry[len].gsx$section.$t;
-                this.$.prevContent.innerHTML += this.live.feed.entry[len].gsx$url.$t;
-              }
-              if(this.live.feed.entry[len].gsx$time.$t == 'next'){
-                // current
-                this.$.nextTitle.innerHTML = this.live.feed.entry[len].gsx$section.$t;
-                this.$.nextContent.innerHTML += this.live.feed.entry[len].gsx$url.$t;
-              }
-            }
-
-          
-        }
       }
     });
 

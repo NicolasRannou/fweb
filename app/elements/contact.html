@@ -10,64 +10,32 @@
 border-bottom-style: solid;
 border-bottom-color: rgb(255, 255, 255);
       }
-      .sticky {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        width:100%;
-background-color: rgb(0, 136, 204);
-        color: #FFF;
-        padding: 25px;
-font-family: 'Open Sans', sans-serif;
-font-size: 20px;
-      }
-      .fixed{
-        position: fixed;
-        top: 0;
-      }
 
 
-      .title{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-/*                margin: 10 auto;*/
-      color: #FFF;
-background-color: rgb(164, 26, 218);
-font-size: 30px;
+            .title{
+        color: rgb(164, 26, 218);
+font-size: 25px;
+line-height: normal;
 padding: 10px;
--webkit-transform: translateX(-70px);
--moz-transform: translateX(-70px);
--ms-transform: translateX(-70px);
--o-transform: translateX(-70px);
-transform: translateX(-70px);
-margin:auto;
-border-radius: 5px;
+border-bottom: 1px solid rgb(164, 26, 218);
+margin-bottom: 10px;
       }
 
       .container{
-/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
 margin: 10px auto;
-/*        left: 200px;*/
 background-color: #FFF;
-padding: 20px 0;
+padding: 20px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box; 
   -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
 border-radius: 5px;
-/*font-size: 20px;*/
       }
 
 #wrapper{
 background: rgb(242,242,242);
-}
-
-#main{
-  overflow-y: auto!important;
-margin-right: 0px!important;
 }
 
 
@@ -138,9 +106,10 @@ We have offices in 3 different locations
 </div>
 
 
-    <section id="main">
+    <section id="main1">
+      <div class="container">
   <div class="title">main hospital</div>
-  <div class="container">
+  <div>
       <template if="{{contact != null}}">
   <template repeat="{{location in contact.feed.entry}}">
     <template if="{{location.gsx$location.$t === 'main'}}">
@@ -160,11 +129,13 @@ We have offices in 3 different locations
     <div id="main-map">
     </div>
   </div>
+</div>
   </section>
 
     <section id="autumn">
+            <div class="container">
   <div class="title">1 autumn street</div>
-  <div class="container">
+  <div>
     <template if="{{contact != null}}">
   <template repeat="{{location in contact.feed.entry}}">
     <template if="{{location.gsx$location.$t === 'autumn'}}">
@@ -184,11 +155,13 @@ We have offices in 3 different locations
 >    <div id="autumn-map">
   </div>
   </div>
+</div>
   </section>
 
     <section id="waltham">
+            <div class="container">
   <div class="title">waltham</div>
-  <div class="container">
+  <div >
     <template if="{{contact != null}}">
   <template repeat="{{location in contact.feed.entry}}">
     <template if="{{location.gsx$location.$t === 'waltham'}}">
@@ -206,6 +179,7 @@ We have offices in 3 different locations
     <div id="waltham-map">
   </div>
   </div>
+</div>
   </section>
 
     <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
