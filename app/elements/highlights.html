@@ -8,7 +8,7 @@
 
       #wrapper{
         padding: 30px 0px 200px;
-        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-image: url(http://localhost:9000/images/background/baby_happy2.jpg);
         background-attachment: fixed;
         -webkit-background-size: cover;
         background-size: cover;
@@ -388,6 +388,8 @@
       jumpSkip: 0,
       reloaded: 0,
       iframeLoaded: 0,
+      main:null,
+      elt:null,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
