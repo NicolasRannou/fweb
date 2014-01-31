@@ -1,175 +1,159 @@
-<link rel="import" href="people.html">
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="people.html">
+<link rel="import" href="footer.html">
 
 <polymer-element name="team-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
 
-#wrapper{
-background: rgb(242, 242, 242);
-
-}
-
-section{
-                  border-bottom: 1px solid #FFF;
-}
-    /* Responsive small screen*/
-    @media all and (max-width: 800px){
-      .wrapper {
-margin: 0!important;
-width: 100%!important;
-}
-      people-element{
-/*        -webkit-flex: 0 1 50% !important;
-        flex: 0 1 50% !important;*/
+      #wrapper{
+        padding: 30px 0px 200px;
+        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
+        position: relative;
+        background-position: 50% 0px;
       }
-    }
 
-    /* Responsive small screen*/
-    @media all and (min-width: 1001px){
+      /* Responsive small screen*/
+      @media all and (max-width: 800px){
+        .wrapper {
+          margin: 0!important;
+          width: 100%!important;
+        }
+      }
+
       .wrapper {
-      margin: 0 auto;
-width: 1000px;
-}
+        margin: 0 auto;
+        width: 1000px;
+      }
 
-            .title{
+      .title{
         color: rgb(87, 26, 218);
-font-size: 25px;
-line-height: normal;
-padding: 10px;
-border-bottom: 1px solid rgb(87, 26, 218);
-margin-bottom: 10px;
+        font-size: 25px;
+        line-height: normal;
+        padding: 10px;
+        border-bottom: 1px solid rgb(87, 26, 218);
+        margin-bottom: 10px;
       }
-
 
       .container{
-/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 10px auto;
-/*        left: 200px;*/
-background-color: #FFF;
-padding: 20px 0;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box; 
-  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
-border-radius: 5px;
-font-size: 16px;
-padding: 20px;
+        background-color: #FFF;
+        padding: 20px 0;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box; 
+        -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 20px;
       }
 
-.peeps{
-  padding: 0 5px;
-  background-color: #FFF;
-}
-/*      // container width
-      // people width*/
+      .peeps{
+        padding: 0 5px;
+        background-color: #FFF;
+      }
+
       people-element{
         width:950px!important;
         display: inline-block;
-/*        -webkit-flex: 0 1 25% !important;
-        flex: 0 1 25% !important;*/
-      }
-    }
-
-      #credits{
-padding: 20px 0px;
-font-size: 14px;
-line-height: normal;
-background-color: rgb(242,242, 242);
-text-align: center;
       }
 
+      h2{
+        font-family: 'Open Sans';
+        margin: 0;
+        padding: 0;
+        color: rgb(87, 26, 218);
+      }
+
+      h2 span{
+        display: block;
+        z-index: 1;
+        font-family: sans-serif;
+      }
+
+      span.small{
+        font-style: italic;
+        font-weight: 100;
+        font-size: 31px;
+      }
+
+      span.large{
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 102px;
+        line-height: 1.05;
+        letter-spacing: -3px;
+      }
     </style>
-  <div id="wrapper">
 
-  
-
-<div style="background: #FFF;
-">
-<div class="wrapper" style="color:#353535; font-size: 25px;
-padding: 20px;text-align: center;
-line-height: normal;">
- <template if="{{team != null}}">
-  <template repeat="{{people in team.feed.entry}}">
-    <template if="{{people.gsx$group.$t === 'intro'}}">
-<!--       <div style="text-align:left">&ldquo;</div> -->
-      {{people.gsx$bio.$t}}
-<!--       <div style="text-align:right">&rdquo;</div> -->
-  </template>
-    </template>
-  </template>
-
-</div>
-</div>
-
-  <section id="faculty">
+    <div id="wrapper" data-speed="50">
       <div class="container">
-  <div class="title">faculty members</div>
-  <div class="peeps">
-    <template if="{{team != null}}">
-  <template repeat="{{people in team.feed.entry}}">
-    <template if="{{people.gsx$group.$t === 'faculty'}}">
-      <people-element people="{{people}}"></people-element>
-        </template>
-    </template>
-  </template>
-  </div>
-    </div>
-  </section>
-  
+        <h2>
+          <span class="small">We are a multidisciplinary</span>
+          <span class="large">team</span>
+        </h2>
 
-  <section  id="staff">
-      <div class="container">
-  <div class="title">staff</div>
-  <div class="peeps">
-   <template if="{{team != null}}"> 
-  <template repeat="{{people in team.feed.entry}}">
-    <template if="{{people.gsx$group.$t === 'staff'}}">
-      <people-element people="{{people}}"></people-element>
-        </template>
-    </template>
-  </template>
-  </div>
-</div>
-  </section>
+        <section id="faculty">
+          <div class="title">faculty members</div>
+          <div class="peeps">
+            <template if="{{team != null}}">
+              <template repeat="{{people in team.feed.entry}}">
+                <template if="{{people.gsx$group.$t === 'faculty'}}">
+                  <people-element people="{{people}}"></people-element>
+                </template>
+              </template>
+            </template>
+          </div>
+        </section>
   
-  <section id="collaborators">
-      <div class="container">
-  <div class="title">collaborators</div>
-  <div class="peeps">
-    <template if="{{team != null}}">
-  <template repeat="{{people in team.feed.entry}}">
-    <template if="{{people.gsx$group.$t === 'collaborators'}}">
-      <people-element people="{{people}}"></people-element>
-        </template>
-    </template>
-  </template>
-    </div>
-</div>
-  </section>
+        <section  id="staff">
+          <div class="title">staff</div>
+          <div class="peeps">
+            <template if="{{team != null}}"> 
+              <template repeat="{{people in team.feed.entry}}">
+                <template if="{{people.gsx$group.$t === 'staff'}}">
+                  <people-element people="{{people}}"></people-element>
+                </template>
+              </template>
+            </template>
+          </div>
+        </section>
   
-  <section id="alumni">
-      <div class="container">
-  <div class="title">alumni</div>
-  <div class="peeps">
-    <template if="{{team != null}}">
-  <template repeat="{{people in team.feed.entry}}">
-    <template if="{{people.gsx$group.$t === 'alumni'}}">
-      <people-element people="{{people}}"></people-element>
-        </template>
-    </template>
-  </template>
-    </div>
-</div>
-  </section>
+        <section id="collaborators">
+          <div class="title">collaborators</div>
+          <div class="peeps">
+            <template if="{{team != null}}">
+              <template repeat="{{people in team.feed.entry}}">
+                <template if="{{people.gsx$group.$t === 'collaborators'}}">
+                  <people-element people="{{people}}"></people-element>
+                </template>
+              </template>
+            </template>
+          </div>
+        </section>
+  
+        <section id="alumni">
+          <div class="title">alumni</div>
+          <div class="peeps">
+            <template if="{{team != null}}">
+              <template repeat="{{people in team.feed.entry}}">
+                <template if="{{people.gsx$group.$t === 'alumni'}}">
+                  <people-element people="{{people}}"></people-element>
+                </template>
+              </template>
+            </template>
+          </div>
+        </section>
 
-      <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+      </div>
     </div>
 
-</div>
+    <footer-element></footer-element>
   
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHN6R2lCX1N4VlZ3dnB2ZHhLWWFZQ3c/od6/public/values?alt=json-in-script&callback=" response="{{team}}"></polymer-jsonp>
 
@@ -185,18 +169,21 @@ line-height: normal;">
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
-        window.console.log(this.sections);
+
+        var _this = this;
+        addEventListener('WebComponentsReady', function() {
+          _this.main = $(_this.parentNode).closest('#main');
+          _this.elt = $(_this.$.wrapper);
+        });
       },
       scrollToSectionChanged: function(){
-        window.console.log('-TEAM- SCROLL');
         if(this.reloaded == 1){
-          window.console.log('skip...');
           this.reloaded = 0;
           return;
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = this.main.scrollTop();
 
         // Get id of current scroll item
         var current= this.currentSection;
@@ -211,8 +198,19 @@ line-height: normal;">
             current = this.sections[i];
             currentIndex = i;
            }
-
         }
+
+        var diff = this.$.wrapper.offsetTop;
+        var off = diff - fromTop; 
+        var hei = this.$.wrapper.offsetHeight;
+
+        var yPos = off/hei;
+        // Put together our final background position
+        var coords = '50% '+ yPos*this.elt.data('speed') + 'px';
+
+        // Move the background
+        this.elt.css({
+         backgroundPosition: coords});
 
         if(this.jumpToSection == 0){
           
@@ -224,9 +222,7 @@ line-height: normal;">
         }
       },
       jumpToSectionChanged: function(){
-        window.console.log("-TEAM- JUMP");
          if(this.jumpToSection == 0){
-           window.console.log('skip...');
            return;
          };
           // maybe not necessary
@@ -235,9 +231,7 @@ line-height: normal;">
             index = this.currentSectionIndex;
           }
 
-          window.console.log(index);
           var divID = this.sections[index];
-                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
@@ -245,7 +239,6 @@ line-height: normal;">
           },500, function(){
           _this.jumpToSection = 0;
           _this.reloaded = 1;
-          // _this.currentSection = divID;
           }); 
       }
     });

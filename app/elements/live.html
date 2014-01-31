@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
 <link rel="import" href="event.html">
+<link rel="import" href="footer.html">
 
 <polymer-element name="live-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
@@ -7,7 +8,13 @@
       @host { :scope {display: block;} }
 
       #wrapper{
-        background-color: rgb(242, 242, 242);
+        padding: 30px 0px 200px;
+        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
+        position: relative;
+        background-position: 50% 0px;
       }
 
       .title{
@@ -22,7 +29,6 @@
       .container{
         width: 100%;
         max-width: 1000px;
-        margin: 10px auto;
         background-color: #FFF;
         padding: 20px;
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -45,23 +51,6 @@
                 border-bottom: 2px solid #FFF;
       }
 
-
-      /* Responsive small screen*/
-      @media all and (min-width: 800px){
-        .element{
-          -webkit-flex: 0 1 100% !important;
-          flex: 0 1 100% !important;
-        }
-      }
-
-      #credits{
-        padding: 20px 0px;
-        font-size: 14px;
-        line-height: normal;
-        background-color: rgb(242,242, 242);
-        text-align: center;
-      }
-
       #liveContent, #prevContent{
         padding: 20px 10px;
         display: -webkit-box;
@@ -73,48 +62,74 @@
         flex-direction: row;
       }
 
+      h2{
+        font-family: 'Open Sans';
+        margin: 0;
+        padding: 0;
+        color: rgb(218, 26, 26);
+      }
+
+      h2 span{
+        display: block;
+        z-index: 1;
+        font-family: sans-serif;
+      }
+
+      span.small{
+        font-style: italic;
+        font-weight: 100;
+        font-size: 31px;
+      }
+
+      span.large{
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 102px;
+        line-height: 1.05;
+        letter-spacing: -3px;
+      }
+
     </style>
 
-    <div id="wrapper">
-      <div style="background: #FFF;">
-        <div id="introContent" class="wrapper" style="color:#353535; font-size: 25px;padding: 20px;text-align: center;line-height: normal;">We do live events</div>
-      </div>
-
-    <section id="live" class="element">
+    <div id="wrapper" data-speed="50">
       <div class="container">
-        <div id="liveSectionTitle" class="title">Next talk</div>
-        <template if="{{live != null}}">
-          <template repeat="{{event in live.feed.entry}}">
-            <template if="{{event.gsx$section.$t === 'next'}}">
-              <div id="liveContent">
-                <event-element event="{{event}}"></event-element>
-              </div>
-              <a href="{{event.gsx$hangout.$t}}" target="_blank" style="text-align: center;display: block;">Ask questions to {{event.gsx$speaker.$t}} in the G+ Hangout!</a>
+        <h2>
+          <span class="small">We stream live</span>
+          <span class="large">events</span>
+        </h2>
+
+        <section id="live">
+          <div id="liveSectionTitle" class="title">Next talk</div>
+          <template if="{{live != null}}">
+            <template repeat="{{event in live.feed.entry}}">
+              <template if="{{event.gsx$section.$t === 'next'}}">
+                <div id="liveContent">
+                  <event-element event="{{event}}"></event-element>
+                </div>
+                  <a href="{{event.gsx$hangout.$t}}" target="_blank" style="text-align: center;display: block;">Ask questions to {{event.gsx$speaker.$t}} in the G+ Hangout!</a>
+              </template>
             </template>
           </template>
-        </template>
-      </div>
-    </section>
+        </section>
 
-    <section id="prev" class="element" data-type="background" data-speed="50">
-      <div class="container">
-        <div id="prevTitle" class="title">Past talks</div>
-        <template if="{{live != null}}">
-          <template repeat="{{event in live.feed.entry}}">
-            <template if="{{event.gsx$section.$t === 'past'}}">
-              <div id="prevContent">
-                <event-element event="{{event}}"></event-element>
-              </div>
+        <section id="prev" class="element" data-type="background" data-speed="50">
+          <div id="prevTitle" class="title">Past talks</div>
+          <template if="{{live != null}}">
+            <template repeat="{{event in live.feed.entry}}">
+              <template if="{{event.gsx$section.$t === 'past'}}">
+                <div id="prevContent">
+                  <event-element event="{{event}}"></event-element>
+                </div>
+              </template>
             </template>
           </template>
-        </template>
+        </section>
+
       </div>
-    </section>
+    </div>
 
-    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project</div>
+    <footer-element></footer-element>
 
-  </div>
-  
   <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHdNOUMxWVVvQkJlQUZvYTFQX0t5OXc/od6/public/values?alt=json-in-script&callback=" response="{{live}}"></polymer-jsonp>
 
   </template>
@@ -129,17 +144,21 @@
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+
+        var _this = this;
+        addEventListener('WebComponentsReady', function() {
+          _this.main = $(_this.parentNode).closest('#main');
+          _this.elt = $(_this.$.wrapper);
+        });
       },
       scrollToSectionChanged: function(){
-        window.console.log('-LIVE- SCROLL');
         if(this.reloaded == 1){
-          window.console.log('skip...');
           this.reloaded = 0;
           return;
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = this.main.scrollTop();
 
         // Get id of current scroll item
         var current= this.currentSection;
@@ -155,6 +174,18 @@
             currentIndex = i;
            }
         }
+
+        var diff = this.$.wrapper.offsetTop;
+        var off = diff - fromTop; 
+        var hei = this.$.wrapper.offsetHeight;
+
+        var yPos = off/hei;
+        // Put together our final background position
+        var coords = '50% '+ yPos*this.elt.data('speed') + 'px';
+
+        // Move the background
+        this.elt.css({
+         backgroundPosition: coords});
 
         if(this.jumpToSection == 0){
           
@@ -175,9 +206,7 @@
             index = this.currentSectionIndex;
           }
 
-          window.console.log(index);
           var divID = this.sections[index];
-                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,

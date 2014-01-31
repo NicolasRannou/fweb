@@ -1,30 +1,16 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="footer.html">
 
 <polymer-element name="home-element" attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
-      .masthead{
-        height: 232px;
-        background: rgb(0, 153, 153);
-      }
-
-      .masthead .container{
-        background: radial-gradient(ellipse farthest-side at bottom,#FFF 0,rgb(0, 153, 153) 100%);
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        height: 100%;
-        position: relative;
-      }
 
       #image{
-        position: absolute;
-        right: 10px;
-        top: 30px;
+        float:right;
         width: 350px;
         height: 170px;
-        background: url(../images/background/surfview.png) center top no-repeat; 
+        background: url(../images/moco.png) center top no-repeat; 
         -webkit-background-size: contain;
         -moz-background-size: contain;
         -o-background-size: contain;
@@ -34,8 +20,7 @@
         font-family: 'Open Sans';
         margin: 0;
         padding: 0;
-        color: #FFF;
-        text-shadow: 0 2px 2px rgba(0,0,0,0.4);
+        color: rgb(0, 157, 233);
       }
 
       div{
@@ -44,7 +29,6 @@
 
       span{
         display: block;
-        position: absolute;
         z-index: 1;
         font-family: sans-serif;
       }
@@ -52,149 +36,61 @@
       span.small{
         font-style: italic;
         font-weight: 100;
-        left: 5%;
-        top: 44px;
         font-size: 12px;
-        color: #000);
         font-size: 31px;
-        left: 5%;
       }
 
       span.large{
         font-weight: 700;
         text-transform: uppercase;
-        width: 65%;
-        left: 5.5%;
-        top: 86px;
         font-size: 32px;
         font-size: 102px;
-        left: 13.5%;
-        width: 64%;
         line-height: 1.05;
         letter-spacing: -3px;
       }
 
-      #about{
-        background: url(../images/background/baby_happy.jpg) 50% 0 no-repeat fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        background-position: 50% 12.0833333px;
-        min-height: 500px;
-        position: relative;
-        background-color: #ddd;
-        padding: 80px 0;
+      #welcome{
         font-size: 30px;
         line-height: normal;
-                padding-right: 500px;
       }
 
-      #about .container{
-/*        position: absolute;*/
+      #welcome .container{
         width: 100%;
         max-width: 1000px;
-                margin: 0 auto;
-/*        left: 200px;*/
-background-color: rgba(196, 196, 196, 0.5);
-padding: 20px;
-border-radius: 5px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.75);
+        padding: 20px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box; 
+        -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+        border-radius: 5px;
       }
+
       #about .container p{
         padding: 10px 0;
       }
 
-      #research{
-        background: url(../images/background/mri-magnetom-trio-tim.jpg) 50% 0 no-repeat fixed;
+      #wrapper {
+        padding: 30px 0px 200px;
+        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-attachment: fixed;
         -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
         background-size: cover;
-        min-height: 500px;
-        background-color: #999;
-        padding: 80px 0;
-        font-size: 30px;
-        line-height: normal;
         position: relative;
-         padding-left: 500px;
+        background-position: 50% 0px;
       }
 
-      #research .container{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: #fff;
-        background-color: rgba(0, 0, 0, .5);
-/*right: 200px;*/
-padding: 20px;
-border-radius: 5px;
+      .content{
+        font-size:25px;
+        padding: 20px 0;
       }
-      #research .container p{
-        padding: 10px 0;
-      }
-
-      #researchContent, #generalContent, #softwareContent{
-        box-sizing: border-box;
-      }
-
-      #software{
-        background: url(../images/background/chris.png) 50% 0 no-repeat fixed;
-        min-height: 500px;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        padding: 80px 0;
-        font-size: 30px;
-        line-height: normal;
-        position: relative;
-      }
-
-      #software .container{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: #fff;
-background-color: rgba(0, 0, 0, .8);
-padding: 20px;
-border-radius: 5px;
-      }
-      #software .container p{
-        padding: 10px 0;
-      }
-
-      #credits{
-padding: 20px 0px;
-font-size: 14px;
-line-height: normal;
-background-color: rgb(242,242, 242);
-text-align: center;
-      }
-
-      .wrapper {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;  
-        -webkit-flex-flow: row wrap;
-      }
-
-    /* Responsive small screen*/
-    @media all and (min-width: 800px){
-      .element{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }
-    }
     </style>
 
-  <div id="wrapper">
-   <section id="welcome" class="masthead element" data-type="background" data-speed="50">
-
-       <div class="container">
+  <div id="wrapper" data-speed="50">
+    <section id="welcome">
+      <div class="container">
+        <div style="padding-bottom: 50px;">
         <div id="image"></div>
         <h2>
           <span class="small">Welcome to the</span>
@@ -202,26 +98,14 @@ text-align: center;
         </h2>
       </div>
 
-         <canvas id="canvas" style="display: block; position: absolute;
-top: 0;
-left: 0; "></canvas>
+      <div id="generalContent" class="content"></div>
+      <div id="researchContent" class="content"></div>
+      <div id="softwareContent" class="content"></div>
+      </div>
     </section>
-
-    <section id="about" class="element" data-type="background" data-speed="50">
-      <div id="generalContent" class="container"></div>
-    </section>
-
-    <section id="research" class="element" data-type="background" data-speed="50">
-      <div id="researchContent" class="container"></div>
-    </section>
-
-    <section id="software" class="element" data-type="background" data-speed="50">
-      <div id="softwareContent" class="container"></div>
-    </section>
-
-    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
-    </div>
   </div>
+
+    <footer-element></footer-element>
  
 <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AixJ3QQvklnmdG5jNUYyaXo2WU1sM29Za1k3bGlSV1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
 
@@ -234,12 +118,17 @@ left: 0; "></canvas>
       jumpToSection: 0,
       jumpSkip: 0,
       reloaded: 0,
+      elt: null,
+      main:null,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
 
-        //canvas init snow
-        this.letitsnow();
+        var _this = this;
+        addEventListener('WebComponentsReady', function() {
+          _this.main = $(_this.parentNode).closest('#main');
+          _this.elt = $(_this.$.wrapper);
+        });
       },
       scrollToSectionChanged: function(){
         if(this.reloaded == 1){
@@ -248,7 +137,8 @@ left: 0; "></canvas>
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = this.main.scrollTop();
+
         // Get id of current scroll item
         var current= this.currentSection;
         var currentIndex = this.currentSectionIndex;
@@ -264,57 +154,20 @@ left: 0; "></canvas>
            }
         }
 
-        // parralax current section
-           // parallax
-           // get jquery element
-           // from previous section instead!
+        var diff = this.$.wrapper.offsetTop;
+        var off = diff - fromTop; 
+        var hei = this.$.wrapper.offsetHeight;
 
+        var yPos = off/hei;
+        // Put together our final background position
+        var coords = '50% '+ yPos*this.elt.data('speed') + 'px';
 
-           var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex]);
-           // offset + height: get %
-           var diff = this.$[this.sections[currentIndex]].offsetTop;
-           var off = diff - fromTop; 
-           var hei = this.$[this.sections[currentIndex]].offsetHeight;
-
-
-          var yPos = off/hei;
-          // Put together our final background position
-          var coords = '50% '+ yPos*elt.data('speed') + 'px';
-          // Move the background
-          elt.css({
-           backgroundPosition: coords});
-
-
-           var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
-           if(elt.length){
-           var diff = this.$[this.sections[currentIndex + 1]].offsetTop;
-           var off = diff - fromTop; 
-           var hei = this.$[this.sections[currentIndex + 1]].offsetHeight;
-
-
-          var yPos = off/hei;
-          // Put together our final background position
-          var coords = '50% '+ yPos*elt.data('speed') + 'px';
-          // Move the background
-          elt.css({
-           backgroundPosition: coords});
-        }
-
-        // // and next...!
-        //    var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
-        //    var yPos = -(fromTop / elt.data('speed'));
-        //    // Put together our final background position
-        //    var coords = '50% '+ yPos + 'px';
-        //    // Move the background
-        //    elt.css({
-        //     backgroundPosition: coords,
-        //     '-webkit-background-size': 'cover',
-        //     '-moz-background-size': 'cover',
-        //     '-o-background-size': 'cover',
-        //     'background-size': 'cover'});
+        // Move the background
+        this.elt.css({
+         backgroundPosition: coords});
 
         if(this.jumpToSection == 0){
-
+          
            if(lastIndex != currentIndex){
              this.currentSection = current;
              this.currentSectionIndex = currentIndex;
@@ -323,8 +176,7 @@ left: 0; "></canvas>
         }
       },
       jumpToSectionChanged: function(){
-        window.console.log(this.jumpToSection);
-         if(this.jumpToSection == 0 || this.jumpToSection > 1){
+         if(this.jumpToSection == 0){
            return;
          };
           // maybe not necessary
@@ -333,22 +185,15 @@ left: 0; "></canvas>
             index = this.currentSectionIndex;
           }
 
-          window.console.log(index);
           var divID = this.sections[index];
-                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
-                      _this.reloaded = 1;
           _this.jumpToSection = 0;
-
-          // _this.currentSection = divID;
+          _this.reloaded = 1;
           }); 
-
-//           var _this = this;
-// setTimeout(function(){_this.jumpToSection = 0;}, 50);
       },
       postsChanged: function() {
         if(this.posts){
@@ -356,93 +201,6 @@ left: 0; "></canvas>
           this.$.researchContent.innerHTML = this.posts.feed.entry[0].gsx$research.$t;
           this.$.softwareContent.innerHTML = this.posts.feed.entry[0].gsx$software.$t;
         }
-      },
-      letitsnow: function(){
-                // credits
-        //http://thecodeplayer.com/walkthrough/html5-canvas-snow-effect
-  var canvas = this.$.canvas;
-  var ctx = canvas.getContext("2d");
-  
-  //canvas dimensions
-  var W = window.innerWidth;
-  var H = window.innerHeight;
-  canvas.width = W;
-  canvas.height = 232;
-  
-  //snowflake particles
-  var mp = 100; //max particles
-  var particles = [];
-  for(var i = 0; i < mp; i++)
-  {
-    particles.push({
-      x: Math.random()*W, //x-coordinate
-      y: Math.random()*H, //y-coordinate
-      r: Math.random()*4+1, //radius
-      d: Math.random()*mp //density
-    })
-  }
-  
-  //Lets draw the flakes
-  function draw()
-  {
-    ctx.clearRect(0, 0, W, H);
-    
-    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-    ctx.beginPath();
-    for(var i = 0; i < mp; i++)
-    {
-      var p = particles[i];
-      ctx.moveTo(p.x, p.y);
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
-    }
-    ctx.fill();
-    update();
-  }
-  
-  //Function to move the snowflakes
-  //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
-  var angle = 0;
-  function update()
-  {
-    angle += 0.01;
-    for(var i = 0; i < mp; i++)
-    {
-      var p = particles[i];
-      //Updating X and Y coordinates
-      //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
-      //Every particle has its own density which can be used to make the downward movement different for each flake
-      //Lets make it more random by adding in the radius
-      p.y += Math.cos(angle+p.d) + 1 + p.r/2;
-      p.x += Math.sin(angle) * 2;
-      
-      //Sending flakes back from the top when it exits
-      //Lets make it a bit more organic and let flakes enter from the left and right also.
-      if(p.x > W+5 || p.x < -5 || p.y > H)
-      {
-        if(i%3 > 0) //66.67% of the flakes
-        {
-          particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
-        }
-        else
-        {
-          //If the flake is exitting from the right
-          if(Math.sin(angle) > 0)
-          {
-            //Enter from the left
-            particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
-          }
-          else
-          {
-            //Enter from the right
-            particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
-          }
-        }
-      }
-    }
-  }
-  
-  //animation loop
-  setInterval(draw, 33);
       }
     });
   </script>

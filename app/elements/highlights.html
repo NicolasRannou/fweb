@@ -1,80 +1,45 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
-<!-- <link rel="import" href="img-slider.html"> -->
+<link rel="import" href="footer.html">
 
 <polymer-element name="highlights-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
 
-#wrapper{
-background: rgb(242, 242, 242);
+      #wrapper{
+        padding: 30px 0px 200px;
+        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
+        position: relative;
+        background-position: 50% 0px;
+      }
 
-}
 
-
-            .title{
+      .title{
         color: rgb(26, 187, 218);
-font-size: 25px;
-line-height: normal;
-padding: 10px;
-border-bottom: 1px solid rgb(26, 187, 218);
-margin-bottom: 10px;
+        font-size: 25px;
+        line-height: normal;
+        padding: 10px;
+        border-bottom: 1px solid rgb(26, 187, 218);
+        margin-bottom: 10px;
       }
 
 
       .container{
-/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 10px auto;
-/*        left: 200px;*/
-background-color: #FFF;
-padding: 20px 0;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box; 
-  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
-border-radius: 5px;
-font-size: 16px;
-padding: 20px;
+        background-color: #FFF;
+        padding: 20px 0;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box; 
+        -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 20px;
       }
-
-            .containerH{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-margin: 0 auto;
-/*        left: 200px;*/
-background-color: #191919;
-padding: 20px 0;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box; 
-font-size: 16px;
-      }
-
-
-#main{
-  overflow-y: auto!important;
-margin-right: 0px!important;
-}
-
-    /* Responsive small screen*/
-    @media all and (max-width: 800px){
-      .wrapper {
-margin: 0!important;
-width: 100%!important;
-}
-    }
-
-    /* Responsive small screen*/
-    @media all and (min-width: 1001px){
-      .wrapper {
-      margin: 0 auto;
-width: 1000px;
-}
-
-    }
 
      .icon{
         font-weight: normal;
@@ -85,362 +50,330 @@ width: 1000px;
      .talk::before{
         content:"\f130\ Talk";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
      .award::before{
         content:"\f18c\ Award";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
      .paper::before{
         content:"\f02d\ Paper";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
      .poster::before{
         content:"\f075\ Poster";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
     .workshop::before{
         content:"\f085\ Workshop";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
     .grant::before{
         content:"\f155\ Grant";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
     .general::before{
         content:"\f05a\ Info";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
     .press::before{
         content:"\f06c\ Press";
         color: #FFF;
-          padding: 5px;
+        padding: 5px;
         background:#08C;
      }
 
-#owl-demo .item{
-    display: block;
-    width: 100%;
-    height: auto;
-}
+    #owl-demo .item{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-#owl-demo .item img{
+    #owl-demo .item img{
+      display: block;
+      height: auto;
+      margin:auto;
+    }
+
+  .flex-item{
+    background:tomato;
+    padding: 5px;
+    width: 200px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .image { 
     display: block;
-/*    width: 80%;*/
-    height: auto;
+    position: relative; 
+    width: 80%; /* for IE 6 */
+    height:100%;
     margin:auto;
-}
+  }
 
-.wrapper2{
-padding: 0;
-  margin: 0;
-  list-style: none;
-  
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  
-  -webkit-flex-flow: row wrap;
-  justify-content: center;
-}
-.flex-item{
-  background:tomato;
-/*    background: tomato;*/
-  padding: 5px;
-  width: 200px;
-/*  height: 150px;*/
-  margin-top: 10px;
-  
-/*  line-height: 150px;*/
-  color: white;
-  font-weight: bold;
-/*  font-size: 3em;*/
-  text-align: center;
-}
+  .image-info{
+    position: absolute; 
+    top: 100px; 
+    left: 50px; 
+    font-size: 25px;
+    font-weight: bold;
+    line-height: normal;
+    color: #000;
+    padding: 20px;
+    background-color: #de2;
+  }
 
-.image { 
-  display: block;
-   position: relative; 
-   width: 80%; /* for IE 6 */
-   height:100%;
-   margin:auto;
-}
-.image-info{
-   position: absolute; 
-   top: 100px; 
-   left: 50px; 
-   font-size: 25px;
-   font-weight: bold;
-   line-height: normal;
-color: #000;
-padding: 20px;
-background-color: #de2;
-}
-.image-link{
-   position: absolute; 
-   bottom: 80px; 
-   right: 50px; 
-   padding: 20px;
-background: #FFF;
-color:rgb(0, 136, 204);
-font-size: 60px;
-line-height: normal;
-cursor: pointer;
-}
+  .image-link{
+    position: absolute; 
+    bottom: 80px; 
+    right: 50px; 
+    padding: 20px;
+    background: #FFF;
+    color:rgb(0, 136, 204);
+    font-size: 60px;
+    line-height: normal;
+    cursor: pointer;
+  }
 
-.image-caption {
-  width:100%;
-  position:absolute;
-  bottom: 0;
-text-align: center;
-padding: 10px 0;
-background-color: rgba(0, 0, 0, 0.9);
-color: #FFF;
-font-size: 40px;
-line-height: 40px;
-}
+  .image-caption {
+    width:100%;
+    position:absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #FFF;
+    font-size: 40px;
+    line-height: 40px;
+  }
 
-.video-caption {
-  width:915px;
-text-align: center;
-padding: 10px 0;
-background-color: rgba(0, 0, 0, 0.9);
-color: #FFF;
-font-size: 40px;
-line-height: 40px;
-margin:auto;
-}
+  .video-caption {
+    width:915px;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #FFF;
+    font-size: 40px;
+    line-height: 40px;
+    margin:auto;
+  }
 
-      #credits{
-padding: 20px 0px;
-font-size: 14px;
-line-height: normal;
-background-color: rgb(242,242, 242);
-text-align: center;
-      }
+  .info{
+    background-color: #FFF;
+    padding: 10px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
 
-      section{
-                  border-bottom: 1px solid #FFF;
-}
+  .content{
+    -webkit-flex: 1 100%;
+    -moz-flex: 1 100%;
+    -ms-flex: 1 100%;
+    flex: 1 100%;
+    margin-left: 10px;
+  }
 
-.info{
-  background-color: #FFF;
-padding: 10px;
+  .tags{
+    -webkit-flex: none;
+    -moz-flex: none;
+    -ms-flex: none;
+    flex: none;
+  }
 
-display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+  h2{
+    font-family: 'Open Sans';
+    margin: 0;
+    padding: 0;
+    color: rgb(26, 187, 218);
+  }
 
-      -webkit-flex-direction: row;
-      flex-direction: row;
-}
+  h2 span{
+    display: block;
+    z-index: 1;
+    font-family: sans-serif;
+  }
 
+  span.small{
+    font-style: italic;
+    font-weight: 100;
+    font-size: 31px;
+  }
 
-.content{
--webkit-flex: 1 100%;
-  -moz-flex: 1 100%;
-  -ms-flex: 1 100%;
-  flex: 1 100%;
-  margin-left: 10px;
-}
+  span.large{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 102px;
+    line-height: 1.05;
+    letter-spacing: -3px;
+  }
 
-.tags{
--webkit-flex: none;
-  -moz-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-    </style>
+  </style>
 
     <!-- Important Owl stylesheet -->
-<link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.carousel.css">
  
-<!-- Default Theme -->
-<link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.theme.css">
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.theme.css">
 
-  <div id="wrapper">
 
-    <div style="background: #FFF;;
-
-">
-<div style="color:#353535; font-size: 25px;
-padding: 20px;text-align: center;
-line-height: normal;">
-What we do
-</div>
-</div>
-
-    <section id="highlights" style="background-color: #191919;">
-<div class="containerH">
-<div id="owl-demo" class="owl-carousel">
- 
-  <div class="item">
-
-    <a href="http://goo.gl/oML6sw" target="_blank" class="image">
-      <img src="../images/highlights/h1.png">
-      <div class="image-info">" Wow! "<br/>" Amazing! "</div>
-<!--       <a href="http://goo.gl/oML6sw" target="_blank" class="image-link">Try it now!</a> -->
-      <div class="image-caption">Real-time MRI reslicing in the web browser</div>
-    </a>
-  </div>
-  <div class="item">
-<!--     <div id="highlight2video"></div>
-    <div class="video-caption">The BABY MEG system</div> -->
-      <a href="http://goo.gl/oML6sw" target="_blank" class="image">
-      <img src="../images/highlights/h2.png">
-      <div class="image-caption">Highlight #2</div>
-    </a>
-  </div>
-  <div class="item">
-    <a href="http://goo.gl/oML6sw" target="_blank" class="image">
-      <img src="../images/highlights/h3.png">
-      <div class="image-caption">Highlight #3</div>
-    </a>
-  </div>
- 
-</div>
-</div>
-  </section>
-
-    <section id="2014">
+    <div id="wrapper" data-speed="50">
       <div class="container">
-  <div class="title">2014</div>
-  <div>
-        <template if="{{highlights != null}}">
-   <template repeat="{{highlight in highlights.feed.entry}}">
-    <template if="{{highlight.gsx$year.$t === '2014'}}">
+        <h2>
+          <span class="small">What we</span>
+          <span class="large">do</span>
+        </h2>
 
+        <section id="highlights">
+          <div class="title">highlights</div>
+          <div id="owl-demo" class="owl-carousel">
+            <div class="item">
+              <a href="http://goo.gl/oML6sw" target="_blank" class="image">
+                <img src="../images/highlights/h1.png">
+                <div class="image-info">" Wow! "<br/>" Amazing! "</div>
+                <div class="image-caption">Real-time MRI reslicing in the web browser</div>
+              </a>
+            </div>
+            <div class="item">
+              <a href="http://goo.gl/oML6sw" target="_blank" class="image">
+                <img src="../images/highlights/h2.png">
+                <div class="image-caption">Highlight #2</div>
+              </a>
+            </div>
+            <div class="item">
+                <a href="http://goo.gl/oML6sw" target="_blank" class="image">
+                  <img src="../images/highlights/h3.png">
+                  <div class="image-caption">Highlight #3</div>
+                </a>
+            </div>
+          </div>
+        </section>
 
-   <div class="info" >
-    <div class="tags">
-          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
-    </span></div>
+        <section id="2014">
+          <div class="title">2014</div>
+          <template if="{{highlights != null}}">
+            <template repeat="{{highlight in highlights.feed.entry}}">
+              <template if="{{highlight.gsx$year.$t === '2014'}}">
+                <div class="info" >
+                  <div class="tags">
+                    <div class="icon {{highlight.gsx$category.$t}}">
+                      <span style="padding-left:5px;">
+                        <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+                      </span>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{highlight.gsx$content.$t}}
+                    <template if="{{highlight.gsx$link.$t != null}}">
+                      <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </template>
+        </section>
+
+        <section id="2013">
+          <div class="title">2013</div>
+          <template if="{{highlights != null}}">
+            <template repeat="{{highlight in highlights.feed.entry}}">
+              <template if="{{highlight.gsx$year.$t === '2013'}}">
+                <div class="info" >
+                  <div class="tags">
+                    <div class="icon {{highlight.gsx$category.$t}}">
+                      <span style="padding-left:5px;">
+                        <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+                      </span>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{highlight.gsx$content.$t}}
+                    <template if="{{highlight.gsx$link.$t != null}}">
+                      <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </template>
+        </section>
+
+        <section id="2012">
+          <div class="title">2012</div>
+          <template if="{{highlights != null}}">
+            <template repeat="{{highlight in highlights.feed.entry}}">
+              <template if="{{highlight.gsx$year.$t === '2012'}}">
+                <div class="info" >
+                  <div class="tags">
+                    <div class="icon {{highlight.gsx$category.$t}}">
+                      <span style="padding-left:5px;">
+                        <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+                      </span>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{highlight.gsx$content.$t}}
+                    <template if="{{highlight.gsx$link.$t != null}}">
+                      <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </template>
+        </section>
+
+        <section id="2011">
+          <div class="title">2011</div>
+          <template if="{{highlights != null}}">
+            <template repeat="{{highlight in highlights.feed.entry}}">
+              <template if="{{highlight.gsx$year.$t === '2011'}}">
+                <div class="info" >
+                  <div class="tags">
+                    <div class="icon {{highlight.gsx$category.$t}}">
+                      <span style="padding-left:5px;">
+                        <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
+                      </span>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{highlight.gsx$content.$t}}
+                    <template if="{{highlight.gsx$link.$t != null}}">
+                      <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </template>
+        </section>
+
+      </div>
     </div>
-    <div class="content">
-      {{highlight.gsx$content.$t}}
-      <template if="{{highlight.gsx$link.$t != null}}">
-        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
-      </template>
-    </div>
-  </div>
 
-</template>
-    </template>
-  </template>
-  </div>
-</div>
-  </section>
-
-    <section id="2013">
-      <div class="container">
-  <div class="title">2013</div>
-  <div>
-        <template if="{{highlights != null}}">
-   <template repeat="{{highlight in highlights.feed.entry}}">
-    <template if="{{highlight.gsx$year.$t === '2013'}}">
-
-
-   <div class="info" >
-    <div class="tags">
-          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
-    </span></div>
-    </div>
-    <div class="content">
-      {{highlight.gsx$content.$t}}
-      <template if="{{highlight.gsx$link.$t != null}}">
-        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
-      </template>
-    </div>
-  </div>
-
-</template>
-    </template>
-  </template>
-  </div>
-</div>
-  </section>
-
-    <section id="2012">
-      <div class="container">
-  <div class="title">2012</div>
-  <div>
-        <template if="{{highlights != null}}">
-  <template repeat="{{highlight in highlights.feed.entry}}">
-    <template if="{{highlight.gsx$year.$t === '2012'}}">
-
-   <div class="info" >
-    <div class="tags">
-          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
-    </span></div>
-    </div>
-    <div class="content">
-      {{highlight.gsx$content.$t}}
-      <template if="{{highlight.gsx$link.$t != null}}">
-        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
-      </template>
-    </div>
-  </div>
-
-  </template>
-    </template>
-  </template>
-  </div>
-</div>
-  </section>
-
-    <section id="2011">
-      <div class="container">
-  <div class="title">2011</div>
-  <div>
-    <template if="{{highlights != null}}">
-  <template repeat="{{highlight in highlights.feed.entry}}">
-    <template if="{{highlight.gsx$year.$t === '2011'}}">
-
-   <div class="info">
-    <div class="tags">
-          <div class="icon {{highlight.gsx$category.$t}}"><span style="padding-left:5px;">
-      <span class="flex-item" style="font-weight:bold">{{highlight.gsx$year.$t}}-{{highlight.gsx$month.$t}}-{{highlight.gsx$day.$t}}</span> 
-    </span></div>
-    </div>
-    <div class="content">
-      {{highlight.gsx$content.$t}}
-      <template if="{{highlight.gsx$link.$t != null}}">
-        <a href="{{highlight.gsx$link.$t}}">{{highlight.gsx$linkname.$t}}</a>
-      </template>
-    </div>
-  </div>
-
-  </template>
-    </template>
-  </template>
-   </div>
-  </div>
-  </section>
-
-        <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
-    </div>
+    <footer-element></footer-element>
   
-  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHlaTndWaUVmOHRpRTMzX3VmWW9VVFE/od6/public/values?alt=json-in-script&callback=" response="{{highlights}}"></polymer-jsonp>
+    <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdHlaTndWaUVmOHRpRTMzX3VmWW9VVFE/od6/public/values?alt=json-in-script&callback=" response="{{highlights}}"></polymer-jsonp>
 
   </template>
 
@@ -460,33 +393,27 @@ What we do
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
         var _this = this;
         addEventListener('WebComponentsReady', function() {
-
-$('#owl-demo').owlCarousel({
- 
-      slideSpeed : 300,
-      paginationSpeed : 400,
-      singleItem:true,
-      autoPlay: 3000,
-      stopOnHover: true,
-      mouseDrag:false,
-      touchDrage:false
-  });
-
-});
-      },
-      reloadedChanged: function(){
-      window.console.log(this.reloaded);
+          _this.main = $(_this.parentNode).closest('#main');
+          _this.elt = $(_this.$.wrapper);
+          $('#owl-demo').owlCarousel({
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem:true,
+            autoPlay: 3000,
+            stopOnHover: true,
+            mouseDrag:false,
+            touchDrage:false
+          });
+        });
       },
       scrollToSectionChanged: function(){
-        window.console.log('-HIGHLIGHTS- SCROLL');
         if(this.reloaded == 1){
-          window.console.log('skip...');
           this.reloaded = 0;
           return;
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = this.main.scrollTop();
 
         // Get id of current scroll item
         var current= this.currentSection;
@@ -503,20 +430,28 @@ $('#owl-demo').owlCarousel({
            }
         }
 
+        var diff = this.$.wrapper.offsetTop;
+        var off = diff - fromTop; 
+        var hei = this.$.wrapper.offsetHeight;
+
+        var yPos = off/hei;
+        // Put together our final background position
+        var coords = '50% '+ yPos*this.elt.data('speed') + 'px';
+
+        // Move the background
+        this.elt.css({
+         backgroundPosition: coords});
+
         if(this.jumpToSection == 0){
           
            if(lastIndex != currentIndex){
              this.currentSection = current;
              this.currentSectionIndex = currentIndex;
            };
-
         }
       },
-
       jumpToSectionChanged: function(){
-        window.console.log("-HIGHLIGHTS- JUMP");
          if(this.jumpToSection == 0){
-           window.console.log('skip...');
            return;
          };
           // maybe not necessary
@@ -525,9 +460,7 @@ $('#owl-demo').owlCarousel({
             index = this.currentSectionIndex;
           }
 
-          window.console.log(index);
           var divID = this.sections[index];
-                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
@@ -536,8 +469,7 @@ $('#owl-demo').owlCarousel({
           _this.jumpToSection = 0;
           _this.reloaded = 1;
           }); 
-      }
+        }
     });
-
   </script>
 </polymer-element>

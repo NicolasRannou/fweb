@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="footer.html">
 
 <polymer-element name="research-element"  attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
@@ -6,156 +7,139 @@
     <style>
       @host { :scope {display: block;} }
 
-      .wrapper {
-      margin: 0 auto;
-width: 800px;
-
-
-
-}
-section{
-/*  background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(239, 239, 239) 100%);*/
-}
-#wrapper{
-
-background: rgb(242, 242, 242);
-}
-      #challenges{
-/*        min-height: 800px;*/
+      #wrapper{
+        padding: 30px 0px 200px;
+        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
         position: relative;
-/*        background-color: #ddd;*/
-        font-size: 30px;
-/*        line-height: normal;*/
-border-bottom: 1px solid #FFF;
-/*        margin-bottom: -50px;*/
+        background-position: 50% 0px;
+      }
 
+      #challenges{
+        position: relative;
+        font-size: 30px;
+        border-bottom: 1px solid #FFF;
       }
 
       .container{
-/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 10px auto;
-/*        left: 200px;*/
-background-color: #FFF;
-padding: 20px;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box; 
-  -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
-border-radius: 5px;
-font-size: 16px;
+        background-color: #FFF;
+        padding: 20px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box; 
+        -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+        border-radius: 5px;
+        font-size: 16px;
       }
-.container p{
+
+      .container p{
         padding: 10px 0;
       }
 
-      #mri{
-
-/*        min-height: 800px;*/
-/*        background-color: #999;*/
-/*        padding: 80px 0;*/
-        font-size: 30px;
-/*        line-height: normal;*/
-        position: relative;
-border-bottom: 1px solid #FFF;
-/*         padding-left: 500px;*/
-      }
-
       .container li{
-      line-height: normal;
+        line-height: normal;
       }
 
-      #nirs{
-
-        font-size: 30px;
-/*        line-height: normal;*/
-        position: relative;
-border-bottom: 1px solid #FFF;
-      }
-
-            #meg{
-
-        font-size: 30px;
-/*        line-height: normal;*/
-        position: relative;
-border-bottom: 1px solid #FFF;
-      }
-
-
-    /* Responsive small screen*/
-    @media all and (min-width: 800px){
-      .element{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
-      }
-    }
-
-          #credits{
-padding: 20px 0px;
-font-size: 14px;
-line-height: normal;
-background-color: rgb(242,242, 242);
-text-align: center;
+      /* Responsive small screen*/
+      @media all and (min-width: 800px){
+        .element{
+          -webkit-flex: 0 1 100% !important;
+          flex: 0 1 100% !important;
+        }
       }
 
       .title{
         color: rgb(18, 189, 79);
-font-size: 25px;
-line-height: normal;
-padding: 10px;
-border-bottom: 1px solid rgb(18, 189, 79);
-margin-bottom: 10px;
+        font-size: 25px;
+        line-height: normal;
+        padding: 10px;
+        border-bottom: 1px solid rgb(18, 189, 79);
+        margin-bottom: 10px;
+      }
+
+      .content{
+        font-size: 16px;
+      }
+
+      h2{
+        font-family: 'Open Sans';
+        margin: 0;
+        padding: 0;
+        color: rgb(18, 189, 79);
+      }
+
+      div{
+        display: block;
+      }
+
+      span{
+        display: block;
+        z-index: 1;
+        font-family: sans-serif;
+      }
+
+      span.small{
+        font-style: italic;
+        font-weight: 100;
+        font-size: 12px;
+        font-size: 31px;
+      }
+
+      span.large{
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 32px;
+        font-size: 102px;
+        line-height: 1.05;
+        letter-spacing: -3px;
       }
 
     </style>
 
-<div id="wrapper">
-
-    <div style="background: #FFF;">
-<div id="introContent" class="wrapper" style="color:#353535; font-size: 25px;
-padding: 20px;text-align: center;
-line-height: normal;">
-
-</div>
-</div>
-
-<section id="challenges" class="element" data-type="background" data-speed="50">
-    <div class="container">
-  <div id="challengesTitle" class="title"></div>
-  <div id="challengesContent"></div>
-    </div>
-</section>
-
-<section id="mri" class="element" data-type="background" data-speed="50">
+    <div id="wrapper" data-speed="50">
       <div class="container">
-  <div id="mriTitle" class="title"></div>
-  <div id="mriContent"></div>
-</div>
-</section>
+        <h2>
+          <span class="small">Our research addresses critical needs in the pediatric </span>
+          <span class="large">population</span>
+        </h2>
 
-<section id="nirs" class="element" data-type="background" data-speed="50">
-      <div class="container">
-  <div id="nirsTitle" class="title"></div>
-  <div id="nirsContent" ></div>
-</div>
-</section>
+        <section id="challenges" class="element">
+          <div id="challengesTitle" class="title"></div>
+          <div id="challengesContent" class="content"></div>
+          <div style='clear:both;'></div>
+        </section>
 
-<section id="meg" class="element" data-type="background" data-speed="50">
-      <div class="container">
-  <div id="megTitle" class="title"></div>
-  <div id="megContent" ></div>
-</div>
-</section>
+        <section id="mri" class="element">
+          <div id="mriTitle" class="title"></div>
+          <div id="mriContent" class="content"></div>
+          <div style='clear:both;'></div>
+        </section>
 
-    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+        <section id="nirs" class="element">    
+          <div id="nirsTitle" class="title"></div>
+          <div id="nirsContent" class="content"></div>
+          <div style='clear:both;'></div>
+        </section>
+
+        <section id="meg" class="element">
+          <div id="megTitle" class="title"></div>
+          <div id="megContent" class="content"></div>
+          <div style='clear:both;'></div>
+        </section>
+        
+      </div>
     </div>
 
-  </div>
-  
-  <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdEpPMXFFNFVTU1E5ZXFJSGZjbVJTOGc/od6/public/values?alt=json-in-script&callback=" response="{{research}}"></polymer-jsonp>
+    <footer-element></footer-element>
+
+    <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdEpPMXFFNFVTU1E5ZXFJSGZjbVJTOGc/od6/public/values?alt=json-in-script&callback=" response="{{research}}"></polymer-jsonp>
 
   </template>
+ 
   <script>
     Polymer('research-element', {
       currentSection: '',
@@ -164,20 +148,26 @@ line-height: normal;">
       jumpToSection: 0,
       jumpSkip: 0,
       reloaded: 0,
+      main: null,
+      elt: null,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+
+        var _this = this;
+        addEventListener('WebComponentsReady', function() {
+          _this.main = $(_this.parentNode).closest('#main');
+          _this.elt = $(_this.$.wrapper);
+        });
       },
       scrollToSectionChanged: function(){
-        window.console.log('-RESEARCH- SCROLL');
         if(this.reloaded == 1){
-          window.console.log('skip...');
           this.reloaded = 0;
           return;
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = this.main.scrollTop();
 
         // Get id of current scroll item
         var current= this.currentSection;
@@ -194,6 +184,18 @@ line-height: normal;">
            }
         }
 
+        var diff = this.$.wrapper.offsetTop;
+        var off = diff - fromTop; 
+        var hei = this.$.wrapper.offsetHeight;
+
+        var yPos = off/hei;
+        // Put together our final background position
+        var coords = '50% '+ yPos*this.elt.data('speed') + 'px';
+
+        // Move the background
+        this.elt.css({
+         backgroundPosition: coords});
+
         if(this.jumpToSection == 0){
           
            if(lastIndex != currentIndex){
@@ -204,9 +206,7 @@ line-height: normal;">
         }
       },
       jumpToSectionChanged: function(){
-        window.console.log("-RESEARCH- JUMP");
          if(this.jumpToSection == 0){
-           window.console.log('skip...');
            return;
          };
           // maybe not necessary
@@ -215,9 +215,7 @@ line-height: normal;">
             index = this.currentSectionIndex;
           }
 
-          window.console.log(index);
           var divID = this.sections[index];
-                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
@@ -225,12 +223,11 @@ line-height: normal;">
           },500, function(){
           _this.jumpToSection = 0;
           _this.reloaded = 1;
-          // _this.currentSection = divID;
           }); 
       },
       researchChanged: function() {
         if(this.research){
-          this.$.introContent.innerHTML = this.research.feed.entry[1].gsx$intro.$t;
+          // this.$.introContent.innerHTML = this.research.feed.entry[1].gsx$intro.$t;
           // titles
           this.$.challengesTitle.innerHTML = this.research.feed.entry[0].gsx$challenges.$t;
           this.$.mriTitle.innerHTML = this.research.feed.entry[0].gsx$mri.$t;
@@ -242,7 +239,7 @@ line-height: normal;">
           this.$.nirsContent.innerHTML = this.research.feed.entry[1].gsx$nirs.$t;
           this.$.megContent.innerHTML = this.research.feed.entry[1].gsx$meg.$t;
         }
-      },
+      }
     });
 
   </script>

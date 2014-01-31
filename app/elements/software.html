@@ -1,333 +1,242 @@
 <link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="footer.html">
 
 <polymer-element name="software-element" attributes="currentSection currentSectionIndex jumpToSection scrollToSection reloaded">
   <template>
     <style>
       @host { :scope {display: block;} }
 
-      .wrapper {
-      margin: 0 auto;
-width: 800px;
-
-
-
-}
-section{
-/*  background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(239, 239, 239) 100%);*/
-}
-#wrapper{
-background-color: rgb(242, 242, 242);
-}
-      #labbook{
-
+      #wrapper{
+        padding: 30px 0px 200px;
+        background-image: url(http://localhost:9000/images/background/baby_happy2.png);
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
         position: relative;
-/*        background-color: #ddd;*/
-        font-size: 30px;
-/*        line-height: normal;*/
-        border-bottom: 1px solid #FFF;
-/*        margin-bottom: -50px;*/
+        background-position: 50% 0px;
+      }
 
+      #labbook{
+        position: relative;
+        font-size: 30px;
+        border-bottom: 1px solid #FFF;
       }
 
       .title{
         color: rgb(26, 26, 218);
-font-size: 25px;
-line-height: normal;
-padding: 10px;
-border-bottom: 1px solid rgb(26, 26, 218);
-margin-bottom: 10px;
+        font-size: 25px;
+        line-height: normal;
+        padding: 10px;
+        border-bottom: 1px solid rgb(26, 26, 218);
+        margin-bottom: 10px;
       }
 
       .container{
-/*        position: absolute;*/
         width: 100%;
         max-width: 1000px;
-margin: 10px auto;
-/*        left: 200px;*/
-background-color:#FFF;
-padding: 20px;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box; 
-    -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
-border-radius: 5px;
-font-size: 16px;
+        background-color:#FFF;
+        padding: 20px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box; 
+        -webkit-box-shadow: rgb(204, 204, 204) 1px 1px 10px 0px;
+        border-radius: 5px;
+        font-size: 16px;
       }
 
       .container p{
         padding: 10px 0;
       }
 
-                  #labbook .slider {
-width: 80%;
-margin: 50px auto 0;
+      .slider {
+        width: 100%;
+        margin: 50px auto 0;
       }
 
       #slicedrop{
-
         font-size: 30px;
-/*        line-height: normal;*/
         position: relative;
-                border-bottom: 1px solid #FFF;
-/*         padding-left: 500px;*/
+        border-bottom: 1px solid #FFF;
       }
 
       .buttons{
-          display: flex;
-  flex-flow: row wrap;
-border: 1px solid #0088cc;
-margin-top: 30px;
+        display: flex;
+        flex-flow: row wrap;
+        border: 1px solid #0088cc;
+        margin-top: 30px;
       }
-            .link{
--moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-/*        position: absolute;*/
-/*display:inline-block;*/
+      
+      .link{
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
         width: 50%;
-        color: #fff;
-        
-text-align: center;
-padding:10px;
+        color: #fff;    
+        text-align: center;
+        padding:10px;
       }
-            .source{
--moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-/*        position: absolute;*/
-/*display:inline-block;*/
+      
+      .source{
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
         width: 50%;
         color: #fff;
         border-left: 1px solid #0088cc;
-text-align: center;
-padding:10px;
+        text-align: center;
+        padding:10px;
       }
-
-            #slicedrop .slider {
-width: 80%;
-margin: 50px auto 0;
-      }
-
 
       #xtk{
-
         font-size: 30px;
-/*        line-height: normal;*/
         position: relative;
-                border-bottom: 1px solid #FFF;
+        border-bottom: 1px solid #FFF;
       }
 
       .container ul{
         list-style-position:inside;
       }
       .container li{
-      line-height: normal;
-      }
-
-      #xtk .slider {
-width: 80%;
-margin: 50px auto 0;
-      }
-
-            #more{
-
-        font-size: 30px;
-/*        line-height: normal;*/
-        position: relative;
-                border-bottom: 1px solid #FFF;
-      }
-
-
-      #more .slider {
-width: 80%;
-margin: 50px auto 0;
-      }
-
-
-      #credits{
-        padding: 30px 0;
-        font-size: 20px;
         line-height: normal;
-        position: relative;
-        background-color: grey;
       }
 
-      #credits .container{
-/*        position: absolute;*/
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        color: #000;
-        background-color: rgba(255, 255, 255, .7);
-        padding: 20px;
-      }
-      #credits .container p{
-        padding: 10px 0;
+      #more{
+        font-size: 30px;
+        position: relative;
+        border-bottom: 1px solid #FFF;
       }
 
       #owl-demo .item{
-  margin: 3px;
-}
-#owl-demo .item img{
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-    /* Responsive small screen*/
-    @media all and (min-width: 800px){
-      .element{
-        -webkit-flex: 0 1 100% !important;
-        flex: 0 1 100% !important;
+        margin: 3px;
       }
-    }
 
-    .technology{
-      color: grey;
-font-style: italic;
-    }
+      #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+      }
 
-          #credits{
-padding: 20px 0px;
-font-size: 14px;
-line-height: normal;
-background-color: rgb(242,242, 242);
-text-align: center;
+      .technology{
+        color: grey;
+        font-style: italic;
+      }
+
+      .content{
+        font-size: 16px;
+      }
+
+      h2{
+        font-family: 'Open Sans';
+        margin: 0;
+        padding: 0;
+        color: rgb(26, 26, 218);
+      }
+
+      h2 span{
+        display: block;
+        z-index: 1;
+        font-family: sans-serif;
+      }
+
+      span.small{
+        font-style: italic;
+        font-weight: 100;
+        font-size: 31px;
+      }
+
+      span.large{
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 102px;
+        line-height: 1.05;
+        letter-spacing: -3px;
       }
     </style>
 
-        <!-- Important Owl stylesheet -->
-<link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.carousel.css">
- 
-<!-- Default Theme -->
-<link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.theme.css">
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.carousel.css">
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="../gitroot/owlcaroussel/owl-carousel/owl.theme.css">
 
-  <div id="wrapper">
-
-    <div style="background: #FFF;
-">
-<div style=" color:#353535; font-size: 25px;
-padding: 20px;text-align: center;
-line-height: normal;">
-      <template if="{{softwares != null}}">
-  <template repeat="{{software in softwares.feed.entry}}">
-    <template if="{{software.gsx$id.$t === 'intro'}}">
-<!--       <div style="text-align:left">&ldquo;</div> -->
-      {{software.gsx$description.$t}}
-<!--       <div style="text-align:right">&rdquo;</div> -->
-  </template>
-    </template>
-  </template>
-
-</div>
-</div>
+    <div id="wrapper" data-speed="50">
+      <div class="container">
+        <h2>
+          <span class="small">We develop our own softwares using cutting-edge and open-source</span>
+          <span class="large">technologies</span>
+        </h2>
 
 
-<section id="labbook" class="element" data-type="background" data-speed="50">
-  <div class="container">
+      <section id="labbook" data-type="background" data-speed="50">
         <template if="{{softwares != null}}">
-  <template repeat="{{software in softwares.feed.entry}}">
-    <template if="{{software.gsx$id.$t === 'labbook'}}">
-      <div id="labbookTitle" class="title">{{software.gsx$label.$t}}</div>
+          <template repeat="{{software in softwares.feed.entry}}">
+            <template if="{{software.gsx$id.$t === 'labbook'}}">
+              <div id="labbookTitle" class="title">{{software.gsx$label.$t}}</div>
+            </template>
+          </template>
         </template>
-    </template>
-  </template>
+        <div id="labbookContent" class="content"></div>
+        <div id="owl-demo0" class="slider" style="z-index:10;">
+          <div class="item"><img src="../images/software/chris3.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/chris2.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/chris1.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/chris4.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/chris5.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/chris6.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/chris7.png" alt="To complete..."></div> 
+        </div>
+      </section>
 
-        <div id="labbookContent"></div>
-      </div>
-
-  <div id="owl-demo0" class="slider" style="z-index:10;">
-          
-
-    <div class="item"><img src="../images/software/chris3.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/chris2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/chris1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/chris4.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/chris5.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/chris6.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/chris7.png" alt="To complete..."></div>
- 
-</div>
-
-  </section>
-
-  <section id="slicedrop" class="element" data-type="background" data-speed="50">
-      <div class="container">
-      <template if="{{softwares != null}}">
-  <template repeat="{{software in softwares.feed.entry}}">
-    <template if="{{software.gsx$id.$t === 'slicedrop'}}">
-      <div id="slicedropTitle" class="title">{{software.gsx$label.$t}}</div>
+      <section id="slicedrop" data-type="background" data-speed="50">
+        <template if="{{softwares != null}}">
+          <template repeat="{{software in softwares.feed.entry}}">
+            <template if="{{software.gsx$id.$t === 'slicedrop'}}">
+              <div id="slicedropTitle" class="title">{{software.gsx$label.$t}}</div>
+            </template>
+          </template>
         </template>
-    </template>
-  </template>
+        <div id="slicedropContent" class="content"></div>
+        <div id="owl-demo1" class="slider" style="z-index:10;">
+          <div class="item"><img src="../images/software/slicedrop1.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/slicedrop2.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/slicedrop3.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/slicedrop4.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/slicedrop5.png" alt="To complete..."></div>
+        </div>
+      </section>
 
-        <div id="slicedropContent"></div>
-</div>
-  <div id="owl-demo1" class="slider" style="z-index:10;">
-          
-  <div class="item"><img src="../images/software/slicedrop1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/slicedrop2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/slicedrop3.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/slicedrop4.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/slicedrop5.png" alt="To complete..."></div>
- 
-
-
-  </section>
-
-  <section id="xtk" class="element" data-type="background" data-speed="50">
-      <div class="container">
-          <template if="{{softwares != null}}">
-  <template repeat="{{software in softwares.feed.entry}}">
-    <template if="{{software.gsx$id.$t === 'xtk'}}">
-      <div id="xtkTitle" class="title">{{software.gsx$label.$t}}</div>
+      <section id="xtk" data-type="background" data-speed="50">
+        <template if="{{softwares != null}}">
+          <template repeat="{{software in softwares.feed.entry}}">
+            <template if="{{software.gsx$id.$t === 'xtk'}}">
+              <div id="xtkTitle" class="title">{{software.gsx$label.$t}}</div>
+            </template>
+          </template>
         </template>
-    </template>
-  </template>
-    <div id="xtkContent"></div>
-</div>
-    <div id="owl-demo2" class="slider" style="z-index:10;">
-          
-  <div class="item"><img src="../images/software/xtk1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/xtk2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/xtk3.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/xtk4.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/xtk5.png" alt="To complete..."></div>
- 
-</div>
+        <div id="xtkContent" class="content"></div>
+        <div id="owl-demo2" class="slider" style="z-index:10;">
+          <div class="item"><img src="../images/software/xtk1.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/xtk2.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/xtk3.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/xtk4.png" alt="To complete..."></div>
+          <div class="item"><img src="../images/software/xtk5.png" alt="To complete..."></div>
+        </div>
+      </section>
 
-  </section>
+      <section id="more" data-type="background" data-speed="50">
+        <template if="{{softwares != null}}">
+          <template repeat="{{software in softwares.feed.entry}}">
+            <template if="{{software.gsx$id.$t === 'more'}}">
+              <div id="moreTitle" class="title">{{software.gsx$label.$t}}</div>
+            </template>
+          </template>
+        </template>
+        <div id="moreContent" class="content"></div>
+      </section>
 
-  <section id="more" class="element" data-type="background" data-speed="50">
-      <div class="container">
-          <template if="{{softwares != null}}">
-  <template repeat="{{software in softwares.feed.entry}}">
-    <template if="{{software.gsx$id.$t === 'more'}}">
-      <div id="moreTitle" class="title">{{software.gsx$label.$t}}</div>
-  </template>
-    </template>
-  </template>
-
-<!--     <section id="credits" class="element" data-type="background" data-speed="50">
-      <div id="creditsContent" class="container"><p>Follow us on Github</p>
-<img style="max-width:70%;margin:auto; display:block;"src="../images/technology.png" alt="Technology"></div>
-    </section> -->
-
-      <div id="moreContent"></div>
     </div>
-
-<!--   <div id="owl-demo3" class="slider" style="z-index:10;">
-          
-  <div class="item"><img src="../images/software/more1.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/more2.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/more3.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/more4.png" alt="To complete..."></div>
-  <div class="item"><img src="../images/software/more5.png" alt="To complete..."></div>
- 
-</div> -->
-
-  </section>
-
-    <div id="credits" class="element">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
-    </div>
-
   </div>
+
+<footer-element></footer-element>
  
 <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0Asu7h0aKnydhdEp2SjNBaVU0ajNuZnZPQ3BaVXB3dXc/od6/public/values?alt=json-in-script&callback=" response="{{softwares}}"></polymer-jsonp>
 
@@ -343,43 +252,36 @@ line-height: normal;">
       jumpToSection: 0,
       jumpSkip: 0,
       reloaded: 0,
+      main:null,
+      elt:null,
       ready: function(){
         // create scroll list (all sections)
         this.sections = $(this.$.wrapper).find('section').map( function(){ return $(this).attr('id');});
+        var _this = this;
         addEventListener('WebComponentsReady', function() {
+          _this.main = $(_this.parentNode).closest('#main');
+          _this.elt = $(_this.$.wrapper);
           $('#owl-demo0').owlCarousel({
- autoPlay: 3000, //Set AutoPlay to 3 seconds
- 
-      items : 4,
-      itemsDesktop : [1199,3],
-      itemsDesktopSmall : [979,3]
-  });
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            items : 4,
+            itemsDesktop : [1199,3],
+            itemsDesktopSmall : [979,3]
+          });
 
-                    $('#owl-demo1').owlCarousel({
- autoPlay: 3000, //Set AutoPlay to 3 seconds
- 
-      items : 4,
-      itemsDesktop : [1199,3],
-      itemsDesktopSmall : [979,3]
-  });
+          $('#owl-demo1').owlCarousel({
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            items : 4,
+            itemsDesktop : [1199,3],
+            itemsDesktopSmall : [979,3]
+          });
 
-                              $('#owl-demo2').owlCarousel({
- autoPlay: 3000, //Set AutoPlay to 3 seconds
- 
-      items : 4,
-      itemsDesktop : [1199,3],
-      itemsDesktopSmall : [979,3]
-  });
-
- //                                                            $('#owl-demo3').owlCarousel({
- // autoPlay: 3000, //Set AutoPlay to 3 seconds
- 
- //      items : 4,
- //      itemsDesktop : [1199,3],
- //      itemsDesktopSmall : [979,3]
- //  });
-
-});
+          $('#owl-demo2').owlCarousel({
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+            items : 4,
+            itemsDesktop : [1199,3],
+            itemsDesktopSmall : [979,3]
+          });
+        });
       },
       scrollToSectionChanged: function(){
         if(this.reloaded == 1){
@@ -388,7 +290,8 @@ line-height: normal;">
         }
 
         var lastIndex = this.currentSectionIndex;
-        var fromTop = $(this.parentNode).closest('#main').scrollTop();
+        var fromTop = this.main.scrollTop();
+
         // Get id of current scroll item
         var current= this.currentSection;
         var currentIndex = this.currentSectionIndex;
@@ -404,57 +307,20 @@ line-height: normal;">
            }
         }
 
-        // parralax current section
-           // parallax
-           // get jquery element
-           // from previous section instead!
+        var diff = this.$.wrapper.offsetTop;
+        var off = diff - fromTop; 
+        var hei = this.$.wrapper.offsetHeight;
 
+        var yPos = off/hei;
+        // Put together our final background position
+        var coords = '50% '+ yPos*this.elt.data('speed') + 'px';
 
-        //    var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex]);
-        //    // offset + height: get %
-        //    var diff = this.$[this.sections[currentIndex]].offsetTop;
-        //    var off = diff - fromTop; 
-        //    var hei = this.$[this.sections[currentIndex]].offsetHeight;
-
-
-        //   var yPos = off/hei;
-        //   // Put together our final background position
-        //   var coords = '50% '+ yPos*elt.data('speed') + 'px';
-        //   // Move the background
-        //   elt.css({
-        //    backgroundPosition: coords});
-
-
-        //    var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
-        //    if(elt.length){
-        //    var diff = this.$[this.sections[currentIndex + 1]].offsetTop;
-        //    var off = diff - fromTop; 
-        //    var hei = this.$[this.sections[currentIndex + 1]].offsetHeight;
-
-
-        //   var yPos = off/hei;
-        //   // Put together our final background position
-        //   var coords = '50% '+ yPos*elt.data('speed') + 'px';
-        //   // Move the background
-        //   elt.css({
-        //    backgroundPosition: coords});
-        // }
-
-        // // and next...!
-        //    var elt = $(this.$.wrapper).find('#'+this.sections[currentIndex + 1]);
-        //    var yPos = -(fromTop / elt.data('speed'));
-        //    // Put together our final background position
-        //    var coords = '50% '+ yPos + 'px';
-        //    // Move the background
-        //    elt.css({
-        //     backgroundPosition: coords,
-        //     '-webkit-background-size': 'cover',
-        //     '-moz-background-size': 'cover',
-        //     '-o-background-size': 'cover',
-        //     'background-size': 'cover'});
+        // Move the background
+        this.elt.css({
+         backgroundPosition: coords});
 
         if(this.jumpToSection == 0){
-
+          
            if(lastIndex != currentIndex){
              this.currentSection = current;
              this.currentSectionIndex = currentIndex;
@@ -463,8 +329,7 @@ line-height: normal;">
         }
       },
       jumpToSectionChanged: function(){
-        window.console.log(this.jumpToSection);
-         if(this.jumpToSection == 0 || this.jumpToSection > 1){
+         if(this.jumpToSection == 0){
            return;
          };
           // maybe not necessary
@@ -473,22 +338,15 @@ line-height: normal;">
             index = this.currentSectionIndex;
           }
 
-          window.console.log(index);
           var divID = this.sections[index];
-                    window.console.log(divID);
           var _this = this;
           $(this.parentNode).closest('#main').animate({
             scrollTop: this.$[divID].offsetTop,
             scrollLeft: 0
           },500, function(){
-                      _this.reloaded = 1;
           _this.jumpToSection = 0;
-
-          // _this.currentSection = divID;
+          _this.reloaded = 1;
           }); 
-
-//           var _this = this;
-// setTimeout(function(){_this.jumpToSection = 0;}, 50);
       },
       softwaresChanged: function(){
         if(this.softwares){

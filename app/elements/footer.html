@@ -1,0 +1,32 @@
+<polymer-element name="footer-element">
+  <template>
+    <style>
+      @host {
+      }
+
+      .footer{
+        padding: 20px 0px;
+        font-size: 14px;
+        line-height: normal;
+        background-color: rgb(242,242, 242);
+        text-align: center;
+      }
+
+      @media all and (min-width: 800px){
+        .footer{
+          -webkit-flex: 0 1 100% !important;
+          flex: 0 1 100% !important;
+        }
+      }
+
+    </style>
+
+    <div class="footer">This website is a Fetal-Neonatal Neuroimaging and Developmental Science Center (FNNDSC) project
+    </div>
+
+  </template>
+  
+  <script>
+    Polymer('footer-element');
+  </script>
+</polymer-element>
